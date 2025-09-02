@@ -9,8 +9,6 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@fontsource/inter": "^5.2.6",
-    "@fontsource/twinkle-star": "^5.2.6",
     "@tailwindcss/vite": "^4.1.12",
     "astro": "^5.13.5",
     "tailwindcss": "^4.1.12"
