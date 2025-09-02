@@ -1,61 +1,23 @@
 ---
+import IMAGENES from "../data/imagenes.json";
+
 ---
+
+
 <div class="my-8">
     <div class="relative w-full overflow-hidden px-4">
     <!-- Carrusel -->
         <div id="carousel" class="flex transition-transform gap-3 duration-500 ease-in-out -mx-2">
             <!-- Lista de items -->
             <ul class="flex space-x-4">
-                <li class="w-1/4 flex-shrink-0">
-                    <img class="flex-shrink-0" src="src/images/img1.webp" />
-                    <h3 class="text-center">Item 1</h3>
-                    <p>Descripción del item 1.</p>
-                </li>
-                <li class="w-1/4 flex-shrink-0">
-                    <img class="flex-shrink-0" src="src/images/img2.webp" />
-                    <h3 class="text-center">Item 1</h3>
-                    <p>Descripción del item 1.</p>
-                </li>
-                <li class="w-1/4 flex-shrink-0">
-                    <img class="flex-shrink-0" src="src/images/img3.webp" />
-                    <h3 class="text-center">Item 1</h3>
-                    <p>Descripción del item 1.</p>
-                </li>
-                <li class="w-1/4 flex-shrink-0">
-                    <img class="flex-shrink-0" src="src/images/img4.webp" />
-                    <h3 class="text-center">Item 1</h3>
-                    <p>Descripción del item 1.</p>
-                </li>
-                <li class="w-1/4 flex-shrink-0">
-                    <img class="flex-shrink-0" src="src/images/img5.webp" />
-                    <h3 class="text-center">Item 1</h3>
-                    <p>Descripción del item 1.</p>
-                </li>
-                <li class="w-1/4 flex-shrink-0">
-                    <img class="flex-shrink-0" src="src/images/img6.webp" />
-                    <h3 class="text-center">Item 1</h3>
-                    <p>Descripción del item 1.</p>
-                </li>
-                <li class="w-1/4 flex-shrink-0">
-                    <img class="flex-shrink-0" src="src/images/img7.webp" />
-                    <h3 class="text-center">Item 1</h3>
-                    <p>Descripción del item 1.</p>
-                </li>
-                <li class="w-1/4 flex-shrink-0">
-                    <img class="flex-shrink-0" src="src/images/img8.webp" />
-                    <h3 class="text-center">Item 1</h3>
-                    <p>Descripción del item 1.</p>
-                </li>
-                <li class="w-1/4 flex-shrink-0">
-                    <img class="flex-shrink-0" src="src/images/img9.webp" />
-                    <h3 class="text-center">Item 1</h3>
-                    <p>Descripción del item 1.</p>
-                </li>
-                <li class="w-1/4 flex-shrink-0">
-                    <img class="flex-shrink-0" src="src/images/img10.webp" />
-                    <h3 class="text-center">Item 1</h3>
-                    <p>Descripción del item 1.</p>
-                </li>
+                {IMAGENES.map(imagen => <li class="w-1/4 flex-shrink-0">
+                                          <img class="flex-shrink-0" src= {imagen.url} />
+                                          <h3 class="text-center">{imagen.modelo}</h3>
+                                          <p>{imagen.descripcion}</p>
+                                          <p>{imagen.precio}</p>
+                                        </li>
+                              )
+                }
             </ul>
         </div>
 

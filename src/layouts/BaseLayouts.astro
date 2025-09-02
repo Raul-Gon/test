@@ -4,16 +4,21 @@ import NavBar from '../components/NavBar.astro';
 import MenuChico from "../components/MenuChico.astro";
 import FooterTotal from '../components/FooterTotal.astro';
 
+const {titulo, descripcion} = Astro.props;
+
 ---
 
 <html lang="es">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 
-		<title>Astro</title>
+		<meta name="name" content={titulo} />
+		<meta name="description" content={descripcion} />
+
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<title>{titulo}</title>
 
 	</head>
 	<body>
