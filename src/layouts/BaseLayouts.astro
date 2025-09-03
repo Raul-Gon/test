@@ -20,11 +20,17 @@ const {titulo, descripcion} = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<title>{titulo}</title>
 
+
+		<!-- Link Swiper's CSS -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+
+
 	</head>
 	<body>
         <MenuChico />
         <NavBar />
         <slot />
-		<!--<FooterTotal />-->
+		<FooterTotal />
 	</body>
 </html>

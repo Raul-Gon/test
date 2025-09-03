@@ -1,0 +1,36 @@
+---
+import IMAGENES from "../data/imagenes.json";
+
+---
+
+<div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+        {IMAGENES.map(imagen => <div class="swiper-slide">
+                                    <img src= {imagen.url} alt= {imagen.modelo} />
+                                    <h3 class="mt-4 ">{imagen.modelo}</h3>
+                                    <p>{imagen.descripcion}</p>
+                                    <p>{imagen.precio}</p>
+                                </div>
+                              )
+                }
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+</div>
+
+<!-- Swiper JS -->
+<script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 4,               //muestra 4 imagenes
+        spaceBetween: 20,               //añade un espcio de 20 px
+        slidesPerGroup: 4,              // Desplazar 4 imágenes por vez
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        }
+    });
+</script>
+
