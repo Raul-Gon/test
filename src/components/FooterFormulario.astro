@@ -9,47 +9,68 @@
             <span class="text-2xl">Directo a tu correo</span>
             <span class="text-sm">Con nuestro selecto boletín te llegarán descuentos, novedades e inspiración para tu estilo.</span>
         </div>
-        <div class="w-full md:w-3/5 bg-white">
+        <div class="w-full md:w-3/5 py-10 px-12 bg-white">
             <div>
-            <form action="/" method="get">
-                <div class="flex flex-col mb-5 gap-0">
-                    <label id="newsletterLabel" for="mail">
-                        <span class=" block border-2 border-gray-800 pb-0 mb-0">Tu correo electrónico</span>
-                    </label>
-                    <input id="newsletterInput" class="border-2 border-gray-800 mt-0 pt-0 " type="email" id="mail" name="email" required></imput>
-                    
+                <form action="/" method="get">
+                    <div class="flex flex-col gap-0">
+                        <span class="block -mb-[1px]">
+                            <label class="border-2 border-b-0 p-2 border-black text-sm" id="newsletterLabel" for="mail">
+                                Tu correo electrónico
+                            </label>
+                        </span>
+                        <input id="newsletterInput" class="border-2 border-black mt-0 pt-0 " type="email" id="mail" name="email" required></imput>
+                        
+                    </div>
+                    <div  class="grid grid-cols-2 mt-8">
+                        <div class="flex flex-col">
+                            <span class="font-bold">Gestiona tus preferencias</span>
+                            <span>¿Cuál es tu preferencia?</span>
+                        </div>
+                        <div class="flex flex-col">
+                            check-box Moda para mujer
+                            check-box Moda para hombre
+                        </div>                            
+                    </div>
+                    acordion Opciones de contenido
+                    Notificaciones de artículos
+                    Novedades y tendencias
+                    Tus marcas y creadores
+                    Recomendaciones
+                    Notificaciones de disponibilidad de tallas
+                    Stories
+                    Ofertas
+                    Encuestas
+                    Ver más (necesitas iniciar sesión)
+                    submit Suscríbeme
+                </form>
+                <div>
+                    Echa un vistazo a nuestra política de privacidad para saber más sobre el procesamiento de tus datos. Puedes darte de baja cuando quieras, sin coste alguno.
                 </div>
-                Gestiona tus preferencias
-                ¿Cuál es tu preferencia?
-                check-box Moda para mujer
-                check-box Moda para hombre
-                acordion Opciones de contenido
-                Notificaciones de artículos
-                Novedades y tendencias
-                Tus marcas y creadores
-                Recomendaciones
-                Notificaciones de disponibilidad de tallas
-                Stories
-                Ofertas
-                Encuestas
-                Ver más (necesitas iniciar sesión)
-                submit Suscríbeme
-            </form>
-                Echa un vistazo a nuestra política de privacidad para saber más sobre el procesamiento de tus datos. Puedes darte de baja cuando quieras, sin coste alguno.
             </div>
         </div>
     </div>
 </section>
 
 <script>
-    const newsletterLabel = document.querySelector('#newsletterLabel')
-    const newsletterInput = document.querySelector('#newsletterInput')
+    const newsletterLabel = document.querySelector('#newsletterLabel');
+    const newsletterInput = document.querySelector('#newsletterInput');
 
     newsletterInput.addEventListener('mouseover', () => {
-        newsletterLabel?.classList.add('bg-red-300')
+        newsletterLabel?.classList.add('bg-gray-300');
     })
 
     newsletterInput.addEventListener('mouseout', () => {
-        newsletterLabel?.classList.remove('bg-red-300')
+        newsletterLabel?.classList.remove('bg-gray-300');
     })
+
+    newsletterInput.addEventListener('focus', () => {
+        newsletterLabel?.classList.remove('bg-gray-300');
+        newsletterLabel?.classList.add('bg-black');
+        newsletterLabel?.classList.add('text-white');
+    })
+
+    newsletterInput.addEventListener('blur', () => {
+        newsletterLabel?.classList.remove('bg-black');
+        newsletterLabel?.classList.remove('text-white');
+    });
 </script>
