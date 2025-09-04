@@ -12,5 +12,5 @@ export default defineConfig({
         sans: ['Inter', 'sans-serif'], // Ahora esto usa la fuente Inter
       },
     },
-  },
+  },  
 });

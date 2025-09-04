@@ -1,36 +1,34 @@
 ---
 ---
 
-<div class="bg-gray-200 w-full h-auto py-8 border-t">
-    <div class="w-[1200px] mx-auto grid grid-cols-2">
-        <div class="flex flex-wrap gap-6 text-sm text-gray-800">
-            <p>Tech blog</p>
-            <p>Aviso Legal</p>
-            <p>Téminos y condiciones</p>
-            <p>Protección de datos</p>
-            <p>Configuracion de Datos</p>
-            <p>Normas de la comunidad</p>
+<section class="bg-gray-200 w-full py-8 border-t">
+    <div class="max-w-[1200px] mx-8 xl:mx-auto flex flex-col lg:grid lg:grid-cols-2 gap-6">
+        <div class="text-sm/8 text-gray-800 mr-4">
+            <a href="/" class="mr-6 hover:underline">Tech blog</a>
+            <a href="/" class="mr-6 hover:underline">Aviso Legal</a>
+            <a href="/" class="mr-6 hover:underline">Términos y condiciones</a>
+            <a href="/" class="mr-6 hover:underline">Protección de datos</a>
+            <a href="/" class="mr-6 hover:underline">Configuración de datos</a>
+            <a href="/" class="mr-6 hover:underline">Normas de la comunidad</a>
         </div>
-        <div class="grid grid-cols-2">
+        <div class="flex flex-col md:grid md:grid-cols-2">
+            <div class="mb-6 md:mb-0">
+                <h6>App de Zalando:</h6>
+                <div class="flex flex-row lg:flex-col min-[1080px]:flex-row!">
+                    <img class="hidden md:flex mt-4" src="src/images/appQr.png" alt="imagen QR de apps" width="90px" height="90px">
+                    <div class="mt-4  ml-0 md:ml-6 lg:ml-0 min-[1080px]:ml-6! flex flex-col">
+                        <img class="mb-2" src="src/images/appStoreApple.svg" alt="imagen de apps de apple" width="120px" height="40px" >
+                        <img src="src/images/appPlayStore.svg" alt="imagen de apps de play store" width="136px" height="40px">
+                    </div>
+                </div>
+            </div>
             <div>
-                <p class="text-sm text-gray-800 font-bold">App de Zalando:</p>
-                <div class="grid grid-cols-2">
-                    <div class="mt-3 flex flex-row">
-                        <span><img src="src/images/appQr.png" alt="imagen QR de apps" width="90px" height="90px"></span>
-                    </div>
-                    <div class="mt-3 flex flex-col gap-2">
-                        <span><img src="src/images/appStoreApple.svg" alt="imagen de apps de apple" ></span>
-                        <span><img src="src/images/appPlayStore.svg" alt="imagen de apps de play store" width="auto" height="auto"></span>
-                    </div>
+                <p>Más inspiración:</p>
+                <div class="flex fllex-row mt-4 gap-4">
+                    <img src="src/images/logoFacebook.svg" alt="logotipo facebook" width="30px" height="30px">
+                    <img src="src/images/logoInstagram.svg" alt="logotipo instagram" width="30px" height="30px">
                 </div>
             </div>
-            <div class="flex flex-col">
-                <p class="text-sm text-gray-800">Más inspiración:</p>
-                <div class="flex flex-row mt- gap-4">
-                    <span><img src="src/images/logoFacebook.svg" alt="logotipo facebook" width="20px" height="20px"></span>
-                    <span><img src="src/images/logoInstagram.svg" alt="logotipo instagram" width="20px" height="20px"></span>
-                </div>
-            </div>
-        <div>
+        </div>
     </div>
-</div>
+</section>

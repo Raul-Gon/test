@@ -4,9 +4,9 @@ import INSPIRACION from "../data/inspiracion.json";
 ---
 
 <div class="w-full h-auto mt-32 mb-20 bg-white ">
-    <div class="w-[1200px] mx-auto">
+    <div class="max-w-[1200px] mx-8 xl:mx-auto">
         <h2 class="text-3xl font-bold mb-8 text-black">Más marcas</h2>
-        <div class="w-full h-auto grid grid-cols-4">
+        <div class="w-full h-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
             {MASMARCAS.map(marca => <div class="mb-2 text-sm">
                                         <a href={marca.url} class="hover:cursor-pointer hover:underline">
                                             {marca.marca}
@@ -16,7 +16,7 @@ import INSPIRACION from "../data/inspiracion.json";
             }         
         </div>
         <h2 class="text-3xl font-bold mb-8 mt-10 text-black">Más Inspiración</h2>
-        <div class="w-full h-auto grid grid-cols-4">
+        <div class="w-full h-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
             {INSPIRACION.map(inspira => <div class="mb-2 text-sm">
                                         <a href={inspira.url} class="hover:cursor-pointer hover:underline">
                                             {inspira.marca}
