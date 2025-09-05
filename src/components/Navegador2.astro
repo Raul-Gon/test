@@ -1,0 +1,106 @@
+---
+
+---
+
+
+<div class="max-w-[1200px] mx-8 xl:mx-auto flex-row flex-2">
+     <div class="w-full h-1/2 mt-4 pb-0 flex">
+        <div class="h-full w-4/5 mr-3 flex justify-between items-center place-content-start overflow-hidden">
+            <a href="/" class="hover:underline">Novedades</a>
+            <a href="/" class="hover:underline">Ropa</a>
+            <a href="../categoria/" id="calzado-trigger" class="hover:underline">Calzado</a>
+            <a href="/" class="hover:underline">Complementos</a>
+            <a href="/" class="hover:underline">Deporte</a>
+            <a href="/" class="hover:underline">Beauty</a>
+            <a href="/" class="hover:underline">Streetwear</a>
+            <a href="/" class="hover:underline">Designer</a>
+            <a href="/" class="hover:underline">Marcas</a>
+            <a href="/" class="hover:underline text-red-600">Outlet</a>
+            <a href="/" class="hover:underline">Segunda mano</a>
+        </div>
+
+        <div class="relative w-full max-w-sm">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <!-- SVG Icono -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256">
+                <path fill="currentColor" d="M232.49 215.51L185 168a92.12 92.12 0 1 0-17 17l47.53 47.54a12 12 0 0 0 17-17ZM44 112a68 68 0 1 1 68 68a68.07 68.07 0 0 1-68-68"/>
+                </svg>
+            </div>
+            <input
+                type="text"
+                placeholder="Buscar aquí"
+                class="pl-10 w-full p-2.5 border border-black focus:ring-blue-500 focus:border-blue-500"
+            />
+        </div>            
+
+    </div>
+</div>
+<section id="mega-menu-calzado" class="hidden opacity-0 absolute -translate-y-4 transition-all duration-300 ease-out pointer-events-none max-w-[1200px] mx-8 xl:mx-auto flex-row flex-2">
+    <div class="w-full h-52 pt-10">
+        <div class="w-full h-full bg-amber-300">
+            Categorías
+            Ver todo
+            Sandalias
+            Zapatillas
+            Mocasines
+            Zapatos de traje
+            Botas y botines
+            Marcas
+            HOFF
+            Nuevo
+            Timberland
+            Tommy Hilfiger
+            Panama Jack
+            Pier One
+            Lacoste
+            Reebok
+            Vans
+            New Balance
+            Jordan
+            Adidas
+            Skechers
+            Nike
+        </div>
+    </div>
+</section>
+
+<script is:inline>
+  const trigger = document.getElementById('calzado-trigger');
+  const megaMenu = document.getElementById('mega-menu-calzado');
+
+  let isInside = false;
+
+  const showMenu = () => {
+    megaMenu.classList.remove('hidden');
+    requestAnimationFrame(() => {
+        megaMenu.classList.remove('opacity-0', '-translate-y-4', 'pointer-events-none');
+    });
+  };
+
+  const hideMenu = () => {
+    megaMenu.classList.add('opacity-0', '-translate-y-4', 'pointer-events-none');
+    setTimeout(() => {
+        if (!isInside) megaMenu.classList.add('hidden');
+    }, 500); // debe coincidir con duration-500
+  };
+
+  trigger.addEventListener('mouseenter', () => {
+    isInside = true;
+    showMenu();
+  });
+
+  trigger.addEventListener('mouseleave', () => {
+    isInside = false;
+    setTimeout(hideMenu, 500); // Pequeño delay para permitir mover el ratón al menú
+  });
+
+  megaMenu.addEventListener('mouseenter', () => {
+    isInside = true;
+    showMenu();
+  });
+
+  megaMenu.addEventListener('mouseleave', () => {
+    isInside = false;
+    hideMenu();
+  });
+</script>

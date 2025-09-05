@@ -1,8 +1,7 @@
 ---
 import '../styles/global.css';
-import NavBar from '../components/NavBar.astro';
-import MenuChico from "../components/MenuChico.astro";
 import FooterTotal from '../components/FooterTotal.astro';
+import Head from '../components/Head.astro';
 
 const {titulo, descripcion} = Astro.props;
 
@@ -28,8 +27,7 @@ const {titulo, descripcion} = Astro.props;
 
 	</head>
 	<body>
-        <MenuChico />
-        <NavBar />
+		<Head />
         <slot />
 		<FooterTotal />
 	</body>
