@@ -1,13 +1,23 @@
 ---
 import BaseLayouts from "../layouts/BaseLayouts.astro";
-import ShowProduct from "../components/ShowProduct.astro";
+import AsideCategoria from "../components/AsideCategoria.astro";
+import MainCategoria from "../components/MainCategoria.astro";
 
 const titule = "Calzados";
 const descrip = "Muestra de los diferentes tipos de productos de la categoria de calzado"
 ---
 
 <BaseLayouts titulo= {titule} descripcion= {descrip}>
-	<main>	
-		Calzados
-	</main>
+	<div class="max-w-[1200px] mx-8 mt-10 xl:mx-auto">
+		<span><a href="/" class="font-bold hover:underline text-xl">Hombre</a> &nbsp &nbsp &gt &nbsp &nbsp <a href="/categoria/" class="font-bold hover:underline text-xl">Zapatos</a></span>
+		<h1 class="mt-5 text-5xl font-bold">Zapatos de hombre</h1>
+	</div>	
+	<div class="max-w-[1200px] mx-8 mt-10 xl:mx-auto flex">
+		<aside class="w-1/4">
+			<AsideCategoria />
+		</aside>
+		<main class="w-3/4 bg-amber-200">	
+			<MainCategoria />
+		</main>
+	</div>
 </BaseLayouts>

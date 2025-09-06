@@ -1,0 +1,110 @@
+---
+---
+
+<!-- Contenedor del acordeón -->
+<div id="accordion-example" class="flex flex-wrap gap-3">
+
+  <!-- Item 1 -->
+  <h2 id="accordion-heading-1">
+    <button type="button" class="flex items-center justify-between p-3 font-medium rtl:text-right text-gray-800 border border-gray-700 hover:bg-gray-100 transition" data-target="accordion-body-1" aria-expanded="false" aria-controls="accordion-body-1">
+      <span>Ordenar</span>
+      <svg class="w-6 h-6 transition-transform duration-300 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+      </svg>
+    </button>
+  </h2>
+  <div id="accordion-body-1" class="hidden" aria-labelledby="accordion-heading-1">
+    <div class="p-5 border border-t-0 border-gray-800 text-gray-500">
+      <p class="mb-2">Flowbite</p>
+      <p><a href="/categoria/" class="hover:underline">Check</a></p>
+    </div>
+  </div>
+
+  <!-- Item 2 -->
+  <h2 id="accordion-heading-2">
+    <button
+      type="button"
+      class="flex items-center justify-between p-3 font-medium rtl:text-right text-gray-800 border border-gray-700 hover:bg-gray-100 transition"
+      data-target="accordion-body-2"
+      aria-expanded="false"
+      aria-controls="accordion-body-2"
+    >
+      <span>Marca</span>
+      <svg class="w-6 h-6 transition-transform duration-300 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd"
+          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+          clip-rule="evenodd"></path>
+      </svg>
+    </button>
+  </h2>
+  <div
+    id="accordion-body-2"
+    class="hidden"
+    aria-labelledby="accordion-heading-2"
+  >
+    <div class="p-5 border border-t-0 border-gray-200 text-gray-500">
+      <p class="mb-2">Flowbite</p>
+      <p><a href="/categoria/" class="hover:underline">Check</a></p>
+    </div>
+  </div>
+
+  <!-- Item 3 -->
+  <h2 id="accordion-heading-3">
+    <button
+      type="button"
+      class="flex items-center justify-between p-3 font-medium rtl:text-right text-gray-800 border border-gray-700 hover:bg-gray-100 transition"
+      data-target="accordion-body-3"
+      aria-expanded="false"
+      aria-controls="accordion-body-3"
+    >
+      <span>Talla</span>
+      <svg class="w-6 h-6 transition-transform duration-300 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd"
+          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+          clip-rule="evenodd"></path>
+      </svg>
+    </button>
+  </h2>
+  <div
+    id="accordion-body-3"
+    class="hidden"
+    aria-labelledby="accordion-heading-3"
+  >
+    <div class="p-5 border border-t-0 border-gray-200 text-gray-500">
+      <p class="mb-2">Flowbite</p>
+      <p><a href="/categoria/" class="hover:underline">Check</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript personalizado -->
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('[data-target]');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const targetId = button.getAttribute('data-target');
+        const target = document.getElementById(targetId);
+        const icon = button.querySelector('svg');
+        const isOpen = !target.classList.contains('hidden');
+
+        // Cierra todos
+        document.querySelectorAll('#accordion-example div[id^="accordion-body-"]').forEach(el => {
+          el.classList.add('hidden');
+        });
+
+        // Resetea todas las flechas
+        document.querySelectorAll('[data-target] svg').forEach(svg => {
+          svg.classList.remove('rotate-180');
+        });
+
+        // Abre el seleccionado si estaba cerrado
+        if (!isOpen) {
+          target.classList.remove('hidden');
+          icon.classList.add('rotate-180');
+        }
+      });
+    });
+  });
+</script>
