@@ -1,6 +1,7 @@
 ---
 import BaseLayouts from "../layouts/BaseLayouts.astro";
-import ShowProduct from "../components/ShowProduct.astro";
+import ProductoTodo from "../components/ProductoTodo.astro";
+
 
 const titule = "Pag. Productos";
 const descrip = "Muestra las caracteristicas y valores del producto"
@@ -8,7 +9,8 @@ const descrip = "Muestra las caracteristicas y valores del producto"
 
 <BaseLayouts titulo= {titule} descripcion= {descrip}>
 	<h1 class="hidden">Producto</h1>
-	<main>	
-		Enseñar Producto
+	
+	<main class="max-w-[1200px] mx-8 mt-10 xl:mx-auto bg-red-600">
+		<ProductoTodo />
 	</main>
 </BaseLayouts>
