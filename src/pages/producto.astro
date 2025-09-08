@@ -2,23 +2,27 @@
 import BaseLayouts from "../layouts/BaseLayouts.astro";
 import ProductoImagen from "../components/ProductoImagen.astro";
 import ProductoCaracteris from "../components/ProductoCaracteris.astro";
-import ProductoCarrusel from "../components/ProductoCarrusel.astro";
+import ProductoEscaparate from "../components/ProductoEscaparate.astro";
 
 
 const titule = "Pag. Productos";
 const descrip = "Muestra las caracteristicas y valores del producto"
+
+const carro1 = "carrusel1";
+const carro2 = "carrusel2";
 ---
 
 <BaseLayouts titulo= {titule} descripcion= {descrip}>
 	<h1 class="hidden">Producto</h1>
 	
-	<main class="max-w-[1200px] mx-8 mt-10 xl:mx-auto">
-		<section class="w-full min-h-[715px] flex flex-col md:flex md:flex-row gap-4 lg:gap-0">    
-			<ProductoImagen />
-			<ProductoCaracteris />
-		</section>
-		<section>
-			<ProductoCarrusel />
-		</section>
+	<main>
+		<div class="max-w-[1200px] mx-8 mt-10 xl:mx-auto">
+			<section class="w-full min-h-[715px] flex flex-col md:flex md:flex-row gap-4 lg:gap-0">    
+				<ProductoImagen />
+				<ProductoCaracteris />
+			</section>			
+		</div>
+		<ProductoEscaparate carro= {carro1} />
+		<ProductoEscaparate carro= {carro2} />
 	</main>
 </BaseLayouts>

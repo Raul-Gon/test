@@ -1,39 +1,82 @@
 ---
-import CarruselProductos from "./CarruselProductos.astro"
+import IMAGENES from "../data/imagenes.json";
 
---- 
+const {carro} = Astro.props;
+console.log('Estamos en Carrusel:');
+console.log(carro);
+---
 
-<div class="w-full h-auto flex flex-col">
-    <div class="w-full h-auto bg-cyan-600">
-        <div class="max-w-[1200px] mx-8 xl:mx-auto flex flex-row h-full">
-            <div class="w-1/2 flex flex-wrap">
-                <div class="w-full h-full flex mb-0 mt-8">
-                    <img src="/images/img.webp" alt="imagen de prueba" class="mb-0 pb-0">
-                </div>
-            </div>
-            <div class="w-1/2 mb-0 p-5 pb-0">
-                <div class="h-full w-full flex flex-col mb-0">
-                    <p class="flex flex-wrap text-xs mt-10">
-                        Patrocinado   
-                        <img src="/images/iconoInformacion.svg" alt="icono informacion" width="16px" height="16px" class="mx-2">
-                    </p>
-                    <h2 class="mt-3 font-bold text-3xl">MARCA</h2>
-                    <h3 class="text-2xl">Eslogan</h3>
-                    <p class="mt-[16px]">Descripcion marca</p>
-                    <button class="w-72 mt-5 border-2 border-black px-10 py-3 hover:bg-gray-600 hover:text-white">Ver más</button>
-                </div>
-            </div>
-        </div>
+<div class="relative w-full overflow-visible px-4">
+<!-- Carrusel -->
+    <div id={carro} class="flex transition-transform duration-500 ease-in-out -mx-2">
+        <!-- Lista de items -->
+        <ul class="flex space-x-4">
+            {IMAGENES.map(imagen => <li class="w-1/4 flex-shrink-0">
+                                      <img class="w-80 h-auto" src= {imagen.url} alt= {imagen.modelo} />
+                                      <h3 class="mt-4 ">{imagen.modelo}</h3>
+                                      <p>{imagen.descripcion}</p>
+                                      <p>{imagen.precio}</p>
+                                    </li>
+                          )
+            }
+        </ul>
     </div>
-    <div class="w-full h-auto bg-cyan-800">
-        <div class="max-w-[1200px] mx-8 xl:mx-auto  h-auto">
-            <div class="mt-5">
-                <CarruselProductos /> 
-             </div>
-            <div class="my-5 flex flex-row items-center justify-start">
-                <button class="border-2 border-black py-3 px-4 hover:bg-gray-600 hover:text-white"> + Seguir</button>
-                <h2 class="ml-3">Marca</h2>
-            </div>
-        </div>
-    </div>
+
+    <!-- Botones -->
+    <button id="prev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white hover:bg-gray-400 text-black px-2 py-1 shadow hidden">←</button>
+    <button id="next" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white hover:bg-gray-400 text-black px-2 py-1 shadow">→</button>
 </div>
+
+
+<div valor-carro= {carro} class="hidden" >
+</div>
+
+
+<script is:inline>
+
+  const elemento = document.querySelector('[valor-carro]');
+  const carrusel = elemento.getAttribute('valor-carro');
+
+  const carousel = document.getElementById(carrusel);
+  const nextBtn = document.getElementById('next');
+  const prevBtn = document.getElementById('prev');
+  
+  // Datos del carrusel
+  const totalItems = carousel.querySelectorAll('li').length;
+  const visibleItems = 4;
+  const itemWidth = carousel.querySelector('li').offsetWidth;
+  let currentIndex = 0;
+
+  function updateCarousel() {
+    const offset = currentIndex * itemWidth;
+    carousel.style.transform = `translateX(-${offset}px)`;
+
+    // Mostrar u ocultar botones
+    prevBtn.classList.toggle('hidden', currentIndex === 0);
+    nextBtn.classList.toggle('hidden', currentIndex >= totalItems - visibleItems);
+  }
+
+  nextBtn.addEventListener('click', () => {
+    if (currentIndex < totalItems - visibleItems) {
+      currentIndex += visibleItems;
+      updateCarousel();
+    }
+  });
+
+  prevBtn.addEventListener('click', () => {
+    if (currentIndex > 0) {
+      currentIndex -= visibleItems;
+      updateCarousel();
+    }
+  });
+
+  // Inicialización
+  updateCarousel();
+
+  // Para manejar el redimensionamiento de la ventana
+  window.addEventListener('resize', () => {
+    updateCarousel();
+  });
+
+</script>
+
