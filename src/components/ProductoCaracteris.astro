@@ -1,0 +1,186 @@
+---
+import ProductoCaracAcordeon from "./ProductoCaracAcordeon.astro";
+
+---
+
+<div class="w-full md:w-1/2 flex flex-col lg:ml-24 lg:pl-2">
+    <div class="space-y-5">
+        <div>
+            <h2 class="text-3xl font-semibold">Pier One</h2>
+            <p class="flex flex-wrap text-3xl font-bold">BASKET CORE LITE – Zapatillas – navy blue</p>
+            <div class="mt-3">
+                <span class="text-2xl">4</span>
+                <span class="text-2xl">★★★★☆</span>
+                <span>12 valoraciones</span>
+            </div>
+        </div>
+        <div>
+            <p class="text-gray-600"><span class="text-xl font-bold text-red-600">20,29 €</span> IVA incluido</p>
+            <p class="text-gray-600">Precio mediano:<span class="line-through ml-2">50,95 €</span><span class="text-red-600 ml-2">‑50 %</span></p>
+        </div>
+        <div class="p-4 border border-gray-700">
+            <p>Oferta a la vista: Consigue un <span class="font-bold">15%</span> EXTRA en este y otros artículos seleccionados en pedidos a partir de 25,00 €.</p>
+            <p class="mt-4">Introduce tu código al finalizar la compra:</p>
+            <p class="text-xl font-bold">RUTINA15</p>
+            <p class="mt-4"><a class="text-md text-violet-500 hover:underline" href="/producto/">Ver más</a></p>
+        </div>
+        <div>
+            <p class="font-medium">Color: <span class="font-bold">black</span></p>
+            <div class="flex mt-2 gap-3">
+                <img class="w-16 border-2" src="https://img01.ztat.net/article/spp-media-p1/e68965e3a96243bc9dfb5a4debaee2cf/6c6ec40619a548acaf1e32c492002e14.jpg?imwidth=1800&filter=packshot" alt="imagen zapato negro">
+                <img class="w-16" src="https://img01.ztat.net/article/spp-media-p1/454de70ee16749b2a68ef96279ca5009/d4050bb8bb9b448591d7489338943ac1.jpg?imwidth=156&filter=packshot" alt="imagen zapato blanco">
+            </div>
+        </div>
+
+        <!-- Selección de talla -->
+        <div class="space-y-2">
+            <select class="p-4 w-full border border-black hover:border-2" aria-placeholder="Elige una talla">
+                <option>Elige una talla</option>
+                <option>40</option>
+                <option>41</option>
+                <option>42</option>
+            </select>
+        </div>
+
+        <!-- boton añadir a la cesta -->
+        <div class="flex gap-2">
+            <button class="w-full bg-black text-white py-3 font-semibold border border-black hover:bg-gray-400 hover:text-black">Añadir a la cesta</button>
+            <button class="hidden md:flex justify-center items-center size-12 border border-black hover:bg-gray-400">
+                <span class="">
+                    <svg class="size-6" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" focusable="false" aria-hidden="true">
+                        <path d="M17.488 1.11h-.146a6.55 6.55 0 0 0-5.35 2.81A6.57 6.57 0 0 0 6.62 1.116 6.406 6.406 0 0 0 .09 7.428c0 7.672 11.028 15.028 11.497 15.338a.75.75 0 0 0 .826 0c.47-.31 11.496-7.666 11.496-15.351a6.43 6.43 0 0 0-6.42-6.306M12 21.228C10.018 19.83 1.59 13.525 1.59 7.442c.05-2.68 2.246-4.826 4.934-4.826h.088c2.058-.005 3.93 1.251 4.684 3.155.226.572 1.168.572 1.394 0 .755-1.907 2.677-3.17 4.69-3.16h.02c2.7-.069 4.96 2.118 5.01 4.817 0 6.089-8.429 12.401-10.41 13.8"></path>
+                    </svg>
+                </span>
+            </button>
+        </div>
+
+        <!-- Formas de envios -->
+        <div class="mt-14">
+            <ul class="p-0">
+                <li class="border border-b-0 border-black py-4 px-6">
+                    <svg class="size-5" viewBox="0 0 24 24" fill="currentColor" focusable="false" aria-hidden="true">
+                        <path d="M2.231 8.25h2.282a.75.75 0 0 0 0-1.5H2.231a.75.75 0 0 0 0 1.5m2.266 3a.75.75 0 0 0 0-1.5H.753a.75.75 0 0 0 0 1.5zm.017 3.001a.75.75 0 0 0 0-1.5H2.21a.75.75 0 0 0 0 1.5z">                                
+                        </path>
+                        <path d="m23.81 11.501-3.368-3.738a.75.75 0 0 0-.557-.248h-3.378V4.497a.75.75 0 0 0-.75-.75H3.711a.75.75 0 0 0 0 1.5l11.298-.004.003 10.513-4.953.004c-.519-.897-1.478-1.508-2.588-1.508s-2.07.61-2.588 1.508H3.712a.75.75 0 1 0 0 1.5h.76a2.999 2.999 0 0 0 5.998 0h5.276l.76.003a2.999 2.999 0 0 0 5.997 0h.749a.75.75 0 0 0 .75-.75v-4.51a.75.75 0 0 0-.193-.502m-16.338 7.25a1.5 1.5 0 1 1 0-2.999 1.5 1.5 0 0 1 0 2.999m12.032 0a1.5 1.5 0 1 1 0-2.999 1.5 1.5 0 0 1 0 2.999m2.998-2.988h-.408a2.99 2.99 0 0 0-2.59-1.511 2.99 2.99 0 0 0-2.59 1.511h-.402l-.003-6.748h3.042l2.95 3.278z">                                
+                        </path>
+                    </svg>
+                    <div>                     
+                        <div class="flex justify-between font-bold">
+                            <span>mar 9 sep - vie 12 sep</span><span>3,95 €</span>
+                        </div>                           
+                        <p>Envío premium</p>
+                    </div>                        
+                </li>
+                <li class="border border-b-0 border-black py-4 px-6">
+                    <svg class="size-5" viewBox="0 0 24 24" fill="currentColor" focusable="false" aria-hidden="true">
+                        <path d="m23.807 11.497-3.365-3.735a.75.75 0 0 0-.557-.247H16.51V4.5a.75.75 0 0 0-.75-.75H3.007a.75.75 0 0 0-.75.75v12.008c0 .414.336.75.75.75h1.467a2.999 2.999 0 0 0 5.997 0h6.035a2.999 2.999 0 0 0 5.997 0h.746a.75.75 0 0 0 .75-.75V12a.75.75 0 0 0-.193-.503M19.55 9.015l2.949 3.274v3.468h-.408c-.519-.896-1.477-1.506-2.587-1.506s-2.068.61-2.587 1.506h-.404v-.96l-.002-5.782zM3.758 5.25H15.01l.001 3.01v.005l.003 7.492H10.06c-.518-.896-1.476-1.506-2.586-1.506s-2.068.61-2.587 1.506H3.758zm3.716 13.5a1.5 1.5 0 1 1 0-2.998 1.5 1.5 0 0 1 0 2.998m12.031 0a1.5 1.5 0 1 1 0-2.998 1.5 1.5 0 0 1 0 2.998">                                
+                        </path>
+                    </svg>
+                    <div>                            
+                        <div class="flex justify-between font-bold">                                
+                            <span>mar 10 sep - vie 12 sep</span><span>3,95 €</span>                                
+                        </div>
+                        <p>Envío estándar</p>
+                        <p><a class="text-violet-600 hover:underline" href="/producto/">Gratis para pedidos superiores a 25,90 €*</a></p>
+                    </div>
+                </li>
+                <li class="border border-b-0 border-black py-4 px-6">
+                    <div class="flex gap-2">
+                        <svg class="size-5" viewBox="0 0 24 24" fill="currentColor" focusable="false" aria-hidden="true">
+                            <path d="M14.25 4.33H1.939l3.056-3.055A.75.75 0 0 0 3.934.215L.658 3.49a2.25 2.25 0 0 0 0 3.182l3.276 3.275a.75.75 0 0 0 1.06-1.06L1.94 5.83h12.31c4.557 0 8.251 3.694 8.251 8.25s-3.695 8.42-8.251 8.42h-12a.75.75 0 0 0 0 1.5h12c5.385 0 9.75-4.534 9.75-9.919s-4.365-9.75-9.75-9.75">                                
+                            </path>
+                        </svg>
+                        <span>Derecho de devolución de 30 días</span>
+                    </div>                        
+                </li>
+                <li class="border border-black py-4 px-6">                            
+                    <div class="flex justify-between">
+                        <div class="flex gap-2">
+                            <svg class="size-5" viewBox="0 0 24 24" fill="currentColor" focusable="false" aria-hidden="true">
+                                <path d="M20.5 22.75h-17c-1.24 0-2.25-1.01-2.25-2.25V8.255q0-.381.126-.743l1.67-4.757A2.25 2.25 0 0 1 5.168 1.25H7a.75.75 0 0 1 0 1.5H5.168a.75.75 0 0 0-.707.501L2.792 8.007a.8.8 0 0 0-.042.248V20.5c0 .413.336.75.75.75h17c.413 0 .75-.337.75-.75V8.255a.7.7 0 0 0-.042-.245l-1.669-4.76a.75.75 0 0 0-.708-.501H17a.75.75 0 0 1 0-1.5h1.831c.954 0 1.808.605 2.124 1.505l1.668 4.756c.084.237.127.488.127.744V20.5c0 1.24-1.01 2.25-2.25 2.25">                                        
+                                </path>
+                                <path d="M22 9.5H2V8h20z">                                                                                
+                                </path>
+                                <path d="m16.5 15.5-4.195-1.864a.74.74 0 0 0-.61 0L7.5 15.5V8h9zM9 9.5v3.691l2.086-.926a2.25 2.25 0 0 1 1.829 0l2.085.926V9.5zM12.75 3.94V.75a.75.75 0 0 0-1.5 0v3.19l-.72-.72a.75.75 0 1 0-1.06 1.06l1.646 1.647a1.25 1.25 0 0 0 1.768 0L14.53 4.28a.75.75 0 0 0-1.06-1.06z">                                        
+                                </path>
+                            </svg>
+                            <span>Vuelve a venderlo</span>
+                        </div>
+                        <button class="hidden md:flex justify-center items-center">
+                            <span class="">
+                                <svg class="size-6" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" focusable="false" aria-hidden="true">
+                                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12c6.624-.008 11.992-5.376 12-12 0-6.627-5.373-12-12-12m0 22.5C6.201 22.5 1.5 17.799 1.5 12S6.201 1.5 12 1.5c5.796.007 10.493 4.704 10.5 10.5 0 5.799-4.701 10.5-10.5 10.5">                                            
+                                    </path>
+                                    <circle cx="12" cy="5.6" r="1.1">                                            
+                                    </circle>
+                                    <path d="M12 8.25a.75.75 0 0 0-.75.75v9.75a.75.75 0 1 0 1.5 0V9a.75.75 0 0 0-.75-.75">                                            
+                                    </path>
+                                </svg>
+                            </span>
+                        </button>
+                    </div>                       
+                </li>
+            </ul>
+        </div>
+
+        <!-- Contenedor del acordeón -->
+        <ProductoCaracAcordeon />
+
+        <!--Enlace a informacion legal -->
+        <div class="flex text-violet-600">
+            <svg class="size-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6.75 1.5a.75.75 0 0 0-1.5 0v21a.75.75 0 0 0 1.5 0v-9.266l.494.16a8.52 8.52 0 0 0 5.507-.085 8.06 8.06 0 0 1 4.65-.239l1.88.463h.09c.176 0 .365-.05.53-.167a.83.83 0 0 0 .349-.675v-9.52a.83.83 0 0 0-.35-.675.9.9 0 0 0-.402-.159l-1.646-.406a9.87 9.87 0 0 0-5.696.293 7.3 7.3 0 0 1-4.42.162L6.75 2.11zm0 2.168.583.163a8.8 8.8 0 0 0 5.33-.195 8.37 8.37 0 0 1 4.83-.249l1.257.31v8.16l-.989-.243a9.56 9.56 0 0 0-5.517.284 7.02 7.02 0 0 1-4.537.07l-.957-.31z">                    
+                </path>
+            </svg>
+            <a href="/producto/"><span class="text-sm ml-2">Informar de un problema legal</span></a>
+        </div>
+
+        <!-- Valoraciones y Reseñas -->
+        <div>
+            <!-- Valoraciones -->
+            <div class="mt-3">
+                <div class="flex justify-between items-center">
+                    <p class="text-2xl">Valoraciones</p>
+                    <svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" class="zds-icon bw_sBR X9n9TI DlJ4rT _5Yd-hZ HlZ_Tf" focusable="false" aria-hidden="true" style="font-size:1.25rem">
+                        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12c6.624-.008 11.992-5.376 12-12 0-6.627-5.373-12-12-12m0 22.5C6.201 22.5 1.5 17.799 1.5 12S6.201 1.5 12 1.5c5.796.007 10.493 4.704 10.5 10.5 0 5.799-4.701 10.5-10.5 10.5">                        
+                        </path>
+                        <circle cx="12" cy="5.6" r="1.1"></circle>
+                        <path d="M12 8.25a.75.75 0 0 0-.75.75v9.75a.75.75 0 1 0 1.5 0V9a.75.75 0 0 0-.75-.75"></path>
+                    </svg>
+                </div>
+                <div class="flex justify-between items-center">
+                    <p><span class="text-2xl">1.7</span><span class="text-2xl">★★★★☆</span></p>
+                    <span>12 valoraciones</span>
+                </div>
+            </div>
+
+
+            <!-- Reseñas -->
+            <div class="flex flex-col mt-10 p-5 gap-2 border border-gray-500">
+                <div class="flex justify-between items-center">
+                    <p>★★★★☆</p>
+                    <p class="text-gray-700">hace 3 días</p>
+                </div>
+                <p class="font-bold">Buenos zapatos</p>
+                <p>Buen zapato. Se ajusta bien y se ve muy bien</p>
+                <div class="flex items-center">
+                    <svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" focusable="false" aria-hidden="true">
+                        <path d="M24 12c0-6.627-5.373-12-12-12S0 5.373 0 12s5.373 12 12 12h.001c6.624-.008 11.991-5.376 11.999-12m-1.501-.024c-1.24-.38-2.502-.67-3.775-.904-.15-3.641-1.174-6.775-2.714-8.77a10.51 10.51 0 0 1 6.489 9.674M11.25 1.626v8.89a33.5 33.5 0 0 0-4.462.295c.277-4.66 2.15-8.49 4.462-9.186m0 10.389v10.36c-2.453-.74-4.41-5.01-4.492-10.053a32 32 0 0 1 4.492-.307m1.5 10.36v-10.36c1.505.003 3.006.093 4.492.307-.082 5.042-2.04 9.314-4.492 10.053m0-11.86v-8.89c2.311.697 4.185 4.527 4.462 9.186a33.5 33.5 0 0 0-4.462-.295m-4.756-8.22c-1.542 1.996-2.568 5.133-2.718 8.777a34 34 0 0 0-3.775.904c.01-4.37 2.69-8.109 6.493-9.68m-6.378 11.18c.046-.007.093-.004.139-.02a32 32 0 0 1 3.511-.859c.1 3.785 1.14 7.053 2.728 9.109a10.5 10.5 0 0 1-6.378-8.23m14.39 8.23c1.588-2.056 2.627-5.324 2.728-9.109 1.183.228 2.358.498 3.511.859.045.016.092.017.139.024a10.5 10.5 0 0 1-6.378 8.226">                        
+                        </path>
+                    </svg>
+                    <p class="ml-2 text-xs text-gray-700">Idioma original: noruego</p>
+                </div>            
+            </div>
+            <div class="mt-6 hover:bg-gray-400">
+                <button class="w-full text-center py-3 border-2">
+                    <p class="font-bold">Todas las opiniones</p>
+                </button>                
+            </div>
+            <div class="mt-2">
+                <p class="text-sm text-violet-600"><a href="/producto/">¿Cómo funcionan las valoraciones y las reseñas?</a></p>
+            </div>            
+        </div>     
+
+    </div>
+</div>
+

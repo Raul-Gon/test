@@ -1,6 +1,8 @@
 ---
 import BaseLayouts from "../layouts/BaseLayouts.astro";
-import ProductoTodo from "../components/ProductoTodo.astro";
+import ProductoImagen from "../components/ProductoImagen.astro";
+import ProductoCaracteris from "../components/ProductoCaracteris.astro";
+import ProductoCarrusel from "../components/ProductoCarrusel.astro";
 
 
 const titule = "Pag. Productos";
@@ -10,7 +12,13 @@ const descrip = "Muestra las caracteristicas y valores del producto"
 <BaseLayouts titulo= {titule} descripcion= {descrip}>
 	<h1 class="hidden">Producto</h1>
 	
-	<main class="max-w-[1200px] mx-8 mt-10 xl:mx-auto bg-red-600">
-		<ProductoTodo />
+	<main class="max-w-[1200px] mx-8 mt-10 xl:mx-auto">
+		<section class="w-full min-h-[715px] flex flex-col md:flex md:flex-row gap-4 lg:gap-0">    
+			<ProductoImagen />
+			<ProductoCaracteris />
+		</section>
+		<section>
+			<ProductoCarrusel />
+		</section>
 	</main>
 </BaseLayouts>
