@@ -39,18 +39,65 @@
 
 <!-- <div class="bg-white w-full h-64 absolute"> -->
 
-<section id="mega-menu-calzado" class="hidden opacity-0 absolute -translate-y-4 transition-all duration-300 ease-out pointer-events-none max-w-[1200px] mx-8 xl:mx-auto flex-row flex-2">
-    <div class="w-full h-52 pt-10">
-        <div class="flex bg-amber-300">
+<section id="mega-menu-calzado" class="hidden relative opacity-0 -translate-y-4 transition-all duration-300 ease-out pointer-events-none flex-row flex-2">
+    <div class="absolute w-full h-52 pt-10 bg-white border-0 border-b-2">
+        <div class="flex max-w-[1200px] mx-8 xl:mx-auto bg-amber-300">
           <div class="w-1/4 flex flex-col">            
             <p>Categorías<p>
-            <a href="/categoria/">Ver todo</a>
-            <a href="/producto/">Sandalias</a>
-            <a href="/producto/">Zapatillas</a>
-            <a href="/producto/">Mocasines</a>
-            <a href="/producto/">Zapatos de traje</a>
-            <a href="/producto/">Botas y botines</a>
+            <div class="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" color="currentColor">
+                  <path d="M14.617 4.767c1.01-1.601 1.516-2.401 2.178-2.643a2.06 2.06 0 0 1 1.41 0c.662.242 1.168 1.042 2.178 2.643c1.137 1.801 1.706 2.702 1.606 3.445c-.069.51-.326.976-.72 1.306C20.695 10 19.63 10 17.5 10s-3.195 0-3.77-.482a2.06 2.06 0 0 1-.719-1.306c-.1-.743.469-1.644 1.606-3.445M2 6c0-1.667 0-2.5.424-3.084q.207-.285.492-.492C3.5 2 4.333 2 6 2s2.5 0 3.084.424q.285.207.492.492C10 3.5 10 4.333 10 6s0 2.5-.424 3.084a2.2 2.2 0 0 1-.492.492C8.5 10 7.667 10 6 10s-2.5 0-3.084-.424a2.2 2.2 0 0 1-.492-.492C2 8.5 2 7.667 2 6"/>
+                  <circle cx="17.5" cy="18" r="4"/>
+                  <path d="m9.5 14.5l-7 7m0-7l7 7"/>
+              </g>
+              </svg>
+              <a class="ml-2 text-sm" href="/categoria/">Ver todo</a>
+            </div>
+            <div class="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+                  <path d="M10.5 18.3V5.814c0-1.587-.456-2.893-2.383-2.81c-1.608.069-3.116.893-4.312 1.89c-2.142 1.784-2.08 3.866-1.336 6.308l2.384 7.839C5.206 20.2 6.335 21 7.62 21c1.59 0 2.879-1.209 2.879-2.7m3.001 0V5.814c0-1.587.456-2.893 2.383-2.81c1.608.069 3.116.893 4.313 1.89c2.141 1.784 2.078 3.866 1.335 6.308l-2.384 7.839C18.794 20.2 17.665 21 16.38 21c-1.59 0-2.879-1.209-2.879-2.7"/>
+                  <path d="M3 13c0-1 .7-3.7 3.5-4.5m0 0c2.5.5 3.5 1.5 4 2m-4-2V7M21 13c0-1-.7-3.7-3.5-4.5m0 0c-2.5.5-3.5 1.5-4 2m4-2V7"/>
+                </g>
+              </svg>
+              <a class="ml-2 text-sm" href="/categoria/">Sandalias</a>
+            </div>
+            <div class="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                <g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5">
+                  <path stroke-linecap="round" d="M19.101 18H7.963c-2.934 0-4.4 0-5.295-1.117c-1.697-2.12.237-7.76 1.408-9.883c.397 2.4 4.486 2.333 5.975 2c-.992-1.999.332-2.666.994-3h.002c2.953 3.5 9.268 5.404 10.815 9.219c.669 1.648-1.236 2.781-2.76 2.781"/>
+                  <path d="M2 14c4.165 1.43 6.731 1.844 10.022.804c.997-.315 1.495-.473 1.806-.452c.31.022.945.317 2.213.909c1.583.738 3.756 1.163 5.959.097"/>
+                  <path stroke-linecap="round" d="M13.5 9.5L15 8m.5 3L17 9.5"/>
+                </g>
+              </svg>
+              <a class="ml-2 text-sm" href="/categoria/">Zapatillas</a>
+            </div>
+            <div class="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 15 15">
+                <path d="M9.5 7c-.414-.235-.89-.596-1.315-.948L6.01 3.222a.56.56 0 0 0-1 .278H5V5H3.209a.504.504 0 0 1-.357-.148S2.5 4 2 4h-.5a.5.5 0 0 0-.5.5V9h5.5c1.5 0 2 1 3.5 1h4v-.5C14 8 10.547 7.594 9.5 7z" fill="currentColor"/>
+                <path d="M9.5 11c-.632 0-1.047-.207-1.526-.447C7.456 10.293 6.868 10 6 10H1v1.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5V11c.632 0 1.046.207 1.526.447c.519.26 1.106.553 1.974.553h4a.5.5 0 0 0 .5-.5V11H9.5z" fill="currentColor"/>
+              </svg>
+              <a class="ml-2 text-sm" href="/categoria/">Mocasines</a>
+            </div>
+            <div class="flex items-center">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32">
+                <g fill="currentColor">
+                  <path d="M2 18.7C2 17.21 3.21 16 4.7 16h8.64c.924 0 1.803.32 2.53.885l-1.588 1.587a.69.69 0 1 0 .976.976l1.64-1.64a1 1 0 0 0 .085-.103a13 13 0 0 0 1.716.91l-1.437 1.437a.69.69 0 1 0 .976.976l1.64-1.64a.7.7 0 0 0 .156-.24a26 26 0 0 0 4.956 1.202c2.9.55 5.01 3.09 5.01 6.05v2.81H14.22c0-1.56-1.26-2.82-2.82-2.82H2z"/>
+                  <path d="M20.034 19.148a.69.69 0 0 0-1.132-.736l-.203.204c.442.197.89.374 1.335.532m-3.051-1.443A9 9 0 0 1 16 16.99l-.13-.105l.052-.053a.69.69 0 0 1 1.061.873M2 27.383h7.98v1.837H2z"/>
+                </g>
+              </svg>
+              <a class="ml-2 text-sm" href="/categoria/">Zapatos de traje</a>
+            </div>
+            <div class="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32">
+                <path fill="currentColor" d="M24 17h-6a1 1 0 0 1-1-1V4a2.003 2.003 0 0 0-2-2H5a2.003 2.003 0 0 0-2 2v24a2.003 2.003 0 0 0 2 2h22a2.003 2.003 0 0 0 2-2v-6a5.006 5.006 0 0 0-5-5m3 5v2h-4v-5h1a3.003 3.003 0 0 1 3 3M15 4v2h-4v2h4v2h-4v2h4v2h-4v2h4a3.003 3.003 0 0 0 3 3h3v5h-6.838l-3-1H5V4Zm10 24v-1h-2v1h-2v-1h-2v1h-2v-1h-2v1h-2v-1h-2v1H5v-3h5.838l3 1H27v2Z"/>
+              </svg>
+              <a class="ml-2 text-sm" href="/categoria/">Botas y botines</a>
+            </div>
           </div>
+
           <div class="w-2/4 flex flex-wrap justify-between bg-amber-800">
             <span><h4>Marcas</h4></span>
             <span><a href="/producto/">HOFF</a></span>
