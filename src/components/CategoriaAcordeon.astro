@@ -1,113 +1,407 @@
 ---
+import { number } from "astro:schema";
+import CategoriaRango2 from "./CategoriaRango2.astro";
 
+
+const start = 7;
+const end = 55;
+const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
 ---
 
 <!-- Contenedor del acordeón -->
 <section id="accordion-example" class="flex flex-wrap gap-3">
 
   <!-- Item 1 -->
-  <h2 id="accordion-heading-1">
-    <button type="button" class="flex items-center justify-between p-3 font-medium rtl:text-right text-gray-800 border border-gray-700 hover:bg-gray-100 transition" data-target="accordion-body-1" aria-expanded="false" aria-controls="accordion-body-1">
-      <span>Ordenar</span>
-      <svg class="w-6 h-6 transition-transform duration-300 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-      </svg>
-    </button>
-  </h2>
-  <div id="accordion-body-1" class="hidden" aria-labelledby="accordion-heading-1">
-    <div class="p-5 border border-t-0 border-gray-800 text-gray-500">
-      <p class="mb-2"><a href="/categoria/" class="hover:underline">Flowbite</a></p>
-      <p><a href="/categoria/" class="hover:underline">Check</a></p>
+  <div>
+    <h2 id="accordion-heading-1">
+      <button type="button" class="flex items-center justify-between p-3 gap-2 font-medium rtl:text-right text-gray-800 border border-gray-700 hover:bg-gray-100 transition" data-target="accordion-body-1" aria-expanded="false" aria-controls="accordion-body-1">
+        <span>Ordenar</span>
+        <svg class="w-6 h-6 transition-transform duration-300 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+        </svg>
+      </button>
+    </h2>
+    <div class="hidden absolute w-80" id="accordion-body-1" aria-labelledby="accordion-heading-1">
+      <div class="max-h-96 overflow-y-auto bg-white border border-gray-800 text-gray-800">
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Favoritos</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Novedades</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Precio más bajo</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Precio más alto</p>
+        <p class="p-3 ml-4">Ofertas</p>
+      </div>
+      <div class="flex justify-between border border-black">
+        <button class="w-1/2 flex items-center justify-center py-4 bg-white">Borrar</button>
+        <button class="w-1/2 flex items-center justify-center py-4 bg-gray-400">Guardar</button>
+      </div>
     </div>
   </div>
 
   <!-- Item 2 -->
-  <h2 id="accordion-heading-2">
-    <button
-      type="button"
-      class="flex items-center justify-between p-3 font-medium rtl:text-right text-gray-800 border border-gray-700 hover:bg-gray-100 transition"
-      data-target="accordion-body-2"
-      aria-expanded="false"
-      aria-controls="accordion-body-2"
-    >
-      <span>Marca</span>
-      <svg class="w-6 h-6 transition-transform duration-300 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-        <path fill-rule="evenodd"
-          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-          clip-rule="evenodd"></path>
-      </svg>
-    </button>
-  </h2>
-  <div
-    id="accordion-body-2"
-    class="hidden"
-    aria-labelledby="accordion-heading-2"
-  >
-    <div class="p-5 border border-t-0 border-gray-200 text-gray-500">
-      <p class="mb-2">Flowbite</p>
-      <p><a href="/categoria/" class="hover:underline">Check</a></p>
+  <div>
+    <h2 id="accordion-heading-2">
+      <button type="button" class="flex items-center justify-between p-3 gap-2 font-medium rtl:text-right text-gray-800 border border-gray-700 hover:bg-gray-100 transition" data-target="accordion-body-2" aria-expanded="false" aria-controls="accordion-body-2">
+        <span>Marca</span>
+        <svg class="w-6 h-6 transition-transform duration-300 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+        </svg>
+      </button>
+    </h2>
+    <div class="hidden absolute w-80" id="accordion-body-2" aria-labelledby="accordion-heading-2">
+      <div class="max-h-96 overflow-y-auto bg-white border border-gray-800 text-gray-800">
+        <p class="p-3 ml-4 border-0 border-b border-b-black">ACBC</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Adidas</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Adidas Neo</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Aldo</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">ACBC</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Adidas</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Adidas Neo</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Aldo</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">ACBC</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Adidas</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Adidas Neo</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Aldo</p>
+        <p class="p-3 ml-4">Zign</p>
+      </div>
+      <div class="flex justify-between border border-black">
+        <button class="w-1/2 flex items-center justify-center py-4 bg-white">Borrar</button>
+        <button class="w-1/2 flex items-center justify-center py-4 bg-gray-400">Guardar</button>
+      </div>
     </div>
   </div>
 
   <!-- Item 3 -->
-  <h2 id="accordion-heading-3">
-    <button
-      type="button"
-      class="flex items-center justify-between p-3 font-medium rtl:text-right text-gray-800 border border-gray-700 hover:bg-gray-100 transition"
-      data-target="accordion-body-3"
-      aria-expanded="false"
-      aria-controls="accordion-body-3"
-    >
-      <span>Talla</span>
-      <svg class="w-6 h-6 transition-transform duration-300 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-        <path fill-rule="evenodd"
-          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-          clip-rule="evenodd"></path>
-      </svg>
-    </button>
-  </h2>
-  <div
-    id="accordion-body-3"
-    class="hidden"
-    aria-labelledby="accordion-heading-3"
-  >
-    <div class="p-5 border border-t-0 border-gray-200 text-gray-500">
-      <p class="mb-2">Flowbite</p>
-      <p><a href="/categoria/" class="hover:underline">Check</a></p>
+  <div>
+    <h2 id="accordion-heading-3">
+      <button type="button" class="flex items-center justify-between p-3 gap-2 font-medium rtl:text-right text-gray-800 border border-gray-700 hover:bg-gray-100 transition" data-target="accordion-body-3" aria-expanded="false" aria-controls="accordion-body-3">
+        <span>Talla</span>
+        <svg class="w-6 h-6 transition-transform duration-300 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+        </svg>
+      </button>
+    </h2>
+    <div class="hidden absolute w-80" id="accordion-body-3" aria-labelledby="accordion-heading-3">
+      <div class="max-h-96 overflow-y-auto bg-white border border-gray-800 text-gray-800">
+        {numbers.map(number =>
+                          <p key={number} class="p-3 ml-4 border-0 border-b border-b-black">{number}</p>
+                    )
+        }
+        <p class="p-3 ml-4">Talla única</p>
+      </div>
+      <div class="flex justify-between border border-black">
+        <button class="w-1/2 flex items-center justify-center py-4 bg-white">Borrar</button>
+        <button class="w-1/2 flex items-center justify-center py-4 bg-gray-400">Guardar</button>
+      </div>
     </div>
   </div>
+
+  <!-- Item 4 -->
+  <div>
+    <h2 id="accordion-heading-4">
+      <button type="button" class="flex items-center justify-between p-3 gap-2 font-medium rtl:text-right text-gray-800 border border-gray-700 hover:bg-gray-100 transition" data-target="accordion-body-4" aria-expanded="false" aria-controls="accordion-body-4">
+        <span>Color</span>
+        <svg class="w-6 h-6 transition-transform duration-300 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+        </svg>
+      </button>
+    </h2>
+    <div class="hidden absolute w-80" id="accordion-body-4" aria-labelledby="accordion-heading-4">
+      <div class="max-h-96 overflow-y-auto bg-white border border-gray-800 text-gray-800">
+        <div class="flex p-3 ml-4 border-0 border-b border-b-black">
+          <div class="size-6 bg-black mr-4"></div>
+          <p>Negros</p>
+        </div>
+        <div class="flex p-3 ml-4 border-0 border-b border-b-black">
+          <div class="size-6 bg-amber-950 mr-4"></div>
+          <p>Marron</p>
+        </div>
+        <div class="flex p-3 ml-4 border-0 border-b border-b-black">
+          <div class="size-6 bg-yellow-400 mr-4"></div>
+          <p>Amarillos</p>
+        </div>
+        <div class="flex p-3 ml-4 border-0 border-b border-b-black">
+          <div class="size-6 bg-green-600 mr-4"></div>
+          <p>Verdes</p>
+        </div>
+        <div class="flex p-3 ml-4 border-0 border-b border-b-black">
+          <div class="size-6 bg-blue-600 mr-4"></div>
+          <p>Azules</p>
+        </div>
+        <div class="flex p-3 ml-4 border-0 border-b border-b-black">
+          <div class="size-6 bg-pink-600 mr-4"></div>
+          <p>Rosas</p>
+        </div>
+        <div class="flex p-3 ml-4 border-0 border-b border-b-black">
+          <div class="size-6 bg-violet-600 mr-4"></div>
+          <p>Morado</p>
+        </div>
+        <div class="flex p-3 ml-4 border-0 border-b border-b-black">
+          <div class="size-6 bg-red-600 mr-4"></div>
+          <p>Rojos</p>
+        </div>
+        <div class="flex p-3 ml-4 border-0 border-b border-b-black">
+          <div class="size-6 bg-orange-400 mr-4"></div>
+          <p>Naranjas</p>
+        </div>
+      </div>
+      <div class="flex justify-between border border-black">
+        <button class="w-1/2 flex items-center justify-center py-4 bg-white">Borrar</button>
+        <button class="w-1/2 flex items-center justify-center py-4 bg-gray-400">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Item 5 -->
+  <div>
+    <h2 id="accordion-heading-5">
+      <button type="button" class="flex items-center justify-between p-3 gap-2 font-medium rtl:text-right text-gray-800 border border-gray-700 hover:bg-gray-100 transition" data-target="accordion-body-5" aria-expanded="false" aria-controls="accordion-body-5">
+        <span>Función</span>
+        <svg class="w-6 h-6 transition-transform duration-300 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+        </svg>
+      </button>
+    </h2>
+    <div class="hidden absolute w-80" id="accordion-body-5" aria-labelledby="accordion-heading-5">
+      <div class="max-h-96 overflow-y-auto bg-white border border-gray-800 text-gray-800">
+        <p class="p-3 ml-4 border-0 border-b border-b-black">A prueba de viento</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">De secado rápido</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Impermeable</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Peso ligero</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Reflectantes</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Repelente al agua</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Resistente al viento</p>
+        <p class="p-3 ml-4">Transpirables</p>
+      </div>
+      <div class="flex justify-between border border-black">
+        <button class="w-1/2 flex items-center justify-center py-4 bg-white">Borrar</button>
+        <button class="w-1/2 flex items-center justify-center py-4 bg-gray-400">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Item 6 -->
+  <div>
+    <h2 id="accordion-heading-6">
+      <button type="button" class="flex items-center justify-between p-3 gap-2 font-medium rtl:text-right text-gray-800 border border-gray-700 hover:bg-gray-100 transition" data-target="accordion-body-6" aria-expanded="false" aria-controls="accordion-body-6">
+        <span>Precio</span>
+        <svg class="w-6 h-6 transition-transform duration-300 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+        </svg>
+      </button>
+    </h2>
+    <div class="hidden absolute w-80" id="accordion-body-6" aria-labelledby="accordion-heading-6">
+      <div class="max-h-96 overflow-y-auto bg-white border border-gray-800 text-gray-800">
+        <!--Barra de RANGO de precios -->
+        <CategoriaRango2 />
+        
+        <!-- Chekeds -->
+        <div class="m-4 mb-10 flex items-center justify-between">
+          <p class="font-bold">Ofertas</p>
+          <label class="inline-flex items-center cursor-pointer">
+            <input type="checkbox" value="" class="sr-only peer">
+            <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:w-5 after:h-5 after:transition-all peer-checked:bg-gray-600"></div>
+          </label>
+        </div>
+        <div class="m-4 flex items-center justify-between">
+          <p class="font-bold">Envío gratuito</p>
+          <label class="inline-flex items-center cursor-pointer">
+            <input type="checkbox" value="" class="sr-only peer">
+            <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:w-5 after:h-5 after:transition-all peer-checked:bg-gray-600"></div>
+          </label>
+        </div>
+        <p class="m-4 mb-10 text-sm text-gray-400">en pedidos a partir de 25,90 €</p>
+      </div>
+      <div class="flex justify-between border border-black">
+        <button class="w-1/2 flex items-center justify-center py-4 bg-white">Borrar</button>
+        <button class="w-1/2 flex items-center justify-center py-4 bg-gray-400">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Item 7 -->
+  <div>
+    <h2 id="accordion-heading-7">
+      <button type="button" class="flex items-center justify-between p-3 gap-2 font-medium rtl:text-right text-gray-800 border border-gray-700 hover:bg-gray-100 transition" data-target="accordion-body-7" aria-expanded="false" aria-controls="accordion-body-7">
+        <span>Campañas</span>
+        <svg class="w-6 h-6 transition-transform duration-300 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+        </svg>
+      </button>
+    </h2>
+    <div class="hidden absolute w-80" id="accordion-body-7" aria-labelledby="accordion-heading-7">
+      <div class="max-h-96 overflow-y-auto bg-white border border-gray-800 text-gray-800">
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Hot Drops</p>
+        <p class="p-3 ml-4">RUTINA15</p>
+      </div>
+      <div class="flex justify-between border border-black">
+        <button class="w-1/2 flex items-center justify-center py-4 bg-white">Borrar</button>
+        <button class="w-1/2 flex items-center justify-center py-4 bg-gray-400">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Item 8 -->
+  <div>
+    <h2 id="accordion-heading-8">
+      <button type="button" class="flex items-center justify-between p-3 gap-2 font-medium rtl:text-right text-gray-800 border border-gray-700 hover:bg-gray-100 transition" data-target="accordion-body-8" aria-expanded="false" aria-controls="accordion-body-8">
+        <span>Material exterior</span>
+        <svg class="w-6 h-6 transition-transform duration-300 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+        </svg>
+      </button>
+    </h2>
+    <div class="hidden absolute w-80" id="accordion-body-8" aria-labelledby="accordion-heading-8">
+      <div class="max-h-96 overflow-y-auto bg-white border border-gray-800 text-gray-800">
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Algodón</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Canalé</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Caucho</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Charol</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Cuero</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Denin</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Encaje</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Fieltro</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Fleece</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Ganchillo</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Imitación de Cuero</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Impermeable</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Lana</p>
+        <p class="p-3 ml-4">Jersey</p>
+      </div>
+      <div class="flex justify-between border border-black">
+        <button class="w-1/2 flex items-center justify-center py-4 bg-white">Borrar</button>
+        <button class="w-1/2 flex items-center justify-center py-4 bg-gray-400">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Item 9 -->
+  <div>
+    <h2 id="accordion-heading-9">
+      <button type="button" class="flex items-center justify-between p-3 gap-2 font-medium rtl:text-right text-gray-800 border border-gray-700 hover:bg-gray-100 transition" data-target="accordion-body-9" aria-expanded="false" aria-controls="accordion-body-9">
+        <span>Novedades</span>
+        <svg class="w-6 h-6 transition-transform duration-300 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+        </svg>
+      </button>
+    </h2>
+    <div class="hidden absolute w-80" id="accordion-body-9" aria-labelledby="accordion-heading-9">
+      <div class="max-h-96 overflow-y-auto bg-white border border-gray-800 text-gray-800">
+        <p class="p-3 ml-4 border-0 border-b border-b-black">De esta semana</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">De la semana pasada</p>
+        <p class="p-3 ml-4">Del mes pasado</p>
+      </div>
+      <div class="flex justify-between border border-black">
+        <button class="w-1/2 flex items-center justify-center py-4 bg-white">Borrar</button>
+        <button class="w-1/2 flex items-center justify-center py-4 bg-gray-400">Guardar</button>
+      </div>
+    </div>
+  </div>  
+
+  <!-- Item 10 -->
+  <div>
+    <h2 id="accordion-heading-10">
+      <button type="button" class="flex items-center justify-between p-3 gap-2 font-medium rtl:text-right text-gray-800 border border-gray-700 hover:bg-gray-100 transition" data-target="accordion-body-10" aria-expanded="false" aria-controls="accordion-body-10">
+        <span>Ancho del zapato</span>
+        <svg class="w-6 h-6 transition-transform duration-300 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+        </svg>
+      </button>
+    </h2>
+    <div class="hidden absolute w-80" id="accordion-body-10" aria-labelledby="accordion-heading-10">
+      <div class="max-h-96 overflow-y-auto bg-white border border-gray-800 text-gray-800">
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Pies medianos</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Normal</p>
+        <p class="p-3 ml-4">Pies anchos</p>
+      </div>
+      <div class="flex justify-between border border-black">
+        <button class="w-1/2 flex items-center justify-center py-4 bg-white">Borrar</button>
+        <button class="w-1/2 flex items-center justify-center py-4 bg-gray-400">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Item 11 -->
+  <div>
+    <h2 id="accordion-heading-11">
+      <button type="button" class="flex items-center justify-between p-3 gap-2 font-medium rtl:text-right text-gray-800 border border-gray-700 hover:bg-gray-100 transition" data-target="accordion-body-11" aria-expanded="false" aria-controls="accordion-body-11">
+        <span>Cierre</span>
+        <svg class="w-6 h-6 transition-transform duration-300 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+        </svg>
+      </button>
+    </h2>
+    <div class="hidden absolute w-80" id="accordion-body-11" aria-labelledby="accordion-heading-11">
+      <div class="max-h-96 overflow-y-auto bg-white border border-gray-800 text-gray-800">
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Cierre adherente</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Cordones</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Cordones elásticos</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Cremallera</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Hebilla</p>
+        <p class="p-3 ml-4 border-0 border-b border-b-black">Hebilla/cordones</p>
+        <p class="p-3 ml-4">Sin cierre/abiertos</p>
+      </div>
+      <div class="flex justify-between border border-black">
+        <button class="w-1/2 flex items-center justify-center py-4 bg-white">Borrar</button>
+        <button class="w-1/2 flex items-center justify-center py-4 bg-gray-400">Guardar</button>
+      </div>
+    </div>
+  </div>  
+
+  <!-- Botton para enseñar más filtros -->
+  <div class="flex items-center justify-between p-3 gap-2 font-medium rtl:text-right text-gray-800 border border-gray-700 hover:bg-gray-100 transition">
+    <svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" class="zds-icon bw_sBR X9n9TI DlJ4rT _5Yd-hZ iXbgaG nXkCf3 DlJ4rT _9l1hln _65i7kZ nXkCf3 fzejeK I_qHp3" focusable="false" aria-hidden="true">
+      <path d="M.75 8.25h11.326A4.49 4.49 0 0 0 16.5 12a4.496 4.496 0 0 0 4.424-3.75h2.326a.75.75 0 0 0 0-1.5h-2.326C20.566 4.624 18.728 3 16.5 3s-4.066 1.624-4.424 3.75H.75a.75.75 0 0 0 0 1.5M16.5 4.5a3 3 0 1 1 0 6 3 3 0 0 1 0-6m6.75 11.25H11.924C11.566 13.624 9.728 12 7.5 12s-4.066 1.624-4.424 3.75H.75a.75.75 0 0 0 0 1.5h2.326A4.49 4.49 0 0 0 7.5 21a4.496 4.496 0 0 0 4.424-3.75H23.25a.75.75 0 0 0 0-1.5M7.5 19.5a3 3 0 1 1 0-6 3 3 0 0 1 0 6">          
+      </path>
+    </svg>
+    <p class="ml-3">Mostrar más filtros</p>
+  </div>
+
 </section>
-
-
 
 <!-- JavaScript personalizado -->
 <script is:inline>
   document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('[data-target]');
+    
+    // Función para cerrar todos los acordeones
+    const closeAllAccordions = () => {
+      document.querySelectorAll('#accordion-example div[id^="accordion-body-"]').forEach(el => {
+        el.classList.add('hidden');
+      });
 
+      // Resetea todas las flechas (las vuelve a la posición inicial)
+      document.querySelectorAll('[data-target] svg').forEach(svg => {
+        svg.classList.remove('rotate-180');
+      });
+    };
+
+    // Abre o cierra el acordeón correspondiente
     buttons.forEach(button => {
-      button.addEventListener('click', () => {
+      button.addEventListener('click', (event) => {
+        event.stopPropagation(); // Evita que el clic se propague al document y cierre el acordeón inmediatamente
+
         const targetId = button.getAttribute('data-target');
         const target = document.getElementById(targetId);
         const icon = button.querySelector('svg');
         const isOpen = !target.classList.contains('hidden');
 
         // Cierra todos
-        document.querySelectorAll('#accordion-example div[id^="accordion-body-"]').forEach(el => {
-          el.classList.add('hidden');
-        });
+        closeAllAccordions();
 
-        // Resetea todas las flechas
-        document.querySelectorAll('[data-target] svg').forEach(svg => {
-          svg.classList.remove('rotate-180');
-        });
-
-        // Abre el seleccionado si estaba cerrado
+        // Si estaba cerrado, abre el acordeón y gira la flecha
         if (!isOpen) {
           target.classList.remove('hidden');
           icon.classList.add('rotate-180');
         }
       });
     });
+
+    // Cierra los acordeones si el clic es fuera de ellos
+    document.addEventListener('click', (event) => {
+      const isClickInsideAccordion = event.target.closest('#accordion-example');
+      if (!isClickInsideAccordion) {
+        closeAllAccordions();
+      }
+    });
   });
 </script>
+

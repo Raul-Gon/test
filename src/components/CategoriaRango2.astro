@@ -1,0 +1,108 @@
+---
+
+---
+
+
+<div class="flex justify-center items-center mt-10">
+  <!-- Contenedor de la barra de rango -->
+  <div class="relative w-full mx-5 mb-10">
+    <div class="flex justify-between">        
+        <div>
+            <!-- Recuadro para el valor mínimo -->
+             <div class="w-24 border border-b-0 border-black">
+                <p class="p-1 text-sm">Precio desde</p>
+             </div>
+            <div class="w-32 p-3 flex justify-between items-center border border-black">
+                <input class="w-20" type="text" id="min-value" value="0">
+                <p>€</p>
+            </div>
+        </div>  
+        <div class="flex flex-col justify-end py-4">
+            <p>-</p>
+        </div>
+        <div>
+            <!-- Recuadro para el valor máximo -->
+             <div class="w-24 border border-b-0 border-black">
+                <p class="p-1 text-sm">Precio hasta</p>
+             </div>
+            <div class="w-32 p-3 flex justify-between items-center border border-black">
+                <input class="w-20" type="text" id="max-value" value="1290">
+                <p>€</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Barra de rango -->
+    <div class="relative mt-8">
+      <!-- Barra de rango de mínimo a máximo -->
+      <input 
+        type="range" 
+        id="min-slider" 
+        class="absolute inset-0 w-full h-2 bg-black rounded-md appearance-none cursor-pointer" 
+        min="0" 
+        max="1289" 
+        value="0" 
+        step="1"
+      />
+      
+      <input 
+        type="range" 
+        id="max-slider" 
+        class="absolute inset-0 w-full h-2 bg-black rounded-md appearance-none cursor-pointer" 
+        min="1" 
+        max="1290" 
+        value="1290" 
+        step="1"
+      />
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  // Obtener los elementos
+  const minSlider = document.getElementById('min-slider');
+  const maxSlider = document.getElementById('max-slider');
+  const minValue = document.getElementById('min-value');
+  const maxValue = document.getElementById('max-value');
+
+  // Función para actualizar los valores en los recuadros
+  function updateValues() {
+    const min = parseInt(minSlider.value);
+    const max = parseInt(maxSlider.value);
+
+    // Asegurarse de que el valor máximo sea siempre mayor que el mínimo
+    if (min >= max) {
+      minSlider.value = max - 1;
+      minValue.value = minSlider.value; // Actualizar el input de "min"
+    } else {
+      minValue.value = min; // Actualizar el input de "min"
+    }
+    
+    maxValue.value = max; // Actualizar el input de "max"
+  }
+
+  // Escuchar cambios en los deslizadores
+  minSlider.addEventListener('input', updateValues);
+  maxSlider.addEventListener('input', updateValues);
+
+  // Escuchar cambios en los inputs de texto
+  minValue.addEventListener('input', () => {
+    const min = parseInt(minValue.value);
+    if (!isNaN(min) && min >= 0 && min < maxSlider.value) {
+      minSlider.value = min;
+      updateValues();
+    }
+  });
+
+  maxValue.addEventListener('input', () => {
+    const max = parseInt(maxValue.value);
+    if (!isNaN(max) && max > minSlider.value && max <= 1290) {
+      maxSlider.value = max;
+      updateValues();
+    }
+  });
+
+  // Inicializar los valores
+  updateValues();
+</script>
+

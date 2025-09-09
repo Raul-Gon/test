@@ -1,82 +1,35 @@
 ---
 import IMAGENES from "../data/imagenes.json";
 
-const {carro} = Astro.props;
-console.log('Estamos en Carrusel:');
-console.log(carro);
 ---
 
-<div class="relative w-full overflow-visible px-4">
-<!-- Carrusel -->
-    <div id={carro} class="flex transition-transform duration-500 ease-in-out -mx-2">
-        <!-- Lista de items -->
-        <ul class="flex space-x-4">
-            {IMAGENES.map(imagen => <li class="w-1/4 flex-shrink-0">
-                                      <img class="w-80 h-auto" src= {imagen.url} alt= {imagen.modelo} />
-                                      <h3 class="mt-4 ">{imagen.modelo}</h3>
-                                      <p>{imagen.descripcion}</p>
-                                      <p>{imagen.precio}</p>
-                                    </li>
-                          )
-            }
-        </ul>
+<div class="swiper mySwiper overflow-visible!">
+    <div class="swiper-wrapper ">
+        {IMAGENES.map(imagen => <div class="swiper-slide">
+                                    <img src= {imagen.url} alt= {imagen.modelo} />
+                                    <h3 class="mt-4 ">{imagen.modelo}</h3>
+                                    <p>{imagen.descripcion}</p>
+                                    <p>{imagen.precio}</p>
+                                </div>
+                              )
+                }
     </div>
-
-    <!-- Botones -->
-    <button id="prev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white hover:bg-gray-400 text-black px-2 py-1 shadow hidden">←</button>
-    <button id="next" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white hover:bg-gray-400 text-black px-2 py-1 shadow">→</button>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
 </div>
 
+<!-- Swiper JS -->
+<script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-<div valor-carro= {carro} class="hidden" >
-</div>
-
-
-<script is:inline>
-
-  const elemento = document.querySelector('[valor-carro]');
-  const carrusel = elemento.getAttribute('valor-carro');
-
-  const carousel = document.getElementById(carrusel);
-  const nextBtn = document.getElementById('next');
-  const prevBtn = document.getElementById('prev');
-  
-  // Datos del carrusel
-  const totalItems = carousel.querySelectorAll('li').length;
-  const visibleItems = 4;
-  const itemWidth = carousel.querySelector('li').offsetWidth;
-  let currentIndex = 0;
-
-  function updateCarousel() {
-    const offset = currentIndex * itemWidth;
-    carousel.style.transform = `translateX(-${offset}px)`;
-
-    // Mostrar u ocultar botones
-    prevBtn.classList.toggle('hidden', currentIndex === 0);
-    nextBtn.classList.toggle('hidden', currentIndex >= totalItems - visibleItems);
-  }
-
-  nextBtn.addEventListener('click', () => {
-    if (currentIndex < totalItems - visibleItems) {
-      currentIndex += visibleItems;
-      updateCarousel();
-    }
-  });
-
-  prevBtn.addEventListener('click', () => {
-    if (currentIndex > 0) {
-      currentIndex -= visibleItems;
-      updateCarousel();
-    }
-  });
-
-  // Inicialización
-  updateCarousel();
-
-  // Para manejar el redimensionamiento de la ventana
-  window.addEventListener('resize', () => {
-    updateCarousel();
-  });
-
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 4,               //muestra 4 imagenes
+        spaceBetween: 20,               //añade un espcio de 20 px
+        slidesPerGroup: 4,              // Desplazar 4 imágenes por vez
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        }
+    });
 </script>
-

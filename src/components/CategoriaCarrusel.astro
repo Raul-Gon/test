@@ -1,33 +1,35 @@
 ---
-import CarruselProductos from "./CarruselProductos.astro";
-import NuevoCarrousel from "./NuevoCarrousel.astro";
+import IMAGENES from "../data/imagenes.json";
 
---- 
+---
 
-<div class="w-full h-auto flex flex-col mt-3">
-    <div class="w-full h-auto bg-amber-500">
-        <div class="max-w-[1200px] mx-8 xl:mx-auto flex flex-row h-full">
-            <div class="h-full w-full flex flex-col m-5">
-                <p class="flex flex-wrap text-xs">
-                    Patrocinado   
-                    <img src="/images/iconoInformacion.svg" alt="icono informacion" width="16px" height="16px" class="mx-2">
-                </p>
-                <h2 class="mt-3 font-bold text-3xl">MARCA</h2>
-                <h3 class="text-2xl">Eslogan</h3>
-                <a class="mt-4 hover:underline">Descubrir </a>
-            </div>
-        </div>
+<div class="swiper mySwiper">
+    <div class="swiper-wrapper ">
+        {IMAGENES.map(imagen => <div class="swiper-slide">
+                                    <img src= {imagen.url} alt= {imagen.modelo} />
+                                    <h3 class="mt-4 ">{imagen.modelo}</h3>
+                                    <p>{imagen.descripcion}</p>
+                                    <p>{imagen.precio}</p>
+                                </div>
+                              )
+                }
     </div>
-    <div class="w-full h-auto bg-amber-200 p-6 pr-0">
-        <div class="max-w-[1200px] mx-8 xl:mx-auto  h-auto">
-            <div>
-                <!-- <CarruselProductos /> -->
-                <NuevoCarrousel />
-             </div>
-            <div class="mt-6 flex flex-row items-center justify-start">
-                <button class="border-2 border-black py-3 px-4 hover:bg-gray-600 hover:text-white"> + Seguir</button>
-                <h2 class="ml-3">Marca</h2>
-            </div>
-        </div>
-    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
 </div>
+
+<!-- Swiper JS -->
+<script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 4,               //muestra 4 imagenes
+        spaceBetween: 20,               //añade un espcio de 20 px
+        slidesPerGroup: 4,              // Desplazar 4 imágenes por vez
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        }
+    });
+</script>

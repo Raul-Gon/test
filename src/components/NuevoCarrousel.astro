@@ -3,8 +3,8 @@ import IMAGENES from "../data/imagenes.json";
 
 ---
 
-<div class="swiper mySwiper">
-    <div class="swiper-wrapper">
+<div class="swiper mySwiper overflow-visible!">
+    <div class="swiper-wrapper ">
         {IMAGENES.map(imagen => <div class="swiper-slide">
                                     <img src= {imagen.url} alt= {imagen.modelo} />
                                     <h3 class="mt-4 ">{imagen.modelo}</h3>

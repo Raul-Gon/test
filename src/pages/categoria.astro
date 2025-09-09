@@ -3,9 +3,9 @@ import BaseLayouts from "../layouts/BaseLayouts.astro";
 import CategoriaAside from "../components/CategoriaAside.astro";
 import CategoriaAcordeon from "../components/CategoriaAcordeon.astro";
 import CategoriaCardFavo from "../components/CategoriaCardFavo.astro";
-import CategoriaCarrusel from "../components/CategoriaCarrusel.astro";
 import CategoriaCardTodo from "../components/CategoriaCardTodo.astro";
 import CategoriaFinal from "../components/CategoriaFinal.astro";
+import CategoriaEscaparate from "../components/CategoriaEscaparate.astro";
 
 const titule = "Calzados";
 const descrip = "Muestra de los diferentes tipos de productos de la categoria de calzado"
@@ -20,12 +20,12 @@ const descrip = "Muestra de los diferentes tipos de productos de la categoria de
 		<aside class="w-0 md:w-1/4">
 			<CategoriaAside />
 		</aside>
-		<main class="w-full md:w-3/4">	
+		<main class="w-full md:w-3/4">
 			<CategoriaAcordeon />
 			<CategoriaCardFavo />
-			<CategoriaCarrusel />
+			<CategoriaEscaparate />
 			<CategoriaCardTodo />
-			<CategoriaCarrusel />
+			<CategoriaEscaparate />
 		</main>
 	</div>
 	<CategoriaFinal />
