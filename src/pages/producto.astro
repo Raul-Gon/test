@@ -16,13 +16,17 @@ const carro2 = "carrusel2";
 	<h1 class="hidden">Producto</h1>
 	
 	<main>
-		<div class="max-w-[1200px] mx-6 mt-10 xl:mx-auto">
-			<section class="static w-full flex flex-col md:flex md:flex-row gap-4 lg:gap-0">    
+		<section class="max-w-[1200px] mx-6 mt-10 xl:mx-auto">
+			<div class="static w-full flex flex-col md:flex md:flex-row gap-4 lg:gap-0">    
 				<ProductoImagen />
 				<ProductoCaracteris />
-			</section>	
-			<ProductoEscaparate />
-			<ProductoEscaparate />		
-		</div>
+			</div>						
+		</section>
+		<section class="overflow-hidden">
+			<div class="max-w-[1200px] mx-6 mt-10 xl:mx-auto">
+				<ProductoEscaparate />
+				<ProductoEscaparate />
+			</div>
+		</section>
 	</main>
 </BaseLayouts>

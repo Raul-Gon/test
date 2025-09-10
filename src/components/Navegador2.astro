@@ -1,49 +1,158 @@
----
+<nav class="relative mt-3 border border-t-black lg:border-0">
+    
+    <div class="max-w-[1200px] mx-8 xl:mx-auto flex-row">
 
----
+            <div class=" w-full relative">
 
+                <!-- Boton Hamburguesa -->
+                <div class="absolute inset-y-0 left-0 flex items-center border-r border-r-black lg:hidden">
+                    <button type="button" id="hamburger-button" class="relative inline-flex items-center justify-center p-2 hover:cursor-pointer">
+                        <span class="absolute -inset-0.5"></span>
+                        <svg class="text-gray-500" viewBox="0 0 24 24" width="2em" height="2em" fill="currentColor" focusable="false" aria-hidden="true">
+                            <path d="M.75 2.25h22.5a.75.75 0 0 0 0-1.5H.75a.75.75 0 0 0 0 1.5m22.5 19.5H.75a.75.75 0 0 0 0 1.5h22.5a.75.75 0 0 0 0-1.5m-22.5-9h12a.75.75 0 0 0 0-1.5h-12a.75.75 0 0 0 0 1.5"></path>
+                        </svg>
+                    </button>
+                </div>
 
-<div class="max-w-[1200px] mx-8 xl:mx-auto flex-row flex-2">
-     <div class="w-full h-1/2 mt-4 pb-0 flex">
-        <div class="h-full w-4/5 mr-3 flex justify-between items-center place-content-start overflow-hidden">
-            <a href="/" class="hover:underline">Novedades</a>
-            <a href="/" class="hover:underline">Ropa</a>
-            <a href="../categoria/" id="calzado-trigger" class="hover:underline">Calzado</a>
-            <a href="/" class="hover:underline">Complementos</a>
-            <a href="/" class="hover:underline">Deporte</a>
-            <a href="/" class="hover:underline">Beauty</a>
-            <a href="/" class="hover:underline">Streetwear</a>
-            <a href="/" class="hover:underline">Designer</a>
-            <a href="/" class="hover:underline">Marcas</a>
-            <a href="/" class="hover:underline text-red-600">Outlet</a>
-            <a href="/" class="hover:underline">Segunda mano</a>
-        </div>
+                <!-- Menu dentro de la Hamburguesa -->
+                <div id="mobile-menu" hidden> 
+                    <div class="absolute z-10">
+                        <div class="flex flex-col h-screen overflow-y-auto -ml-8 -mt-12 bg-white">
+                          <div class="flex items-center justify-between">
+                            <p class="font-bold ml-3"> Explorar por categoría</p>
+                            <button id="hidden-button" class="hover:bg-gray-400 p-0.5">
+                              <svg viewBox="0 0 24 24" width="2em" height="2em" fill="currentColor" focusable="false" aria-hidden="true">
+                                <path d="m13.057 11.996 7.723-7.723a.75.75 0 1 0-1.06-1.06l-7.724 7.723-7.723-7.724a.75.75 0 1 0-1.06 1.061l7.723 7.723-7.716 7.717a.75.75 0 1 0 1.06 1.06l7.716-7.716 7.717 7.716a.747.747 0 0 0 1.06 0 .75.75 0 0 0 0-1.06z"></path>
+                              </svg>
+                            </button>
+                          </div>
+                          <div class="grid grid-cols-3 border-y-2 border-gray-600">
+                            <div class="flex justify-center  py-3 hover:bg-gray-400">
+                              <a href="/">Mujer</a>
+                            </div class="flex justify-center">
+                            <div class="flex justify-center  py-3 hover:bg-gray-400">
+                              <a href="/">Hombre</a>
+                            </div>
+                            <div class="flex justify-center  py-3 hover:bg-gray-400">
+                              <a href="/">Niños</a>
+                            </div>
+                          </div>
+                          <div class="grid grid-cols-2 mt-8 gap-3">
+                            <div class="flex flex-col gap-3 ">
+                              <a href="/">
+                                <img class="h-[88px]" src="https://img01.ztat.net/nvg/categories/es-ES/men/fe442661-be40-4a83-917e-2192504cb83c/mobile/783a312e-510a-4e7e-bc62-00a5f2a71142.jpg" alt="imagen de novedades">
+                                <p class="p-3 text-gray-600">Novedades</p>
+                              </a>
+                            </div>
+                            <div class="flex flex-col gap-3 ">
+                              <a href="/">
+                                <img class="h-[88px]" src="https://img01.ztat.net/nvg/categories/es-ES/men/615f994a-73ec-4121-8f41-2a56fb24ddf4/mobile/c89def85-8409-42b4-a9e1-6e5ef465b25d.jpg" alt="imagen de novedades">
+                                <p class="p-3 text-gray-600">Ropa</p>
+                              </a>
+                            </div>
+                            <div class="flex flex-col gap-3 ">
+                              <a href="/">
+                                <img class="h-[88px]" src="https://img01.ztat.net/nvg/categories/es-ES/men/8d4a73d9-7129-44cc-a86c-7ad588c56b12/mobile/47816e0e-1f4b-4dc4-96ec-add67617ace9.jpg" alt="imagen de novedades">
+                                <p class="p-3 text-gray-600">Calzado</p>
+                              </a>
+                            </div>
+                            <div class="flex flex-col gap-3 ">
+                              <a href="/">
+                                <img class="h-[88px]" src="https://img01.ztat.net/nvg/categories/es-ES/men/130587fa-3a0e-489b-a743-9b7abea5d674/mobile/31ee44ee-e674-42fc-9100-1e96c3e98de5.jpg" alt="imagen de novedades">
+                                <p class="p-3 text-gray-600">Complementos</p>
+                              </a>
+                            </div>
+                            <div class="flex flex-col gap-3 ">
+                              <a href="/">
+                                <img class="h-[88px]" src="https://img01.ztat.net/nvg/categories/es-ES/men/a5b4552d-618c-48a1-914c-c50b4878abe1/mobile/e7ce815a-efa0-409e-82c9-d67c480ade39.jpg" alt="imagen de novedades">
+                                <p class="p-3 text-gray-600">Deporte</p>
+                              </a>
+                            </div>
+                            <div class="flex flex-col gap-3 ">
+                              <a href="/">
+                                <img class="h-[88px]" src="https://img01.ztat.net/nvg/categories/es-ES/men/b4fab7a2-37b8-4cb5-8c49-91212064ff8d/mobile/8fd00467-e421-435e-b524-5cc1be92e197.jpg" alt="imagen de novedades">
+                                <p class="p-3 text-gray-600">Beauty</p>
+                              </a>
+                            </div>
+                            <div class="flex flex-col gap-3 ">
+                              <a href="/">
+                                <img class="h-[88px]" src="https://img01.ztat.net/nvg/categories/es-ES/men/9241f4c6-c543-4dac-92d4-936d0b44f1b0/mobile/62ef3adb-d450-4769-a573-c67a2ffe3cc2.jpg" alt="imagen de novedades">
+                                <p class="p-3 text-gray-600">Streetwear</p>
+                              </a>
+                            </div>
+                            <div class="flex flex-col gap-3 ">
+                              <a href="/">
+                                <img class="h-[88px]" src="https://img01.ztat.net/nvg/categories/es-ES/men/f41bc3c9-f4b3-4e67-a694-5f7fd3260205/mobile/e3de15ce-a44d-4685-bc8a-0f24a08fe957.jpg" alt="imagen de novedades">
+                                <p class="p-3 text-gray-600">Designer</p>
+                              </a>
+                            </div>
+                            <div class="flex flex-col gap-3 ">
+                              <a href="/">
+                                <img class="h-[88px]" src="https://img01.ztat.net/nvg/categories/es-ES/men/b7259a1d-f2e2-44e5-b3c4-c133c2efb50c/mobile/e4b7a616-fe77-474e-ad8e-5f97aa14b09d.jpg" alt="imagen de novedades">
+                                <p class="p-3 text-gray-600">Marcas</p>
+                              </a>
+                            </div>
+                            <div class="flex flex-col gap-3 ">
+                              <a href="/">
+                                <img class="h-[88px]" src="https://img01.ztat.net/nvg/categories/es-ES/men/7e47da9e-9e49-424d-bc9a-6baedfe58797/mobile/702bad87-72ea-45e0-a8f1-47812eaaec37.jpg" alt="imagen de novedades">
+                                <p class="p-3 text-red-600">Outlet</p>
+                              </a>
+                            </div>
+                            <div class="flex flex-col gap-3 ">
+                              <a href="/">
+                                <img class="h-[88px]" src="https://img01.ztat.net/nvg/categories/es-ES/men/e0020c79-0328-4954-99e8-04a8e18672b6/mobile/c03a5e80-314b-4f2b-a51e-eafe0b800718.jpg" alt="imagen de novedades">
+                                <p class="p-3 text-gray-600">Segunda Mano</p>
+                              </a>
+                            </div>
+                          </div>
+                          <div class="bg-red-400 w-full h-4"></div>
 
-        <div class="relative w-full max-w-sm">
-            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <!-- SVG Icono -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256">
-                <path fill="currentColor" d="M232.49 215.51L185 168a92.12 92.12 0 1 0-17 17l47.53 47.54a12 12 0 0 0 17-17ZM44 112a68 68 0 1 1 68 68a68.07 68.07 0 0 1-68-68"/>
-                </svg>
-            </div>
-            <input
-                type="text"
-                placeholder="Buscar aquí"
-                class="pl-10 w-full p-2.5 border border-black focus:ring-blue-500 focus:border-blue-500"
-            />
-        </div>            
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Menu normal -->
+                <div class="flex justify-between">
+                    <div class="hidden lg:w-4/5 lg:flex">
+                        <div class="gap-3 flex items-center overflow-hidden">
+                            <a href="/" class="hover:underline">Novedades</a>
+                            <a href="/" class="hover:underline">Ropa</a>
+                            <a href="../categoria/" id="calzado-trigger" class="hover:underline">Calzado</a>
+                            <a href="/" class="hover:underline">Complementos</a>
+                            <a href="/" class="hover:underline">Deporte</a>
+                            <a href="/" class="hover:underline">Beauty</a>
+                            <a href="/" class="hover:underline">Streetwear</a>
+                            <a href="/" class="hover:underline">Designer</a>
+                            <a href="/" class="hover:underline">Marcas</a>
+                            <a href="/" class="hover:underline text-red-600">Outlet</a>
+                            <a href="/" class="hover:underline">Segunda mano</a>
+                        </div>
+                    </div>
+
+                    <!-- Recuadro de Busqueda -->
+                    <div class="relative w-full ml-20 lg:ml-0 lg:w-1/5 justify-end border-0 lg:border border-black">
+                        <div class="w-full lg:max-w-sm">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <!-- SVG Icono -->
+                                <svg width="32" height="32" viewBox="0 0 256 256">
+                                    <path fill="currentColor" d="M232.49 215.51L185 168a92.12 92.12 0 1 0-17 17l47.53 47.54a12 12 0 0 0 17-17ZM44 112a68 68 0 1 1 68 68a68.07 68.07 0 0 1-68-68"/>
+                                </svg>
+                            </div>
+                            <input type="text" placeholder="Buscar aquí" class="pl-12 w-full p-2.5" />
+                        </div>
+                    </div> 
+
+                </div>
+            </div>  
     </div>
-</div>
+</nav>
 
-
-<!-- <div class="bg-white w-full h-64 absolute"> -->
-
-<section id="mega-menu-calzado" class="hidden relative opacity-0 -translate-y-4 transition-all duration-300 ease-out pointer-events-none flex-row flex-2">
-    <div class="absolute w-full h-52 pt-10 bg-white border-0 border-b-2">
-        <div class="flex max-w-[1200px] mx-8 xl:mx-auto bg-amber-300">
-          <div class="w-1/4 flex flex-col">            
-            <p>Categorías<p>
+<!-- Mega-menu Desplegable -->
+<section id="mega-menu-calzado" class="hidden relative z-10 opacity-0 -translate-y-4 transition-all duration-300 ease-out pointer-events-none flex-row flex-2">
+    <div class="absolute z-10 w-full pt-5 bg-white border-0 border-b-2">
+        <div class="flex max-w-[1200px] mx-8 xl:mx-auto">
+          <div class="w-1/4 flex flex-col gap-3 mb-3">            
+            <p class="text-lg text-gray-600">Categorías<p>
             <div class="flex items-center">
               <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                 <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" color="currentColor">
@@ -98,33 +207,65 @@
             </div>
           </div>
 
-          <div class="w-2/4 flex flex-wrap justify-between bg-amber-800">
-            <span><h4>Marcas</h4></span>
-            <span><a href="/producto/">HOFF</a></span>
-            <span><a href="/producto/">Nuevo</a></span>
-            <span><a href="/producto/">Timberland</a></span>
-            <span><a href="/producto/">Tommy Hilfiger</a></span>
-            <span><a href="/producto/">Panama Jack</a></span>
-            <span><a href="/producto/">Pier One</a></span>
-            <span><a href="/producto/">Lacoste</a></span>
-            <span><a href="/producto/">Reebok</a></span>
-            <span><a href="/producto/">Vans</a></span>
-            <span><a href="/producto/">New Balance</a></span>
-            <span><a href="/producto/">Jordan</a></span>
-            <span><a href="/producto/">Adidas</a></span>
-            <span><a href="/producto/">Skechers</a></span>
-            <span><a href="/producto/">Nike</a></span>
+          <div class="w-2/4 flex flex-col justify-between gap-3 mb-3">
+            <div class="grid grid-cols-2 text-sm">
+              <div class="flex flex-col gap-4">
+                <p class="text-lg text-gray-600">Marcas</p>
+                <a href="/producto/">HOFF <span class="bg-gray-200 rounded-xl p-1">Nuevo</span></a>
+                <a href="/producto/">Timberland</a>
+                <a href="/producto/">Tommy Hilfiger</a>
+                <a href="/producto/">Panama Jack</a>
+                <a href="/producto/">Pier One</a>
+                <a href="/producto/">Lacoste</a>
+              </div>
+              <div class="flex flex-col gap-4">
+                <a href="/producto/">Reebok</a>
+                <a href="/producto/">Vans</a>
+                <a href="/producto/">New Balance</a>
+                <a href="/producto/">Jordan</a>
+                <a href="/producto/">Adidas</a>
+                <a href="/producto/">Skechers</a>
+                <a href="/producto/">Nike</a>
+              </div>
+            </div>
           </div>
-          <div class="w-1/4">
-            <img src="/public/images/img.webp" alt="imagen alternativa">
+          <div class="flex flex-col w-1/4 mb-10 pl-7 bg-amber-500">
+            <img class="h-3/4" src="/public/images/img.webp" alt="imagen alternativa">
+              <div class="flex gap-2 mt-3 items-center">
+                <a class="underline underline-offset-4 hover:decoration-2" href="/producto/">Ver más</a>
+                <svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" focusable="false" aria-hidden="true">
+                  <path d="M.443 12c0 .414.336.75.75.75h20.869l-7.72 7.72a.75.75 0 0 0 1.06 1.06l7.94-7.94a2.25 2.25 0 0 0 0-3.18l-7.94-7.94a.75.75 0 0 0-1.06 1.06l7.72 7.72H1.192a.75.75 0 0 0-.75.75"></path>
+                </svg>
+              </div>
+              
           </div>
         </div>
     </div>
 </section>
 
-<!--</div>-->
 
 <script is:inline>
+  // Obtener el botón y el menú móvil
+  const hamburgerButton = document.getElementById('hamburger-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const hiddenButton = document.getElementById('hidden-button');
+
+  // Alternar la visibilidad del menú cuando se hace clic en el botón hamburguesa
+  hamburgerButton.addEventListener('click', () => {
+    if (mobileMenu.hidden) {
+      mobileMenu.hidden = false; // Mostrar el menú
+    } else {
+      mobileMenu.hidden = true; // Ocultar el menú
+    }
+  });
+
+  //Si se pulsa el boton del menu de la haburguesa para cerrarlo
+  hiddenButton.addEventListener('click', () => {
+    mobileMenu.hidden = true;
+  });
+  
+
+  //El siguiente codigo es para que se abra el mega-menu cuando estas hover: calzado
   const trigger = document.getElementById('calzado-trigger');
   const megaMenu = document.getElementById('mega-menu-calzado');
 

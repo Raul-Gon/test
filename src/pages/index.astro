@@ -1,6 +1,7 @@
 ---
 import BaseLayouts from "../layouts/BaseLayouts.astro";
 import ShowProduct from "../components/ShowProduct.astro";
+import IndexEscaparate from "../components/IndexEscaparate.astro";
 
 const titule = "Pagina Principal";
 const descrip = "pagina principal donde mostramos el menu de articulos de nuestra web"
@@ -8,8 +9,9 @@ const descrip = "pagina principal donde mostramos el menu de articulos de nuestr
 
 <BaseLayouts titulo= {titule} descripcion= {descrip}>
 	<h1 class="hidden">Zalando</h1>
-	<main>	
+	<main class="overflow-hidden">	
 		<ShowProduct />	
+		<IndexEscaparate />
 		<ShowProduct />	
 	</main>
 </BaseLayouts>
