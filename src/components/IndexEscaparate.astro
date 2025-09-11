@@ -1,14 +1,14 @@
 ---
-import IndexEscapaCarrusel from "./indexEscapaCarrusel.astro";
+import IndexEscapaCarrusel from "./IndexEscapaCarrusel.astro";
 
 ---
 
-<div class="max-w-[1200px] mx-8 xl:mx-auto p-16 flex flex-col">
-    <div class="flex">
-        <div class="w-1/2">
+<div class="max-w-[1200px] mx-8 xl:mx-auto py-16 flex flex-col">
+    <div class="flex flex-col md:flex-row justify-center items-center md:justify-around md:items-stretch">
+        <div class="w-full md:w-1/2">
             <IndexEscapaCarrusel />
         </div>
-        <div class="w-1/2 flex flex-col justify-center pl-14 bg-lime-300">
+        <div class="w-full md:w-1/2 flex flex-col justify-center p-8 lg:pl-14 bg-lime-300">
             <p class="flex flex-wrap text-xs">
                 Patrocinado   
                 <img src="/images/iconoInformacion.svg" alt="icono informacion" width="16px" height="16px" class="mx-2">
@@ -16,7 +16,7 @@ import IndexEscapaCarrusel from "./indexEscapaCarrusel.astro";
             <h2 class="mt-2 font-bold text-3xl">New Balance</h2>
             <h3 class="text-2xl">FuelCell Rebel</h3>
             <p class="mt-2.5">Encuentra tu ritmo.</p>
-            <a class="w-72 mt-8 px-10 py-3 text-white bg-black hover:bg-gray-500 border-2 border-black" href="/producto/">Descubrir</a>
+            <a class="w-auto lg:w-72 mt-8 px-10 py-3 text-white bg-black hover:bg-gray-500 border-2 border-black" href="/producto/">Descubrir</a>
         </div>
     </div>
     <div class="my-5 flex flex-row items-center justify-start">
