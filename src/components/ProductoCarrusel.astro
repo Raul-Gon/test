@@ -3,7 +3,7 @@ import IMAGENES from "../data/imagenes.json";
 
 ---
 
-<div class="swiper mySwiper overflow-visible!">
+<div class="swiper mySwiper2 overflow-visible!">
     <div class="swiper-wrapper ">
         {IMAGENES.map(imagen => <div class="swiper-slide">
                                     <img src= {imagen.url} alt= {imagen.modelo} />
@@ -23,13 +23,26 @@ import IMAGENES from "../data/imagenes.json";
 
 <!-- Initialize Swiper -->
 <script>
-    var swiper = new Swiper(".mySwiper", {
-        slidesPerView: 4,               //muestra 4 imagenes
-        spaceBetween: 20,               //añade un espcio de 20 px
-        slidesPerGroup: 4,              // Desplazar 4 imágenes por vez
+    var swiper = new Swiper(".mySwiper2", {
+        slidesPerView: 4,               // Muestra 4 imágenes por defecto
+        spaceBetween: 20,               // Espacio de 20px entre las imágenes
+        slidesPerGroup: 4,              // Desplaza 4 imágenes a la vez
         navigation: {
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",
-        }
+        },
+        breakpoints: {
+            0:{
+                slidesPerView: 2,
+                slidesPerGroup:2,
+            },
+            // Cuando la pantalla tenga un ancho de 768px o menos, también se mostrarán 2 imágenes
+            768: {
+                slidesPerView: 4, 
+                slidesPerGroup: 4,  // Desplaza 2 imágenes a la vez
+            },
+        },
+        // Usamos la propiedad resizeObserver para actualizar dinámicamente el layout
+        resizeObserver: true,  // Activar el ajuste dinámico al cambiar el tamaño de la pantalla
     });
 </script>
