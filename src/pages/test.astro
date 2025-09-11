@@ -1,0 +1,40 @@
+---
+import BaseLayouts from "../layouts/BaseLayouts.astro";
+
+
+const productos = `query {
+  Productos {
+    modeloProducto
+    imagen {
+        url
+    }
+    precioProducto
+  }
+}
+`;
+
+const dataProducts = await fetch("https://graphql.apirocket.io", {
+	"method": "POST",
+	"headers": {
+		"Content-Type": "application/json",
+		"Authorization": "Bearer J1dxg1LVe89lwSOh3Svf2eAL8L8ZH3eXX7MasOLVTpFZo1tMUWF01VkmfqlSFmd-",
+	},
+	"body": JSON.stringify({query: productos})
+})
+.then(response => response.json())
+.catch(err => { console.error(err); });
+
+console.log(dataProducts.data)
+
+const allProducts = dataProducts.data?.Productos
+---
+
+<BaseLayouts>
+	<h1>Datos productos</h1>
+
+    {allProducts.map((product: any) => 
+        <p>{product.modeloProducto}</p>
+        <p>{product.precioProducto}</p>
+        <img src={product.imagen.url} alt="">
+    )}
+</BaseLayouts>
