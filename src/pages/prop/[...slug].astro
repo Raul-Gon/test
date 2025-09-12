@@ -1,0 +1,37 @@
+---
+export async function getStaticPaths() {
+  const pages = [
+    {
+      slug: undefined,
+      title: "Tienda de Astro",
+      text: "¡Te damos la bienvenida a la tienda de Astro!",
+    },
+    {
+      slug: "products",
+      title: "Productos de Astro",
+      text: "Tenemos muchos productos para ti",
+    },
+    {
+      slug: "products/astro-handbook",
+      title: "El libro definitivo de Astro",
+      text: "Si quieres aprender sobre Astro, debes leer este libro.",
+    },
+  ];
+  return pages.map(({ slug, title, text }) => {
+    return {
+      params: { slug },
+      props: { title, text },
+    };
+  });
+}
+const { title, text } = Astro.props;
+---
+<html>
+  <head>
+    <title>{title}</title>
+  </head>
+  <body>
+    <h1>{title}</h1>
+    <p>{text}</p>
+  </body>
+</html>

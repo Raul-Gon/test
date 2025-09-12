@@ -1,0 +1,47 @@
+---
+
+const productos = `query {
+  Productos {
+    modeloProducto
+    imagen {
+      url
+    }
+    brand
+    precioProducto
+  }
+}
+`;
+
+const dataProducts = await fetch("https://graphql.apirocket.io", {
+	"method": "POST",
+	"headers": {
+		"Content-Type": "application/json",
+		"Authorization": "Bearer J1dxg1LVe89lwSOh3Svf2eAL8L8ZH3eXX7MasOLVTpFZo1tMUWF01VkmfqlSFmd-",
+	},
+	"body": JSON.stringify({query: productos})
+})
+.then(response => response.json())
+.catch(err => { console.error(err); });
+
+console.log(dataProducts.data)
+
+const allProducts1 = dataProducts.data?.Productos
+
+---
+
+<section class="mt-5">
+    <span>14555 artículos mostrados </span>
+    <div class="grid grid-cols-3 place-content-between gap-2 mt-7">
+        {allProducts1.map((product1: any) => 
+                                <div class="flex flex-col my-3">
+                                    <a href="/producto/">
+                                        <img class="xl:max-w-2xs h-auto" src={product1.imagen.url} alt={product1.modeloProducto}>
+                                        <h3>{product1.brand}</h3>
+                                        <h5>{product1.modeloProducto}</h5>
+                                        <h6 class="text-red-600">{product1.precioProducto} €</h6>
+                                    </a>
+                                </div>  
+                        )   
+        }
+    </div>
+</section>

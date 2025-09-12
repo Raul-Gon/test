@@ -1,0 +1,26 @@
+---
+export function getStaticPaths() {
+  return [
+    {params: {dog: 'clifford'}},
+    {params: {dog: 'rover'}},
+    {params: {dog: 'spot'}},
+  ];
+}
+
+const { dog } = Astro.params;
+
+const lang = 'en';
+const version = 'v1';
+
+console.log(lang);
+console.log(version);
+---
+
+
+<div>
+    <p>¡Buen chico, {dog}!</p>
+
+    <p><a href={`/${lang}-${version}/info/`}>Esto es un enlace a ingles v1</a></p>
+
+    <p><a href="/categoria/">enlace categoria</a></p>
+</div>
