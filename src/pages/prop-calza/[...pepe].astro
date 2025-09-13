@@ -1,51 +1,47 @@
 ---
 export async function getStaticPaths() {
   const productos = `query {
-      Productos {
-        modeloProducto
-        imagen {
-          url
-        }
-        brand
-        precioProducto
+    Productos {
+      modeloProducto
+      imagen {
+        url
       }
+      brand
+      precioProducto
     }
-    `;
+  }`;
 
-    const dataProducts = await fetch("https://graphql.apirocket.io", {
-      "method": "POST",
-      "headers": {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer J1dxg1LVe89lwSOh3Svf2eAL8L8ZH3eXX7MasOLVTpFZo1tMUWF01VkmfqlSFmd-",
-      },
-      "body": JSON.stringify({query: productos})
-    })
-    .then(response => response.json())
-    .catch(err => { console.error(err); });
+  const response = await fetch("https://graphql.apirocket.io", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer J1dxg1LVe89lwSOh3Svf2eAL8L8ZH3eXX7MasOLVTpFZo1tMUWF01VkmfqlSFmd-",
+    },
+    body: JSON.stringify({ query: productos }),
+  });
 
-    console.log(dataProducts.data)
+  const data = await response.json();
+  const productosData = data.data?.Productos;
 
-    const allProducts1 = dataProducts.data?.Productos
-
-    return allProducts1.map(producto => ({
-                            return : {
-                              params: { pepe: producto.modeloProducto },
-                              props: { product: producto }
-                            }
-                          })
-                    );
-
+  return productosData.map(producto => ({
+  params: { pepe: [producto.modeloProducto] },
+  props: { product: producto }
+}));
 }
 
-const {params, product } = Astro.props;
+const { params, product } = Astro.props;
 ---
+
+
 
 <html>
   <head>
-    <title>{params}</title>
+    <title>{product.modeloProducto}</title>
   </head>
   <body>
-    <h1>{params}</h1>
-    <p>{product.modeloProducto}</p>
+    <h1>{product.modeloProducto}</h1>
+    <h2>{product.brand}</h2>
+    <img src={product.imagen.url} alt={product.modeloProducto} />
+    <p>Precio: {product.precioProducto} €</p>
   </body>
 </html>
