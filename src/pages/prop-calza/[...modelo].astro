@@ -1,5 +1,5 @@
 ---
-import slugify from 'slugify';
+import { customSlugify } from '../../utils/mySlugify';
 
 export async function getStaticPaths() {
   const productos = `query {
@@ -29,8 +29,7 @@ export async function getStaticPaths() {
   return productosData.map((producto) => {
     return {
       params: {
-        brand: slugify(producto.brand, { strict: true }).toUpperCase(),
-        modelo: slugify(producto.modeloProducto, { strict: true }).toUpperCase(),
+        modelo: `/${customSlugify(producto.brand)}/${customSlugify(producto.modeloProducto)}`,
       },
       props: { product: producto },
     };

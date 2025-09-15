@@ -1,5 +1,7 @@
 ---
 
+import {customSlugify} from '../utils/mySlugify.ts';
+
 const productos = `query {
   Favoriteproducts(filter: {promotion: {eq: true}}) {
     model
@@ -23,8 +25,6 @@ const dataProducts = await fetch("https://graphql.apirocket.io", {
 .then(response => response.json())
 .catch(err => { console.error(err); });
 
-console.log(dataProducts.data)
-
 const allProducts = dataProducts.data?.Favoriteproducts
 
 ---
@@ -34,7 +34,7 @@ const allProducts = dataProducts.data?.Favoriteproducts
     <div class="grid grid-cols-3 place-content-between gap-2 mt-7">
         {allProducts.map((product: any) => 
                                 <div class="flex flex-col my-3">
-                                    <a href="/producto/">
+                                    <a href={`/${customSlugify(product.brand)}/${customSlugify(product.model)}`}>
                                         <img class="xl:max-w-2xs h-auto" src={product.productimage.url} alt={product.model}>
                                         <h3>{product.brand}</h3>
                                         <h5>{product.model}</h5>
