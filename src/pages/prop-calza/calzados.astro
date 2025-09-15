@@ -1,4 +1,6 @@
 ---
+import slugify from 'slugify';
+
 
 const productos = `query {
   Productos {
@@ -23,9 +25,7 @@ const dataProducts = await fetch("https://graphql.apirocket.io", {
 .then(response => response.json())
 .catch(err => { console.error(err); });
 
-console.log(dataProducts.data)
-
-const allProducts1 = dataProducts.data?.Productos
+const allProducts1 = dataProducts.data?.Productos;
 
 ---
 
@@ -33,7 +33,7 @@ const allProducts1 = dataProducts.data?.Productos
     <div class="grid grid-cols-3 place-content-between gap-2 mt-7">
         {allProducts1.map((product1: any) => 
                                 <div class="flex flex-col my-3">
-                                    <a href={`/prop-calza/calzados/${encodeURIComponent(product1.modeloProducto)}`}>                                  
+                                    <a href={`/prop-calza/${slugify(product1.brand, { strict: true }).toUpperCase()}/${slugify(product1.modeloProducto, { strict: true }).toUpperCase()}`}>                                  
                                         <img class="xl:max-w-2xs h-auto" src={product1.imagen.url} alt={product1.modeloProducto}>
                                         <h3>{product1.brand}</h3>
                                         <h5>{product1.modeloProducto}</h5>

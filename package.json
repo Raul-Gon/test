@@ -12,6 +12,7 @@
     "@astrojs/netlify": "^6.5.10",
     "@tailwindcss/vite": "^4.1.12",
     "astro": "^5.13.5",
+    "slugify": "^1.6.6",
     "tailwindcss": "^4.1.12"
   },
   "devDependencies": {
