@@ -1,6 +1,8 @@
 ---
 import BaseLayouts from "../layouts/BaseLayouts.astro";
 
+// Importar variables de entorno y la metemos en una constante para despues usarla en la llamada a la API
+const SECRET_TOKEN = import.meta.env.SECRET_API_TOKEN;
 
 const productos = `query {
   Productos {
@@ -17,7 +19,7 @@ const dataProducts = await fetch("https://graphql.apirocket.io", {
 	"method": "POST",
 	"headers": {
 		"Content-Type": "application/json",
-		"Authorization": "Bearer J1dxg1LVe89lwSOh3Svf2eAL8L8ZH3eXX7MasOLVTpFZo1tMUWF01VkmfqlSFmd-",
+		"Authorization": `Bearer ${SECRET_TOKEN}`,
 	},
 	"body": JSON.stringify({query: productos})
 })
@@ -37,7 +39,7 @@ const allProducts = dataProducts.data?.Productos
         <div class="flex flex-col p-5 gap-5 rounded-lg bg-white shadow-2xl">
           <p>{product.modeloProducto}</p>
           <p>{product.precioProducto}</p>
-          <img src={product.imagen.url} alt="">
+          <img src={product.imagen.url} alt="" />
         </div>
     )}
   </div>

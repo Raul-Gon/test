@@ -23,8 +23,6 @@ const dataProducts = await fetch("https://graphql.apirocket.io", {
 .then(response => response.json())
 .catch(err => { console.error(err); });
 
-console.log(dataProducts.data)
-
 const allProducts1 = dataProducts.data?.Productos
 
 ---

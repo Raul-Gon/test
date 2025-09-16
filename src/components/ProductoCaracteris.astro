@@ -1,13 +1,18 @@
 ---
 import ProductoCaracAcordeon from "./ProductoCaracAcordeon.astro";
 
+export interface Props {
+    product:  any;
+}
+
+const { product } = Astro.props;
 ---
 
 <div class="w-full md:w-1/2 flex flex-col lg:ml-24 lg:pl-2">
     <div class="space-y-5">
         <div>
-            <h2 class="text-3xl font-semibold">Pier One</h2>
-            <p class="flex flex-wrap text-3xl font-bold">BASKET CORE LITE – Zapatillas – navy blue</p>
+            <h2 class="text-3xl font-semibold">{ product.brand }</h2>
+            <p class="flex flex-wrap text-3xl font-bold">{ product.model } – { product.description } </p>
             <div class="mt-3">
                 <span class="text-2xl">4</span>
                 <span class="text-2xl">★★★★☆</span>
@@ -15,7 +20,7 @@ import ProductoCaracAcordeon from "./ProductoCaracAcordeon.astro";
             </div>
         </div>
         <div>
-            <p class="text-gray-600"><span class="text-xl font-bold text-red-600">20,29 €</span> IVA incluido</p>
+            <p class="text-gray-600"><span class="text-xl font-bold text-red-600">{ product.price } €</span> IVA incluido</p>
             <p class="text-gray-600">Precio mediano:<span class="line-through ml-2">50,95 €</span><span class="text-red-600 ml-2">‑50 %</span></p>
         </div>
         <div class="p-4 border border-gray-700">

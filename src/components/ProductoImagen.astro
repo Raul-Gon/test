@@ -1,5 +1,11 @@
 ---
+export interface Props {
+    description: string;
+    productImage: string;
+    gallery?: any
+}
 
+const { description, productImage, gallery } = Astro.props;
 ---
 
 <div class="flex h-full justify-between gap-4 w-full md:w-1/2 md:sticky z-0 md:top-0 md:left-0 md:pt-10 md:-mt-10">
@@ -14,6 +20,6 @@
         <img class="w-24 mb-2 object-cover" src="https://img01.ztat.net/article/spp-media-p1/dfb470988f1b451888ac8ae25b68e83c/73a1d1e93b864f0586ecba9114087cde.jpg?imwidth=156" alt="Miniatura 8">
     </div>
     <div>
-        <img class="w-full md:w-lg bg-cyan-300" src="https://img01.ztat.net/article/spp-media-p1/018f6310f43e49619ffde7ba23c75ff5/777a077c291a4ce68fb7d36cbbe66fba.png?imwidth=1800" alt="Zapatillas vista principal">
+        <img class="w-full md:w-lg" src={productImage} alt={description} />
     </div>
 </div>

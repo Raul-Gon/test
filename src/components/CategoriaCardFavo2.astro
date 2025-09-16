@@ -1,15 +1,19 @@
 ---
-
 import {customSlugify} from '../utils/mySlugify.ts';
 
+// Importar variables de entorno y la metemos en una constante para despues usarla en la llamada a la API
+const SECRET_TOKEN = import.meta.env.SECRET_API_TOKEN;
+
+
 const productos = `query {
-  Favoriteproducts(filter: {promotion: {eq: true}}) {
+  Favoriteproducts {
+    id
+    brand
     model
     price
     productimage {
       url
     }
-    brand
   }
 }
 `;
@@ -18,7 +22,7 @@ const dataProducts = await fetch("https://graphql.apirocket.io", {
 	"method": "POST",
 	"headers": {
 		"Content-Type": "application/json",
-		"Authorization": "Bearer J1dxg1LVe89lwSOh3Svf2eAL8L8ZH3eXX7MasOLVTpFZo1tMUWF01VkmfqlSFmd-",
+		"Authorization": `Bearer ${SECRET_TOKEN}`,
 	},
 	"body": JSON.stringify({query: productos})
 })
@@ -34,8 +38,8 @@ const allProducts = dataProducts.data?.Favoriteproducts
     <div class="grid grid-cols-3 place-content-between gap-2 mt-7">
         {allProducts.map((product: any) => 
                                 <div class="flex flex-col my-3">
-                                    <a href={`/${customSlugify(product.brand)}/${customSlugify(product.model)}`}>
-                                        <img class="xl:max-w-2xs h-auto" src={product.productimage.url} alt={product.model}>
+                                    <a href={`/${customSlugify(product.brand)}/${customSlugify(product.model)}--${product.id}`}>
+                                        <img class="xl:max-w-2xs h-auto" src={product.productimage.url} alt={product.model} />
                                         <h3>{product.brand}</h3>
                                         <h5>{product.model}</h5>
                                         <h6 class="text-red-600">{product.price} €</h6>
