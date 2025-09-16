@@ -1,0 +1,73 @@
+---
+//le añadimos el prerender para hacerlo dinamico
+export const prerender = false;
+//este archivo es ahora dinamico porque hace una pagina con el id del producto y solo le manda esa al cliente 
+
+// Importar variables de entorno y la metemos en una constante para despues usarla en la llamada a la API
+const SECRET_TOKEN = import.meta.env.SECRET_API_TOKEN;
+
+
+// Extraer ID de la URL
+const rawSlug = Astro.params.muestraModelo;
+console.log("Astro.params.muestraModelo:", rawSlug);
+
+let product = null;
+
+if (rawSlug) {
+  const slugParts = rawSlug.split("/");
+  const lastPart = slugParts[slugParts.length - 1];
+  const id = lastPart.split("--")[1];
+
+  console.log("ID extraído:", id);
+
+  if (id) {
+    // Construir y ejecutar consulta a la API
+    const query = `query {
+      Productos(filter: {id: {eq: "${id}"}}) {
+        imagen {
+          url
+        }
+        id
+        brand
+        modeloProducto
+        precioProducto
+      }
+    }`;
+
+    const dataProduct = await fetch("https://graphql.apirocket.io", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${SECRET_TOKEN}`,
+      },
+      body: JSON.stringify({ query }),
+    }).then(res => res.json());
+
+    console.log("Respuesta de la API:", dataProduct);
+
+    if (dataProduct.data?.Productos?.length > 0) {
+      product = dataProduct.data.Productos[0];
+      console.log("Producto obtenido:", product);
+    } else {
+      console.error("No se encontraron productos con el ID proporcionado.");
+    }
+  } else {
+    console.error("No se pudo extraer un ID válido.");
+  }
+} else {
+  console.error("Astro.params.muestraModelo es undefined o vacío.");
+}
+
+---
+
+<html>
+  <head>
+    <title>{product.modeloProducto}</title>
+  </head>
+  <body>
+    <h1>Producto: {product.modeloProducto}</h1>
+    <h2>Marca: {product.brand}</h2>
+    <img src={product.imagen.url} alt={product.modeloProducto} /> 
+    <p>Precio: {product.precioProducto} €</p>
+  </body>
+</html>

@@ -1,18 +1,19 @@
 ---
+import BaseLayouts from '../../layouts/BaseLayouts.astro';
+
 import {customSlugify} from '../../utils/mySlugify.ts';
 
 const productos = `query {
-  Productos {
-    modeloProducto
-    imagen {
-      url
-    }
-    brand
-    precioProducto
-  }
-}
-`;
-
+          Productos {
+            imagen {
+              url
+            }
+            id
+            brand
+            modeloProducto
+            precioProducto
+          }
+}`;
 const dataProducts = await fetch("https://graphql.apirocket.io", {
 	"method": "POST",
 	"headers": {
@@ -28,18 +29,21 @@ const allProducts1 = dataProducts.data?.Productos;
 
 ---
 
-<section class="mt-5">
-    <div class="grid grid-cols-3 place-content-between gap-2 mt-7">
-        {allProducts1.map((product1: any) => 
-                                <div class="flex flex-col my-3">
-                                    <a href={`/prop-calza/${customSlugify(product1.brand)}/${customSlugify(product1.modeloProducto)}`}>                                  
-                                        <img class="xl:max-w-2xs h-auto" src={product1.imagen.url} alt={product1.modeloProducto}>
-                                        <h3>{product1.brand}</h3>
-                                        <h5>{product1.modeloProducto}</h5>
-                                        <h6 class="text-red-600">{product1.precioProducto} €</h6>
-                                    </a>
-                                </div>  
-                        )   
-        }
-    </div>
-</section>
+
+<BaseLayouts title="Calzados" descripcion="Pagina de calzados">
+    <section class="mt-5">
+        <div class="grid grid-cols-3 place-content-between gap-2 mt-7">
+            {allProducts1.map((product1: any) => 
+                                    <div class="flex flex-col my-3">
+                                        <a href={`/prop-calza/${customSlugify(product1.brand)}/${customSlugify(product1.modeloProducto)}--${product1.id}`}>                                  
+                                            <img class="xl:max-w-2xs h-auto" src={product1.imagen.url} alt={product1.modeloProducto} />
+                                            <h3>{product1.brand}</h3>
+                                            <h5>{product1.modeloProducto}</h5>
+                                            <h6 class="text-red-600">{product1.precioProducto} €</h6>
+                                        </a>
+                                    </div>  
+                            )   
+            } 
+        </div>
+    </section>
+</BaseLayouts>
