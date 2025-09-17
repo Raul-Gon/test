@@ -1,11 +1,11 @@
 ---
 import BaseLayouts from "../layouts/BaseLayouts.astro";
-import CategoriaAside from "../components/CategoriaAside.astro";
-import CategoriaAcordeon from "../components/CategoriaAcordeon.astro";
-import CategoriaCardFavo2 from "../components/CategoriaCardFavo2.astro";
-import CategoriaCardTodo2 from "../components/CategoriaCardTodo2.astro";
-import CategoriaFinal from "../components/CategoriaFinal.astro";
-import CategoriaEscaparate from "../components/CategoriaEscaparate.astro";
+import CategoriaAside from "../components/categoria/CategoriaAside.astro";
+import CategoriaAcordeon from "../components/categoria/CategoriaAcordeon.astro";
+import CategoriaCardFavo2 from "../components/categoria/CategoriaCardFavo2.astro";
+import CategoriaCardTodo2 from "../components/categoria/CategoriaCardTodo2.astro";
+import CategoriaFinal from "../components/categoria/CategoriaFinal.astro";
+import CategoriaEscaparate from "../components/categoria/CategoriaEscaparate.astro";
 
 const titule = "Calzados";
 const descrip = "Muestra de los diferentes tipos de productos de la categoria de calzado"
@@ -30,3 +30,83 @@ const descrip = "Muestra de los diferentes tipos de productos de la categoria de
 	</div>
 	<CategoriaFinal />
 </BaseLayouts>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const coloresSeleccionados = new Set();
+    const tallasSeleccionadas = new Set();
+
+    // Selección de COLORES
+    document.querySelectorAll('[data-color]').forEach(item => {
+      item.addEventListener('click', () => {
+        const color = item.getAttribute('data-color');
+
+        if (coloresSeleccionados.has(color)) {
+          coloresSeleccionados.delete(color);
+          item.classList.remove('bg-gray-300');
+        } else {
+          coloresSeleccionados.add(color);
+          item.classList.add('bg-gray-300');
+        }
+      });
+    });
+
+    // Selección de TALLAS
+    document.querySelectorAll('[data-talla]').forEach(item => {
+      item.addEventListener('click', () => {
+        const talla = item.getAttribute('data-talla');
+
+        if (tallasSeleccionadas.has(talla)) {
+          tallasSeleccionadas.delete(talla);
+          item.classList.remove('bg-gray-300');
+        } else {
+          tallasSeleccionadas.add(talla);
+          item.classList.add('bg-gray-300');
+        }
+      });
+    });
+
+    // BOTONES GUARDAR (por clase)
+    document.querySelectorAll('.btn-filtrar').forEach(boton => {
+      boton.addEventListener('click', () => {
+        filtrarProductos();
+      });
+    });
+
+    // BOTONES BORRAR (por clase)
+    document.querySelectorAll('.btn-borrar-filtro').forEach(boton => {
+      boton.addEventListener('click', () => {
+        coloresSeleccionados.clear();
+        tallasSeleccionados.clear();
+
+        // Quitar marcas visuales
+        document.querySelectorAll('[data-color], [data-talla]').forEach(item => {
+          item.classList.remove('bg-gray-300');
+        });
+
+        // Mostrar todos los productos
+        document.querySelectorAll('[data-product]').forEach(p => {
+          p.style.display = '';
+        });
+      });
+    });
+
+    // FUNCIÓN DE FILTRADO
+    function filtrarProductos() {
+      const productos = document.querySelectorAll('[data-product]');
+      productos.forEach(producto => {
+        const color = producto.getAttribute('data-color');
+        const talla = producto.getAttribute('data-talla');
+
+        const coincideColor = coloresSeleccionados.size === 0 || coloresSeleccionados.has(color);
+        const coincideTalla = tallasSeleccionadas.size === 0 || tallasSeleccionadas.has(talla);
+
+        if (coincideColor && coincideTalla) {
+          producto.style.display = '';
+        } else {
+          producto.style.display = 'none';
+        }
+      });
+    }
+  });
+</script>

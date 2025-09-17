@@ -1,5 +1,5 @@
 ---
-import {customSlugify} from '../utils/mySlugify.ts';
+import {customSlugify} from '../../utils/mySlugify.ts';
 
 // Importar variables de entorno y la metemos en una constante para despues usarla en la llamada a la API
 const SECRET_TOKEN = import.meta.env.SECRET_API_TOKEN;
@@ -11,6 +11,8 @@ const productos = `query {
     brand
     model
     price
+    tallaZapato
+    color
     productimage {
       url
     }
@@ -31,20 +33,22 @@ const dataProducts = await fetch("https://graphql.apirocket.io", {
 
 const allProducts = dataProducts.data?.Favoriteproducts
 
+console.log(allProducts);
+
 ---
 
 <section class="mt-5">
     <span>14555 artículos mostrados </span>
     <div class="grid grid-cols-3 place-content-between gap-2 mt-7">
         {allProducts.map((product: any) => 
-                                <div class="flex flex-col my-3">
+                                <articulo class="flex flex-col my-3" data-product data-talla={ product.tallaZapato } data-color={ product.color }>
                                     <a href={`/${customSlugify(product.brand)}/${customSlugify(product.model)}--${product.id}`}>
                                         <img class="xl:max-w-2xs h-auto" src={product.productimage.url} alt={product.model} />
                                         <h3>{product.brand}</h3>
                                         <h5>{product.model}</h5>
                                         <h6 class="text-red-600">{product.price} €</h6>
                                     </a>
-                                </div>  
+                                </articulo>  
                         )   
         }
     </div>

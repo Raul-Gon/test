@@ -1,18 +1,18 @@
 ---
-import IMAGENES from "../data/imagenes.json";
-
+import IMAGENES from "../../data/imagenes.json";
 ---
 
-<div class="swiper mySwiper4">
+<div class="swiper mySwiper overflow-visible!">
     <div class="swiper-wrapper ">
-        {IMAGENES.map(imagen => <div class="swiper-slide">
-                                    <img src= {imagen.url} alt= {imagen.modelo} />
-                                    <h3 class="mt-4 ">{imagen.modelo}</h3>
-                                    <p>{imagen.descripcion}</p>
-                                    <p>{imagen.precio}</p>
-                                </div>
-                              )
-                }
+        {IMAGENES.map(imagen => 
+                        <div class="swiper-slide">
+                            <img src= {imagen.url} alt= {imagen.modelo} />
+                            <h3 class="mt-4">{imagen.modelo}</h3>
+                            <p>{imagen.descripcion}</p>
+                            <p>{imagen.precio}</p>
+                        </div>
+                    )
+        }
     </div>
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
@@ -23,7 +23,7 @@ import IMAGENES from "../data/imagenes.json";
 
 <!-- Initialize Swiper -->
 <script>
-    var swiper = new Swiper(".mySwiper4", {
+    var swiper = new Swiper(".mySwiper", {
         slidesPerView: 4,               // Muestra 4 imágenes por defecto
         spaceBetween: 20,               // Espacio de 20px entre las imágenes
         slidesPerGroup: 4,              // Desplaza 4 imágenes a la vez
@@ -46,3 +46,4 @@ import IMAGENES from "../data/imagenes.json";
         resizeObserver: true,  // Activar el ajuste dinámico al cambiar el tamaño de la pantalla
     });
 </script>
+

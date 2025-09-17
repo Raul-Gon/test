@@ -1,7 +1,7 @@
 ---
-import { number } from "astro:schema";
 import CategoriaRango2 from "./CategoriaRango2.astro";
 
+import { number } from "astro:schema";
 
 const start = 7;
 const end = 55;
@@ -69,7 +69,7 @@ const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
     </div>
   </div>
 
-  <!-- Item 3 -->
+  <!-- Item 3 aqui se usa la variable number -->
   <div>
     <h2 id="accordion-heading-3">
       <button type="button" class="flex items-center justify-between p-3 gap-2 font-medium rtl:text-right text-gray-800 border border-gray-700 hover:bg-gray-100 transition" data-target="accordion-body-3" aria-expanded="false" aria-controls="accordion-body-3">
@@ -82,14 +82,14 @@ const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
     <div class="hidden absolute w-80" id="accordion-body-3" aria-labelledby="accordion-heading-3">
       <div class="max-h-96 overflow-y-auto bg-white border border-gray-800 text-gray-800">
         {numbers.map(number =>
-                          <p key={number} class="p-3 ml-4 border-0 border-b border-b-black">{number}</p>
+                          <p key={number} data-talla={number} class="talla-option p-3 ml-4 border-0 border-b border-b-black">{number}</p>
                     )
         }
         <p class="p-3 ml-4">Talla única</p>
       </div>
       <div class="flex justify-between border border-black">
-        <button class="w-1/2 flex items-center justify-center py-4 bg-white">Borrar</button>
-        <button class="w-1/2 flex items-center justify-center py-4 bg-gray-400">Guardar</button>
+        <button class="btn-borrar-filtro w-1/2 flex items-center justify-center py-4 bg-white">Borrar</button>
+        <button class="btn-filtrar w-1/2 flex items-center justify-center py-4 bg-gray-400">Guardar</button>
       </div>
     </div>
   </div>
@@ -106,10 +106,24 @@ const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
     </h2>
     <div class="hidden absolute w-80" id="accordion-body-4" aria-labelledby="accordion-heading-4">
       <div class="max-h-96 overflow-y-auto bg-white border border-gray-800 text-gray-800">
+        <!--vamos a coger los colores negro, blanco, azul y rojo para hacer de filtros -->
         <div class="flex p-3 ml-4 border-0 border-b border-b-black">
           <div class="size-6 bg-black mr-4"></div>
-          <p>Negros</p>
+          <p data-color="negro" class="color-option">Negros</p>
         </div>
+        <div class="flex p-3 ml-4 border-0 border-b border-b-black">
+          <div class="size-6 mr-4 border border-black"></div>
+          <p data-color="blanco" class="color-option">Blanco</p>
+        </div>
+        <div class="flex p-3 ml-4 border-0 border-b border-b-black">
+          <div class="size-6 bg-blue-600 mr-4"></div>
+          <p data-color="azul" class="color-option">Azules</p>
+        </div>
+        <div class="flex p-3 ml-4 border-0 border-b border-b-black">
+          <div class="size-6 bg-red-600 mr-4"></div>
+          <p data-color="rojo" class="color-option">Rojos</p>
+        </div>
+        <!-- Hasta aqui llegan las opciones para poder filtrar los resultados -->
         <div class="flex p-3 ml-4 border-0 border-b border-b-black">
           <div class="size-6 bg-amber-950 mr-4"></div>
           <p>Marron</p>
@@ -123,10 +137,6 @@ const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
           <p>Verdes</p>
         </div>
         <div class="flex p-3 ml-4 border-0 border-b border-b-black">
-          <div class="size-6 bg-blue-600 mr-4"></div>
-          <p>Azules</p>
-        </div>
-        <div class="flex p-3 ml-4 border-0 border-b border-b-black">
           <div class="size-6 bg-pink-600 mr-4"></div>
           <p>Rosas</p>
         </div>
@@ -135,17 +145,13 @@ const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
           <p>Morado</p>
         </div>
         <div class="flex p-3 ml-4 border-0 border-b border-b-black">
-          <div class="size-6 bg-red-600 mr-4"></div>
-          <p>Rojos</p>
-        </div>
-        <div class="flex p-3 ml-4 border-0 border-b border-b-black">
           <div class="size-6 bg-orange-400 mr-4"></div>
           <p>Naranjas</p>
         </div>
       </div>
       <div class="flex justify-between border border-black">
-        <button class="w-1/2 flex items-center justify-center py-4 bg-white">Borrar</button>
-        <button class="w-1/2 flex items-center justify-center py-4 bg-gray-400">Guardar</button>
+        <button class="btn-borrar-filtro w-1/2 flex items-center justify-center py-4 bg-white">Borrar</button>
+        <button class="btn-filtrar w-1/2 flex items-center justify-center py-4 bg-gray-400">Guardar</button>
       </div>
     </div>
   </div>
@@ -178,7 +184,7 @@ const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
     </div>
   </div>
 
-  <!-- Item 6 -->
+  <!-- Item 6 aqui se usa el CategoriaRango2 -->
   <div>
     <h2 id="accordion-heading-6">
       <button type="button" class="flex items-center justify-between p-3 gap-2 font-medium rtl:text-right text-gray-800 border border-gray-700 hover:bg-gray-100 transition" data-target="accordion-body-6" aria-expanded="false" aria-controls="accordion-body-6">

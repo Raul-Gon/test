@@ -1,8 +1,8 @@
 ---
 import BaseLayouts from "../layouts/BaseLayouts.astro";
-import ProductoImagen from "../components/ProductoImagen.astro";
-import ProductoCaracteris from "../components/ProductoCaracteris.astro";
-import ProductoEscaparate from "../components/ProductoEscaparate.astro";
+import ProductoImagen from "../components/producto/ProductoImagen.astro";
+import ProductoCaracteris from "../components/producto/ProductoCaracteris.astro";
+import ProductoEscaparate from "../components/producto/ProductoEscaparate.astro";
 
 //le añadimos el prerender para hacerlo dinamico
 export const prerender = false;
@@ -14,7 +14,15 @@ const SECRET_TOKEN = import.meta.env.SECRET_API_TOKEN;
 
 // Extraer ID de la URL
 const rawSlug = Astro.params.productoPag;
+
+if (!rawSlug || rawSlug === 'favicon.ico') {
+  console.error("Ruta inválida o favicon solicitado");
+  return new Response(null, { status: 204 }); // Evita el error
+}
+
+
 console.log("Astro.params.productoPag:", rawSlug);
+
 
 let product = null;
 
@@ -29,14 +37,20 @@ if (rawSlug) {
     // Construir y ejecutar consulta a la API
     const query = `query {
           Favoriteproducts(filter: {id: {eq: "${id}"}}) {
-            id
-            brand
-            model
-            price
-            productimage {
-              url
-            }
-            description
+              id
+              brand
+              model
+              price
+              description
+              productimage {
+                url
+              }
+              imagenGallery {
+                url
+              }
+              sampleVideo {
+                url
+              }
           }
     }`;
 
@@ -73,7 +87,7 @@ if (rawSlug) {
 	<main>
 		<section class="max-w-[1200px] mx-6 mt-10 xl:mx-auto">
 			<div class="static w-full flex flex-col md:flex md:flex-row gap-4 lg:gap-0">    
-				<ProductoImagen description={ product.description } productImage={ product.productimage.url } />
+				<ProductoImagen description={ product.description } productImage={ product.productimage.url } gallery={ product.imagenGallery } video={ product.sampleVideo?.[0]?.url } />
 				<ProductoCaracteris product={ product } />
 			</div>						
 		</section>

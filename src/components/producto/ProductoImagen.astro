@@ -1,0 +1,83 @@
+---
+export interface Props {
+    description: string;
+    productImage: string;
+    gallery?: any;
+    video?: string;
+}
+
+const { description, productImage, gallery, video } = Astro.props;
+
+console.log("Props recibidos en ProductoImagen:", { description, productImage, gallery, video });
+---
+
+<div class="flex h-full justify-between gap-4 w-full md:w-1/2 md:sticky z-0 md:top-0 md:left-0 md:pt-10 md:-mt-10">
+    <!-- Galería de miniaturas -->
+    <div class="hidden h-[652px] lg:flex lg:flex-col overflow-y-auto">
+        {gallery?.map((img: any) => (
+            <img 
+                key={img.url} 
+                class="w-24 mb-2 object-cover cursor-pointer hover:border-2" 
+                src={img.url} 
+                alt="Miniatura" 
+                data-url={img.url}  // Añadimos un atributo personalizado con la URL de la imagen
+                data-type="image" // Indicamos que es una imagen
+                onmouseover="updateMainMedia(event)"  // Llamamos a la función de JavaScript cuando el cursor pase por encima
+            />
+        ))}
+
+        {video && (
+            <div 
+                class="w-24 h-32 mb-2 cursor-pointer hover:border-2 flex items-center justify-center bg-black"
+                onmouseover="updateMainMedia(event)"
+                data-url={video}
+                data-type="video"
+            >
+                <img
+                src="https://img.icons8.com/ios-filled/100/play-button-circled.png"
+                alt="Miniatura de video"
+                class="z-10 bg-white rounded-full w-15 h-15 object-cover"
+                />
+            </div>
+        )}
+
+    </div>    
+
+    <!-- Imagen o video principal -->
+    <div id="media-container">
+        <img id="main-image" class="w-full md:w-lg" src={productImage} alt={description} />
+    </div>
+</div>
+
+<!-- funciones para controlarsi estas encima de la imagen en miniatura y si es un video o no -->
+<script is:inline>
+    function updateMainMedia(event) {
+        const target = event.currentTarget;  // en lugar de event.target
+        const type = target.getAttribute('data-type');
+        const url = target.getAttribute('data-url');
+        const container = document.getElementById('media-container');
+
+        if (!container || !type || !url) return;
+
+        container.innerHTML = '';
+
+        if (type === 'image') {
+            const img = document.createElement('img');
+            img.src = url;
+            img.alt = "Imagen ampliada";
+            img.className = "w-full md:w-lg";
+            img.id = "main-image";
+            container.appendChild(img);
+        }
+
+        if (type === 'video') {
+            const video = document.createElement('video');
+            video.src = url;
+            video.autoplay = true;
+            video.loop = true;
+            video.muted = true;
+            video.className = "w-full md:w-lg h-full object-cover";
+            container.appendChild(video);
+        }
+    }
+</script>

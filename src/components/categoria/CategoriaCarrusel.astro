@@ -1,9 +1,9 @@
 ---
-import IMAGENES from "../data/imagenes.json";
+import IMAGENES from "../../data/imagenes.json";
 
 ---
 
-<div class="swiper mySwiper2 overflow-visible!">
+<div class="swiper mySwiper4">
     <div class="swiper-wrapper ">
         {IMAGENES.map(imagen => <div class="swiper-slide">
                                     <img src= {imagen.url} alt= {imagen.modelo} />
@@ -23,7 +23,7 @@ import IMAGENES from "../data/imagenes.json";
 
 <!-- Initialize Swiper -->
 <script>
-    var swiper = new Swiper(".mySwiper2", {
+    var swiper = new Swiper(".mySwiper4", {
         slidesPerView: 4,               // Muestra 4 imágenes por defecto
         spaceBetween: 20,               // Espacio de 20px entre las imágenes
         slidesPerGroup: 4,              // Desplaza 4 imágenes a la vez
