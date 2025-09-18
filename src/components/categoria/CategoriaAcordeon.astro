@@ -21,7 +21,7 @@ const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
         </svg>
       </button>
     </h2>
-    <div class="hidden absolute w-80" id="accordion-body-1" aria-labelledby="accordion-heading-1">
+    <div class="hidden absolute z-20 w-80" id="accordion-body-1" aria-labelledby="accordion-heading-1">
       <div class="max-h-96 overflow-y-auto bg-white border border-gray-800 text-gray-800">
         <p class="p-3 ml-4 border-0 border-b border-b-black">Favoritos</p>
         <p class="p-3 ml-4 border-0 border-b border-b-black">Novedades</p>
@@ -46,7 +46,7 @@ const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
         </svg>
       </button>
     </h2>
-    <div class="hidden absolute w-80" id="accordion-body-2" aria-labelledby="accordion-heading-2">
+    <div class="hidden absolute z-20 w-80" id="accordion-body-2" aria-labelledby="accordion-heading-2">
       <div class="max-h-96 overflow-y-auto bg-white border border-gray-800 text-gray-800">
         <p class="p-3 ml-4 border-0 border-b border-b-black">ACBC</p>
         <p class="p-3 ml-4 border-0 border-b border-b-black">Adidas</p>
@@ -79,17 +79,19 @@ const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
         </svg>
       </button>
     </h2>
-    <div class="hidden absolute w-80" id="accordion-body-3" aria-labelledby="accordion-heading-3">
+    <div class="hidden absolute z-20 w-80" id="accordion-body-3" aria-labelledby="accordion-heading-3">
       <div class="max-h-96 overflow-y-auto bg-white border border-gray-800 text-gray-800">
         {numbers.map(number =>
-                          <p key={number} data-talla={number} class="talla-option p-3 ml-4 border-0 border-b border-b-black">{number}</p>
+                          <div class="p-1 ml-4 border-0 border-b border-b-black">
+                              <button key={number} data-valor={number} data-filter="talla" class="talla-option w-full h-full text-left m-0 pl-5 py-2 hover:bg-gray-400 hover:cursor-pointer">{number}</button>
+                          </div>
                     )
         }
         <p class="p-3 ml-4">Talla única</p>
       </div>
       <div class="flex justify-between border border-black">
-        <button class="btn-borrar-filtro w-1/2 flex items-center justify-center py-4 bg-white">Borrar</button>
-        <button class="btn-filtrar w-1/2 flex items-center justify-center py-4 bg-gray-400">Guardar</button>
+        <button class="w-1/2 flex items-center justify-center py-4 bg-white hover:text-white hover:bg-black hover:cursor-pointer" data-button-clean>Borrar</button>
+        <button class="w-1/2 flex items-center justify-center py-4 bg-gray-400 hover:text-white hover:bg-black hover:cursor-pointer" data-button-save>Guardar</button>
       </div>
     </div>
   </div>
@@ -104,7 +106,7 @@ const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
         </svg>
       </button>
     </h2>
-    <div class="hidden absolute w-80" id="accordion-body-4" aria-labelledby="accordion-heading-4">
+    <div class="hidden absolute z-20 w-80" id="accordion-body-4" aria-labelledby="accordion-heading-4">
       <div class="max-h-96 overflow-y-auto bg-white border border-gray-800 text-gray-800">
         <!--vamos a coger los colores negro, blanco, azul y rojo para hacer de filtros -->
         <div class="flex p-3 ml-4 border-0 border-b border-b-black">
@@ -150,8 +152,8 @@ const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
         </div>
       </div>
       <div class="flex justify-between border border-black">
-        <button class="btn-borrar-filtro w-1/2 flex items-center justify-center py-4 bg-white">Borrar</button>
-        <button class="btn-filtrar w-1/2 flex items-center justify-center py-4 bg-gray-400">Guardar</button>
+        <button class="btn-borrar-filtro w-1/2 flex items-center justify-center py-4 bg-white hover:text-white hover:bg-black">Borrar</button>
+        <button class="btn-filtrar w-1/2 flex items-center justify-center py-4 bg-gray-400 hover:text-white hover:bg-black">Guardar</button>
       </div>
     </div>
   </div>
@@ -166,7 +168,7 @@ const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
         </svg>
       </button>
     </h2>
-    <div class="hidden absolute w-80" id="accordion-body-5" aria-labelledby="accordion-heading-5">
+    <div class="hidden absolute z-20 w-80" id="accordion-body-5" aria-labelledby="accordion-heading-5">
       <div class="max-h-96 overflow-y-auto bg-white border border-gray-800 text-gray-800">
         <p class="p-3 ml-4 border-0 border-b border-b-black">A prueba de viento</p>
         <p class="p-3 ml-4 border-0 border-b border-b-black">De secado rápido</p>
@@ -194,7 +196,7 @@ const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
         </svg>
       </button>
     </h2>
-    <div class="hidden absolute w-80" id="accordion-body-6" aria-labelledby="accordion-heading-6">
+    <div class="hidden absolute z-20 w-80" id="accordion-body-6" aria-labelledby="accordion-heading-6">
       <div class="max-h-96 overflow-y-auto bg-white border border-gray-800 text-gray-800">
         <!--Barra de RANGO de precios -->
         <CategoriaRango2 />
@@ -233,7 +235,7 @@ const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
         </svg>
       </button>
     </h2>
-    <div class="hidden absolute w-80" id="accordion-body-7" aria-labelledby="accordion-heading-7">
+    <div class="hidden absolute z-20 w-80" id="accordion-body-7" aria-labelledby="accordion-heading-7">
       <div class="max-h-96 overflow-y-auto bg-white border border-gray-800 text-gray-800">
         <p class="p-3 ml-4 border-0 border-b border-b-black">Hot Drops</p>
         <p class="p-3 ml-4">RUTINA15</p>
@@ -255,7 +257,7 @@ const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
         </svg>
       </button>
     </h2>
-    <div class="hidden absolute w-80" id="accordion-body-8" aria-labelledby="accordion-heading-8">
+    <div class="hidden absolute z-20 w-80" id="accordion-body-8" aria-labelledby="accordion-heading-8">
       <div class="max-h-96 overflow-y-auto bg-white border border-gray-800 text-gray-800">
         <p class="p-3 ml-4 border-0 border-b border-b-black">Algodón</p>
         <p class="p-3 ml-4 border-0 border-b border-b-black">Canalé</p>
@@ -289,7 +291,7 @@ const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
         </svg>
       </button>
     </h2>
-    <div class="hidden absolute w-80" id="accordion-body-9" aria-labelledby="accordion-heading-9">
+    <div class="hidden absolute z-20 w-80" id="accordion-body-9" aria-labelledby="accordion-heading-9">
       <div class="max-h-96 overflow-y-auto bg-white border border-gray-800 text-gray-800">
         <p class="p-3 ml-4 border-0 border-b border-b-black">De esta semana</p>
         <p class="p-3 ml-4 border-0 border-b border-b-black">De la semana pasada</p>
@@ -312,7 +314,7 @@ const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
         </svg>
       </button>
     </h2>
-    <div class="hidden absolute w-80" id="accordion-body-10" aria-labelledby="accordion-heading-10">
+    <div class="hidden absolute z-20 w-80" id="accordion-body-10" aria-labelledby="accordion-heading-10">
       <div class="max-h-96 overflow-y-auto bg-white border border-gray-800 text-gray-800">
         <p class="p-3 ml-4 border-0 border-b border-b-black">Pies medianos</p>
         <p class="p-3 ml-4 border-0 border-b border-b-black">Normal</p>
@@ -335,7 +337,7 @@ const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
         </svg>
       </button>
     </h2>
-    <div class="hidden absolute w-80" id="accordion-body-11" aria-labelledby="accordion-heading-11">
+    <div class="hidden absolute z-20 w-80" id="accordion-body-11" aria-labelledby="accordion-heading-11">
       <div class="max-h-96 overflow-y-auto bg-white border border-gray-800 text-gray-800">
         <p class="p-3 ml-4 border-0 border-b border-b-black">Cierre adherente</p>
         <p class="p-3 ml-4 border-0 border-b border-b-black">Cordones</p>
@@ -363,7 +365,7 @@ const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
 
 </section>
 
-<!-- JavaScript personalizado -->
+<!-- JavaScript abrir y cerrar acordeon -->
 <script is:inline>
   document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('[data-target]');
@@ -409,5 +411,138 @@ const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
       }
     });
   });
+
+</script>
+
+<!-- JavaScript para los filtros -->
+<script>
+  /*
+  *
+  *  JavaScript para controlar los filtros de talla y color del CategoriaAcordeon 
+  *
+  */
+
+  let arraySize = []; //Array para guardar condiciones de filtrado por talla 
+  let arrayColor = []; //Array para guardar condiciones de filtrado por color
+
+  //seleccionamos los botones de filtrado para añadir los nuevos filtros
+  document.querySelectorAll('[data-filter]').forEach((buttonFilter:HTMLButtonElement) => {
+    buttonFilter.addEventListener('click', () => {
+      const atributo = buttonFilter.dataset?.filter;
+      const valor = buttonFilter.dataset?.valor;
+
+      if (buttonFilter.classList.contains('bg-gray-400')){
+        buttonFilter.classList.remove('bg-gray-400');
+      }else{
+        buttonFilter.classList.add('bg-gray-400');
+      }
+
+      console.log(atributo, valor);
+
+      addFilter(atributo, valor);
+      
+    })
+  })
+
+  //añadimos los filtros nuevos para mandarlos a filtrar
+  function addFilter (atributo, valor) {
+    let values = `${atributo}, ${valor}`; // String directamente
+    
+    if (atributo == 'talla'){
+      if (arraySize.includes(values)) {   // Buscamos si dentro del array ya esta esa opción
+        let newArray = arraySize.filter(item => item !== values); //Borramos el duplicado
+        arraySize = [...newArray]; //Asignamos un array sin el elemento eliminado
+        if (arraySize.length == 0){ //si no hay elementos para filtrar llamamos a la función para enseñar todos los productos
+          removeFilter();
+        }
+      } else {
+        arraySize.push(values);
+      }
+    }else if (atributo == 'color'){
+
+    }
+    
+    console.log(arraySize);
+
+    if (arraySize.length != 0){ //nos aseguramos de que haya algun filtro antes de llamar a la función para filtrar
+      filtrarProductos(arraySize);
+    }
+    
+  }
+
+  //filtramos los productos para mostrarlos
+  function filtrarProductos (sizes) {
+    //seleccionamos todos los elementos con data-product para esconderlos
+    document.querySelectorAll('[data-product]').forEach(item => {
+      item.classList.add('hidden'); //escondemos todos los productos
+    })
+
+    for (let x = 0; x < sizes.length; x++) {
+      let parts = sizes[x].split(', '); // ["talla", "41"]
+      let atributo = parts[0];
+      let valor = parts[1];
+      const products = document.querySelectorAll(`[data-${atributo}]`);
+      products.forEach((product) => {
+        const atributValue = product.dataset[atributo]; // Ej: "40,41,42,43,44"
+        if (atributValue) {
+          let valoresArray = atributValue.split(',').map(item => item.trim()); // ["40","41","42","43","44"]
+          if (valoresArray.includes(valor)) {
+            product.classList.remove('hidden');
+          }
+        }
+      });
+    }
+  }
+
+  //Seleccionamos los botones de borrar filtros para quitar todos los filtros
+  document.querySelectorAll('[data-button-clean]').forEach((buttonClean:HTMLButtonElement) => {
+    buttonClean.addEventListener('click', () => {
+      removeFilter();
+    })
+  })
+
+  //quitamos los filtros de array
+  function removeFilter () {
+    arraySize = []; //vaciamos el array de filtros
+
+    //seleccionamos todos los elementos con data-product para mostrarlos de nuevo
+    document.querySelectorAll('[data-product]').forEach(item => {
+      item.classList.remove('hidden'); //mostramos los productos
+    })
+    //quitamos las marcas visuales de los botones
+    document.querySelectorAll('[data-filter]').forEach((buttonFilter:HTMLButtonElement) => {
+      buttonFilter.classList.remove('bg-gray-400'); //quitamos la marca visual de los botones
+    })
+
+    //para cerrar los accordion donde estemos
+    document.querySelectorAll('#accordion-example div[id^="accordion-body-"]').forEach(el => {
+      el.classList.add('hidden');
+    });
+
+    // Resetea todas las flechas (las vuelve a la posición inicial)
+    document.querySelectorAll('[data-target] svg').forEach(svg => {
+      svg.classList.remove('rotate-180');
+    });
+
+    console.log('filtros borrados', arraySize);
+  }
+
+  //Seleccionamos los botones de guardar filtros que aunque no van ha hacer nada pq los filtros ya estan aplicados vamos a guardar el accodion
+  document.querySelectorAll('[data-button-save]').forEach((buttonSave:HTMLButtonElement) => {
+    buttonSave.addEventListener('click', () => {
+      //para cerrar los accordion donde estemos
+      document.querySelectorAll('#accordion-example div[id^="accordion-body-"]').forEach(el => {
+        el.classList.add('hidden');
+      });
+
+      // Resetea todas las flechas (las vuelve a la posición inicial)
+      document.querySelectorAll('[data-target] svg').forEach(svg => {
+        svg.classList.remove('rotate-180');
+      });
+
+    })
+  })
+
+
 </script>
 
