@@ -1,0 +1,53 @@
+---
+interface Props {
+    nombre: string;
+    valores?: string[];
+    tipo?: 'lista' | 'color' | 'precio'
+}
+
+const {nombre, valores, tipo = 'lista'} = Astro.props
+
+---
+ 
+  <div>
+    <button data-button type="button" class="flex items-center justify-between p-3 gap-2 font-medium rtl:text-right text-gray-800 border border-gray-700 hover:bg-gray-100 transition">
+        <span>{nombre}</span>
+        <svg class="w-6 h-6 transition-transform duration-300 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+        </svg>
+    </button>
+    <div data-category-filter class="hidden absolute z-20 w-80">
+      <div class="max-h-96 overflow-y-auto bg-white border border-gray-800 text-gray-800">
+        {valores.map((valor, index) => 
+            <p class={index > valores.length-2 ? 'p-3 ml-4' : 'p-3 ml-4 border-0 border-b border-b-black'}>{valor} {index}</p>
+        )}
+      </div>
+      <div class="flex justify-between border border-black">
+        <button class="w-1/2 flex items-center justify-center py-4 bg-white">Borrar</button>
+        <button class="w-1/2 flex items-center justify-center py-4 bg-gray-400">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+
+<script is:inline>
+   document.addEventListener('DOMContentLoaded', () => {
+        const button = document.querySelector('[data-button]');
+        
+            // Abre o cierra el acordeón correspondiente
+            button.addEventListener('click', (event) => {
+                event.stopPropagation(); // Evita que el clic se propague al document y cierre el acordeón inmediatamente
+
+                const target = document.querySelector('[data-category-filter]');
+                const icon = button.querySelector('svg');
+                const isOpen = !target.classList.contains('hidden');
+
+                // Si estaba cerrado, abre el acordeón y gira la flecha
+                if (!isOpen) {
+                    target.classList.remove('hidden');
+                    icon.classList.add('rotate-180');
+                }
+            });
+  });
+
+</script>

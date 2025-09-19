@@ -1,15 +1,36 @@
 ---
 import CategoriaRango2 from "./CategoriaRango2.astro";
+import Filtro from "./Filtro.astro";
 
 import { number } from "astro:schema";
 
 const start = 7;
 const end = 55;
 const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
+
+
+const filtrosCategoria = [
+  {
+    nombre: 'Prueba',
+    valores: ['p1', 'p2', 'p3'],
+    tipo: 'lista'
+  },
+  {
+    nombre: 'Prueba2',
+    valores: ['s1', 's2', 's3', 's4', 's5', 's6', 's7', 's8', 's9', 's10', 's11', 's12'],
+    tipo: 'lista'
+  }
+
+]
 ---
 
 <!-- Contenedor del acordeón -->
 <section id="accordion-example" class="flex flex-wrap gap-3">
+
+  {filtrosCategoria.map(filtro => (
+    <Filtro nombre={filtro.nombre} valores={filtro.valores}/>
+  ))}
+
 
   <!-- Item 1 -->
   <div>
@@ -90,7 +111,7 @@ const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
         <p class="p-3 ml-4">Talla única</p>
       </div>
       <div class="flex justify-between border border-black">
-        <button class="w-1/2 flex items-center justify-center py-4 bg-white hover:text-white hover:bg-black hover:cursor-pointer" data-button-clean>Borrar</button>
+        <button class="w-1/2 flex items-center justify-center py-4 bg-white hover:text-white hover:bg-black hover:cursor-pointer" data-clean="talla">Borrar</button>
         <button class="w-1/2 flex items-center justify-center py-4 bg-gray-400 hover:text-white hover:bg-black hover:cursor-pointer" data-button-save>Guardar</button>
       </div>
     </div>
@@ -111,19 +132,19 @@ const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
         <!--vamos a coger los colores negro, blanco, azul y rojo para hacer de filtros -->
         <div class="flex p-3 ml-4 border-0 border-b border-b-black">
           <div class="size-6 bg-black mr-4"></div>
-          <p data-color="negro" class="color-option">Negros</p>
+          <button data-valor="negro" data-filter="color" class="color-option w-full h-full text-left m-0 pl-5 py-2 hover:bg-gray-400 hover:cursor-pointer">Negros</button>
         </div>
         <div class="flex p-3 ml-4 border-0 border-b border-b-black">
           <div class="size-6 mr-4 border border-black"></div>
-          <p data-color="blanco" class="color-option">Blanco</p>
+          <button data-valor="blanco" data-filter="color" class="color-option w-full h-full text-left m-0 pl-5 py-2 hover:bg-gray-400 hover:cursor-pointer">Blanco</buttton>
         </div>
         <div class="flex p-3 ml-4 border-0 border-b border-b-black">
           <div class="size-6 bg-blue-600 mr-4"></div>
-          <p data-color="azul" class="color-option">Azules</p>
+          <button data-valor="azul" data-filter="color" class="color-option w-full h-full text-left m-0 pl-5 py-2 hover:bg-gray-400 hover:cursor-pointer">Azules</button>
         </div>
         <div class="flex p-3 ml-4 border-0 border-b border-b-black">
           <div class="size-6 bg-red-600 mr-4"></div>
-          <p data-color="rojo" class="color-option">Rojos</p>
+          <button data-valor="rojo" data-filter="color" class="color-option w-full h-full text-left m-0 pl-5 py-2 hover:bg-gray-400 hover:cursor-pointer">Rojos</button>
         </div>
         <!-- Hasta aqui llegan las opciones para poder filtrar los resultados -->
         <div class="flex p-3 ml-4 border-0 border-b border-b-black">
@@ -152,8 +173,8 @@ const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
         </div>
       </div>
       <div class="flex justify-between border border-black">
-        <button class="btn-borrar-filtro w-1/2 flex items-center justify-center py-4 bg-white hover:text-white hover:bg-black">Borrar</button>
-        <button class="btn-filtrar w-1/2 flex items-center justify-center py-4 bg-gray-400 hover:text-white hover:bg-black">Guardar</button>
+        <button class="btn-borrar-filtro w-1/2 flex items-center justify-center py-4 bg-white hover:text-white hover:bg-black" data-clean="color">Borrar</button>
+        <button class="w-1/2 flex items-center justify-center py-4 bg-gray-400 hover:text-white hover:bg-black hover:cursor-pointer" data-button-save>Guardar</button>
       </div>
     </div>
   </div>
@@ -367,7 +388,7 @@ const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
 
 <!-- JavaScript abrir y cerrar acordeon -->
 <script is:inline>
-  document.addEventListener('DOMContentLoaded', () => {
+ /*  document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('[data-target]');
     
     // Función para cerrar todos los acordeones
@@ -411,6 +432,7 @@ const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
       }
     });
   });
+  */
 
 </script>
 
@@ -422,8 +444,7 @@ const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
   *
   */
 
-  let arraySize = []; //Array para guardar condiciones de filtrado por talla 
-  let arrayColor = []; //Array para guardar condiciones de filtrado por color
+  let arrayFilter = []; //Array para guardar condiciones de filtrado
 
   //seleccionamos los botones de filtrado para añadir los nuevos filtros
   document.querySelectorAll('[data-filter]').forEach((buttonFilter:HTMLButtonElement) => {
@@ -437,8 +458,6 @@ const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
         buttonFilter.classList.add('bg-gray-400');
       }
 
-      console.log(atributo, valor);
-
       addFilter(atributo, valor);
       
     })
@@ -448,39 +467,108 @@ const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
   function addFilter (atributo, valor) {
     let values = `${atributo}, ${valor}`; // String directamente
     
-    if (atributo == 'talla'){
-      if (arraySize.includes(values)) {   // Buscamos si dentro del array ya esta esa opción
-        let newArray = arraySize.filter(item => item !== values); //Borramos el duplicado
-        arraySize = [...newArray]; //Asignamos un array sin el elemento eliminado
-        if (arraySize.length == 0){ //si no hay elementos para filtrar llamamos a la función para enseñar todos los productos
-          removeFilter();
-        }
-      } else {
-        arraySize.push(values);
+    // Buscamos si dentro del array ya esta esa opción
+    if (arrayFilter.includes(values)) {   
+      let newArray = arrayFilter.filter(item => item !== values); //Borramos el duplicado
+      arrayFilter = [...newArray]; //Asignamos un array sin el elemento eliminado
+      if (arrayFilter.length == 0){ //si no hay elementos para filtrar llamamos a la función para enseñar todos los productos
+        removeFilter(1);
       }
-    }else if (atributo == 'color'){
-
+    } else {
+      arrayFilter.push(values);
     }
-    
-    console.log(arraySize);
-
-    if (arraySize.length != 0){ //nos aseguramos de que haya algun filtro antes de llamar a la función para filtrar
-      filtrarProductos(arraySize);
-    }
-    
+        
+    if (arrayFilter.length != 0){ //nos aseguramos de que haya algun filtro antes de llamar a la función para filtrar
+      filtrarProductos(arrayFilter);
+    }    
   }
 
   //filtramos los productos para mostrarlos
-  function filtrarProductos (sizes) {
+  function filtrarProductos (filter) {
+
+    console.log(arrayFilter);
+
     //seleccionamos todos los elementos con data-product para esconderlos
     document.querySelectorAll('[data-product]').forEach(item => {
       item.classList.add('hidden'); //escondemos todos los productos
     })
+        
+    let arraySize = [];
+    let attributeTalla = "";
+    let arrayColor = [];
+    let attributeColor = "";
 
-    for (let x = 0; x < sizes.length; x++) {
-      let parts = sizes[x].split(', '); // ["talla", "41"]
+    for (let i = 0; i < filter.length; i++) {
+      let parts = filter[i].split(', '); //para cortar el string de cada elemento del array "filter ["talla,41", "talla,42"]" para hacer un array con cada elemento de dos elemento "parts["talla", "41"]"
+      let attribute = parts[0];
+      let valor = parts[1];
+
+      if (attribute == "talla"){
+        attributeTalla = attribute;
+        arraySize.push(valor);
+      }else if (attribute == "color"){
+        attributeColor = attribute;
+        arrayColor.push(valor);
+      }    
+    }
+
+    if ( arraySize.length != 0 ){
+      if ( arrayColor.length != 0 ){
+        const productSize = document.querySelectorAll(`[data-${attributeTalla}][data-${attributeColor}]`);
+        productSize.forEach((product) => {
+          const atributValueSize = product.dataset[attributeTalla]; // Ej: "40,41,42,43,44"
+          if (atributValueSize) {
+            for (let i = 0; i < arraySize.length; i++){
+              let valoresArraySize = atributValueSize.split(',').map(item => item.trim()); // ["40","41","42","43","44"]
+              if (valoresArraySize.includes(arraySize[i])) {
+                const atributValueColor = product.dataset[attributeColor]; // Ej: "negro, blanco, rojo, ..."
+                if (atributValueColor) {
+                  for (let j = 0; j < arraySize.length; j++){
+                    let valoresArrayColor = atributValueColor.split(',').map(item => item.trim()); // ["negro2", "blanco", "rojo", etc]
+                    if (valoresArrayColor.includes(arrayColor[j])) {
+                       product.classList.remove('hidden');
+                    }
+                  }
+                } 
+              }
+            }
+          }
+        });
+      }else {
+        const productSize = document.querySelectorAll(`[data-${attributeTalla}]`);
+        productSize.forEach((product) => {
+          const atributValueSize = product.dataset[attributeTalla]; // Ej: "40,41,42,43,44"
+          if (atributValueSize) {
+            for (let i = 0; i < arraySize.length; i++){
+              let valoresArraySize = atributValueSize.split(',').map(item => item.trim()); // ["40","41","42","43","44"]
+              if (valoresArraySize.includes(arraySize[i])) {
+                product.classList.remove('hidden');
+              }
+            }
+          }
+        });
+      }
+    }else if ( arrayColor.length != 0 ){
+      const productColor = document.querySelectorAll(`[data-${attributeColor}]`);
+      productColor.forEach((product) => {
+        const atributValue = product.dataset[attributeColor]; // Ej: "negro, blanco, rojo, ..."
+        if (atributValue) {
+          let valoresArrayColor = atributValue.split(',').map(item => item.trim()); // ["negro2", "blanco", "rojo", etc]
+          for ( let i= 0; i < arrayColor.length; i++){
+            if (valoresArrayColor.includes(arrayColor[i])) {
+              product.classList.remove('hidden');
+            }
+          }
+        }
+      });
+    }
+
+    /* filtro para cuando tan solo se usa un tipo de filtro como es el de talla en este ejemplo
+    for (let x = 0; x < filter.length; x++) {
+      let parts = filter[x].split(', '); //para cortar el string de cada elemento del array "filter ["talla,41", "talla,42"]" para hacer un array con cada elemento de dos elemento "parts["talla", "41"]"
       let atributo = parts[0];
       let valor = parts[1];
+
       const products = document.querySelectorAll(`[data-${atributo}]`);
       products.forEach((product) => {
         const atributValue = product.dataset[atributo]; // Ej: "40,41,42,43,44"
@@ -491,29 +579,69 @@ const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
           }
         }
       });
-    }
+    }*/
   }
 
   //Seleccionamos los botones de borrar filtros para quitar todos los filtros
-  document.querySelectorAll('[data-button-clean]').forEach((buttonClean:HTMLButtonElement) => {
+  document.querySelectorAll('[data-clean]').forEach((buttonClean:HTMLButtonElement) => {
     buttonClean.addEventListener('click', () => {
-      removeFilter();
+      const filter = buttonClean.dataset?.clean;
+      removeFilter(filter);
     })
   })
 
   //quitamos los filtros de array
-  function removeFilter () {
-    arraySize = []; //vaciamos el array de filtros
+  function removeFilter (clean) {
+    
+    console.log(clean);
+    //filtramos que le hayamos dado nosotros a algun boton de borrar filtros
+    if (clean != 1) {
+      //quitamos las marcas visuales de los botones
+      document.querySelectorAll(`[data-filter = ${clean}]`).forEach((buttonFilter:HTMLButtonElement) => {
+        buttonFilter.classList.remove('bg-gray-400'); //quitamos la marca visual de los botones
+      })
 
-    //seleccionamos todos los elementos con data-product para mostrarlos de nuevo
-    document.querySelectorAll('[data-product]').forEach(item => {
-      item.classList.remove('hidden'); //mostramos los productos
-    })
-    //quitamos las marcas visuales de los botones
-    document.querySelectorAll('[data-filter]').forEach((buttonFilter:HTMLButtonElement) => {
-      buttonFilter.classList.remove('bg-gray-400'); //quitamos la marca visual de los botones
-    })
+      //seleccionamos todos los elementos con data-product para mostrarlos de nuevo
+      const producto = document.querySelectorAll(`[data-${clean}]`);
+      producto.forEach((product) => {
+        product.classList.remove('hidden');
+            
+      });
 
+      //vamos a sacar los valores del filtro borrado del arrayFilter para no utilizarlos
+      let arrayMalo = [];
+      let arrayBueno = [];
+      let values = '';
+      for (let i = 0; i < arrayFilter.length; i++) {
+        let parts = arrayFilter[i].split(', '); 
+        let attribute = parts[0];
+        let valor = parts[1];
+
+        if (attribute == clean) {
+          values = `${attribute}, ${valor}`; 
+          arrayMalo.push(values);
+        }else {
+          values = `${attribute}, ${valor}`; 
+          arrayBueno.push(values);
+        }    
+      }
+      arrayFilter = [...arrayBueno];
+      if (arrayFilter.length != 0 ){
+        filtrarProductos(arrayFilter);
+      }
+
+    }else {
+      arrayFilter = [];
+      //seleccionamos todos los elementos con data-product para mostrarlos de nuevo
+      document.querySelectorAll('[data-product]').forEach(item => {
+        item.classList.remove('hidden'); //mostramos los productos
+      })
+      //quitamos las marcas visuales de los botones
+      document.querySelectorAll('[data-filter]').forEach((buttonFilter:HTMLButtonElement) => {
+        buttonFilter.classList.remove('bg-gray-400'); //quitamos la marca visual de los botones
+      })
+    }
+    
     //para cerrar los accordion donde estemos
     document.querySelectorAll('#accordion-example div[id^="accordion-body-"]').forEach(el => {
       el.classList.add('hidden');
@@ -524,7 +652,7 @@ const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
       svg.classList.remove('rotate-180');
     });
 
-    console.log('filtros borrados', arraySize);
+    console.log('filtros borrados', arrayFilter);
   }
 
   //Seleccionamos los botones de guardar filtros que aunque no van ha hacer nada pq los filtros ya estan aplicados vamos a guardar el accodion
