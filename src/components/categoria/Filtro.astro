@@ -1,53 +1,226 @@
 ---
 interface Props {
+    idf: string;
     nombre: string;
     valores?: string[];
     tipo?: 'lista' | 'color' | 'precio'
 }
 
-const {nombre, valores, tipo = 'lista'} = Astro.props
+const {nombre, valores, tipo = 'lista', idf} = Astro.props
 
 ---
  
   <div>
-    <button data-button type="button" class="flex items-center justify-between p-3 gap-2 font-medium rtl:text-right text-gray-800 border border-gray-700 hover:bg-gray-100 transition">
+    <button data-button-filter={idf} data-idf={idf} type="button" class="flex items-center justify-between p-3 gap-2 font-medium rtl:text-right text-gray-800 border border-gray-700 hover:bg-gray-100 transition">
         <span>{nombre}</span>
         <svg class="w-6 h-6 transition-transform duration-300 shrink-0" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
         </svg>
     </button>
-    <div data-category-filter class="hidden absolute z-20 w-80">
+    <div data-category-filter={idf} class="hidden absolute z-20 w-80">
       <div class="max-h-96 overflow-y-auto bg-white border border-gray-800 text-gray-800">
         {valores.map((valor, index) => 
-            <p class={index > valores.length-2 ? 'p-3 ml-4' : 'p-3 ml-4 border-0 border-b border-b-black'}>{valor} {index}</p>
+                          <div class={index > valores.length-2 ? 'p-3 ml-4' : 'p-3 ml-4 border-0 border-b border-b-black'}>
+                              <button data-valor={valor} data-filter={nombre} class="w-full h-full text-left m-0 pl-5 py-2 hover:bg-gray-400 hover:cursor-pointer">{valor}</button>
+                          </div>
         )}
       </div>
       <div class="flex justify-between border border-black">
         <button class="w-1/2 flex items-center justify-center py-4 bg-white">Borrar</button>
-        <button class="w-1/2 flex items-center justify-center py-4 bg-gray-400">Guardar</button>
+        <button data-button-save class="w-1/2 flex items-center justify-center py-4 bg-gray-400">Guardar</button>
       </div>
     </div>
   </div>
 
 
 <script is:inline>
-   document.addEventListener('DOMContentLoaded', () => {
-        const button = document.querySelector('[data-button]');
-        
-            // Abre o cierra el acordeón correspondiente
-            button.addEventListener('click', (event) => {
-                event.stopPropagation(); // Evita que el clic se propague al document y cierre el acordeón inmediatamente
-
-                const target = document.querySelector('[data-category-filter]');
-                const icon = button.querySelector('svg');
-                const isOpen = !target.classList.contains('hidden');
-
-                // Si estaba cerrado, abre el acordeón y gira la flecha
-                if (!isOpen) {
-                    target.classList.remove('hidden');
-                    icon.classList.add('rotate-180');
-                }
+  document.addEventListener('DOMContentLoaded', () => {
+    // Selecciona todos los botones con data-idf
+    document.querySelectorAll('[data-button-filter]').forEach(boton => {
+      // Evita añadir múltiples listeners al mismo botón
+      if (!boton.dataset.listenerAdded) {
+          boton.addEventListener('click', () => {
+            //crea el evento personalizado
+            const evento = new CustomEvent('filtro-seleccionado', {
+              detail: { mensaje: `¡Filtro seleccionado! idf: ${boton.dataset.idf}`,
+                        idf: boton.dataset.idf,
+                      }
             });
+            boton.dispatchEvent(evento); //dispara el evento
+          });
+          //escucha el evento en el mismo boton y ejecuta el siguiente codigo
+          boton.addEventListener('filtro-seleccionado', (e) => {
+            
+            //console.log(e.detail.mensaje , e.detail.idf); //imprime en consola para ver que boton lo ha seleccionado y llega hasta aquí
+
+            const target = document.querySelector(`[data-category-filter="${e.detail.idf}"]`);
+            const icon = boton.querySelector('svg');
+            const isOpen = !target.classList.contains('hidden');
+
+            // Cierra todos para que solo este abierto el seleccionado
+            closeAllAccordions();
+
+            // Si estaba cerrado, abre el acordeón y gira la flecha
+            if (!isOpen) {
+                target.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            }
+
+          });
+
+          boton.dataset.listenerAdded = "true"; //marca el boton con el atributo personalizado para indicar que ya se le ha añadido el listener
+      }
+
+      // Función para cerrar todos los acordeones
+      const closeAllAccordions = () => {
+        document.querySelectorAll('[data-category-filter]').forEach(el => {
+          el.classList.add('hidden');
+        });
+
+        // Resetea todas las flechas (las vuelve a la posición inicial)
+        document.querySelectorAll('[data-button-filter] svg').forEach(svg => {
+          svg.classList.remove('rotate-180');
+        });
+      };
+      
+      // Cierra los acordeones si el clic es fuera de ellos
+      document.addEventListener('click', (event) => {
+        const isClickInsideAccordion = event.target.closest('#accordion-example');
+        if (!isClickInsideAccordion) {
+          closeAllAccordions();
+        }
+      });
+
+    });
   });
+</script>
+
+<script>
+
+  // Objeto que contendrá los filtros activos
+  const filtros = {};
+
+  // Primero, añadir listener para el evento customizado filtrado en todos los botones
+  document.querySelectorAll('[data-filter]').forEach(btn => {
+    btn.addEventListener('filtrado', (e) => {
+      console.log(e.detail.mensaje, e.detail.filtros);
+      filtrarProductos(e.detail.filtros);
+    });
+  });
+
+  // Luego, añadir listener click para cada botón
+  document.querySelectorAll('[data-filter]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const atributo = btn.dataset.filter;
+      const valor = btn.dataset.valor;
+
+      const seleccionado = btn.classList.toggle('activo');
+      if (!seleccionado) {
+        btn.classList.remove('bg-gray-400');
+      } else {
+        btn.classList.add('bg-gray-400');
+      }
+
+      console.log(atributo, valor, seleccionado);
+
+
+      if (!filtros[atributo]) {
+        filtros[atributo] = [];
+      }
+
+      if (seleccionado) {
+        if (!filtros[atributo].includes(valor)) {
+          filtros[atributo].push(valor);
+        }
+      } else {
+        filtros[atributo] = filtros[atributo].filter(v => v !== valor);
+        if (filtros[atributo].length === 0) {
+          delete filtros[atributo];
+        }
+      }
+
+      console.log(filtros);
+
+      const evento = new CustomEvent('filtrado', {
+        detail: {
+          mensaje: `¡Filtro seleccionado!: `,
+          filtros: filtros,
+        },
+      });
+
+      btn.dispatchEvent(evento); // disparar evento después que el listener esté registrado
+    });
+  });
+
+
+ // Función para filtrar productos
+  function filtrarProductos(filtros) {
+    // ocultar todos los productos al inicio
+    document.querySelectorAll('[data-product]').forEach(product => {
+      product.classList.add('hidden');
+    });
+
+    // obtener claves activas en filtros
+    const keys = Object.keys(filtros);
+
+    if (keys.length === 0) { //verificamos de que haya algun filtro
+      // mostrar todo si no hay filtros
+      document.querySelectorAll('[data-product]').forEach(product => {
+        product.classList.remove('hidden');
+      });
+      return;
+    }
+
+    // recorrer productos y filtrar
+    document.querySelectorAll('[data-product]').forEach(product => {
+      // para cada filtro clave, verificar coincidencia
+      const cumpleTodos = keys.every(key => {   //hacemos un mapeo de cada key de filtros como son "talla" o "color" o etc..
+        const filtroValor = filtros[key]; //añadimos los voleres seleccionados para el filtro en filtroValor indipendientemente que sea uno o un array
+        const atributoProducto = product.dataset[key]; //seleccionamos los valores que tiene el producto con el filtro key= "talla" o "color" o el que toque ahora
+
+        if (!atributoProducto) return false; //si el producto no tiene ese atributo sale
+
+        // Convertir los atributo de producto en array (separado por comas, sin espacios)
+        const valoresProducto = atributoProducto.split(',').map(v => v.trim());
+
+        // Si filtroValor es array, chequear si hay alguna coincidencia
+        if (Array.isArray(filtroValor)) {
+          return filtroValor.some(valorFiltro => valoresProducto.includes(valorFiltro));
+        }
+
+        // Si filtroValor es objeto asumimos un rango {min, max}
+        if (typeof filtroValor === 'object' && filtroValor.min !== undefined && filtroValor.max !== undefined) {
+          // Atributo producto es un string, convertir a número para comparar
+          const numValor = Number(atributoProducto);
+          return numValor >= filtroValor.min && numValor <= filtroValor.max;
+        }
+
+        // Caso simple comparación directa
+        return valoresProducto.includes(filtroValor);
+      });
+
+      if (cumpleTodos) { //si cumple los filtros anteriores ene cumpleTodos le quitamos el hidden al producto
+        product.classList.remove('hidden');
+      }
+    });
+  }
+  
+
+  //Seleccionamos los botones de guardar filtros que aunque no van ha hacer nada pq los filtros ya estan aplicados vamos a guardar el accodion
+  document.querySelectorAll('[data-button-save]').forEach((buttonSave:HTMLButtonElement) => {
+    buttonSave.addEventListener('click', () => {
+
+        //para cerrar los accordion
+        document.querySelectorAll('[data-category-filter]').forEach(el => {
+          el.classList.add('hidden');
+        });
+
+        // Resetea todas las flechas (las vuelve a la posición inicial)
+        document.querySelectorAll('[data-button-filter] svg').forEach(svg => {
+          svg.classList.remove('rotate-180');
+        });
+
+    })
+  })
 
 </script>

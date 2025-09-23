@@ -33,7 +33,7 @@ const dataProducts = await fetch("https://graphql.apirocket.io", {
 
 const allProducts = dataProducts.data?.Favoriteproducts
 
-console.log(allProducts);
+//console.log(allProducts);
 
 ---
 
@@ -53,3 +53,12 @@ console.log(allProducts);
         }
     </div>
 </section>
+
+<script>
+  // Escucha el evento 'filtrado' en el documento o en el contenedor de filtros
+  document.addEventListener('filtrado', (e) => {
+    filtrarProductos(e.detail.filtros);
+  });
+
+  //funcion filtrado
+</script>

@@ -11,13 +11,21 @@ const numbers = Array.from({ length: end - start + 1 }, (_, i) => start + i);
 
 const filtrosCategoria = [
   {
+    idf: '1',
     nombre: 'Prueba',
     valores: ['p1', 'p2', 'p3'],
     tipo: 'lista'
   },
   {
+    idf: '2',
     nombre: 'Prueba2',
     valores: ['s1', 's2', 's3', 's4', 's5', 's6', 's7', 's8', 's9', 's10', 's11', 's12'],
+    tipo: 'lista'
+  },
+  {
+    idf: 3,
+    nombre: 'talla',
+    valores: numbers,
     tipo: 'lista'
   }
 
@@ -28,8 +36,11 @@ const filtrosCategoria = [
 <section id="accordion-example" class="flex flex-wrap gap-3">
 
   {filtrosCategoria.map(filtro => (
-    <Filtro nombre={filtro.nombre} valores={filtro.valores}/>
+    <Filtro nombre={filtro.nombre} valores={filtro.valores} idf={filtro.idf}/>
   ))}
+
+<script>
+  /*
 
 
   <!-- Item 1 -->
@@ -384,6 +395,11 @@ const filtrosCategoria = [
     <p class="ml-3">Mostrar más filtros</p>
   </div>
 
+
+*/
+</script>
+
+
 </section>
 
 <!-- JavaScript abrir y cerrar acordeon -->
@@ -442,8 +458,8 @@ const filtrosCategoria = [
   *
   *  JavaScript para controlar los filtros de talla y color del CategoriaAcordeon 
   *
-  */
-
+  
+  
   let arrayFilter = []; //Array para guardar condiciones de filtrado
 
   //seleccionamos los botones de filtrado para añadir los nuevos filtros
@@ -580,6 +596,10 @@ const filtrosCategoria = [
         }
       });
     }*/
+
+    
+/*
+
   }
 
   //Seleccionamos los botones de borrar filtros para quitar todos los filtros
@@ -643,7 +663,7 @@ const filtrosCategoria = [
     }
     
     //para cerrar los accordion donde estemos
-    document.querySelectorAll('#accordion-example div[id^="accordion-body-"]').forEach(el => {
+    document.querySelectorAll('#accordion-example').forEach(el => {
       el.classList.add('hidden');
     });
 
@@ -659,18 +679,20 @@ const filtrosCategoria = [
   document.querySelectorAll('[data-button-save]').forEach((buttonSave:HTMLButtonElement) => {
     buttonSave.addEventListener('click', () => {
       //para cerrar los accordion donde estemos
-      document.querySelectorAll('#accordion-example div[id^="accordion-body-"]').forEach(el => {
+      document.querySelectorAll('#accordion-example').forEach(el => {
         el.classList.add('hidden');
       });
 
       // Resetea todas las flechas (las vuelve a la posición inicial)
-      document.querySelectorAll('[data-target] svg').forEach(svg => {
+      document.querySelectorAll('[data-button-filter] svg').forEach(svg => {
         svg.classList.remove('rotate-180');
       });
 
     })
   })
 
+
+*/
 
 </script>
 
