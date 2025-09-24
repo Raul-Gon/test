@@ -1,0 +1,103 @@
+[
+    {
+        "idf": "1",
+        "titulo": "Ordenar",
+        "nombre": "ordenar",
+        "valores": ["Favoritos", "Novedades", "Precio más bajo", "Precio más alto"],
+        "colores": [],
+        "tipo": "lista"
+    },
+    {
+        "idf": "2",
+        "titulo": "Marca",
+        "nombre": "marca",
+        "valores": ["ACBC", "Adidas", "Adidas Neo", "Aldo", "Abanderado", "Levis", "Lee", "Pepe", "Nike", "Puma", "Reebock", "Mizuno"],
+        "colores": [],
+        "tipo": "lista"
+    },
+    {
+        "idf": "3",
+        "titulo": "Talla",
+        "nombre": "talla",
+        "valores": ["7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57"],
+        "colores": [],
+        "tipo": "lista"
+    },
+    {
+        "idf": "4",
+        "titulo": "Color",
+        "nombre": "color",
+        "valores": [],
+        "colores": [
+                    {"valor": "negro", "color": "bg-black", "nom": "Negros"},
+                    {"valor": "blanco", "color": "bg-white", "nom": "Blancos"},
+                    {"valor": "azul", "color": "bg-blue-600", "nom": "Azules"},
+                    {"valor": "rojo", "color": "bg-red-600", "nom": "Rojos"},
+                    {"valor": "marron", "color": "bg-amber-950", "nom": "Marrones"},
+                    {"valor": "amarillo", "color": "bg-yellow-400", "nom": "Amarillos"},
+                    {"valor": "verde", "color": "bg-green-600", "nom": "Verdes"},
+                    {"valor": "rosa", "color": "bg-pink-600", "nom": "Rosas"},
+                    {"valor": "morado", "color": "bg-violet-600", "nom": "Morados"},
+                    {"valor": "orange", "color": "bg-orange-400", "nom": "Naranjas"},
+                    {"valor": "gris", "color": "bg-gray-500", "nom": "Gris"},
+                    {"valor": "fluor", "color": "bg-lime-400", "nom": "Fluor"}
+                ],
+        "tipo": "color"
+    },
+    {
+        "idf": "5",
+        "titulo": "Función",
+        "nombre": "funcion",
+        "valores": ["A prueba de viento", "De secado rápido", "Impermeable", "Peso ligero", "Reflectante", "Repelente al agua", "Resistente al viento"],
+        "colores": [],
+        "tipo": "lista"
+    },
+    {
+        "idf": "6",
+        "titulo": "Precio",
+        "nombre": "precio",
+        "valores": [],
+        "colores":[],
+        "tipo": "precio"
+    },
+    {
+        "idf": "7",
+        "titulo": "Campañas",
+        "nombre": "campañas",
+        "valores": ["Hot Drops", "RUTINA15"],
+        "colores": [],
+        "tipo": "lista"
+    },
+    {
+        "idf": "8",
+        "titulo": "Material exrerior",
+        "nombre": "material",
+        "valores": ["Algodón", "Canalé", "Caucho", "Charol", "Cuero", "Denin", "Encaje", "Fieltro", "Fleece", "Ganchillo", "Imitación de cuero", "Impermeable", "Lana"],
+        "colores": [],
+        "tipo": "lista"
+    },
+    {
+        "idf": "9",
+        "titulo": "Novedades",
+        "nombre": "novedades",
+        "valores": ["De esta semana", "De la semana pasada", "Del mes pasado"],
+        "colores": [],
+        "tipo": "lista"
+    },
+    {
+        "idf": "10",
+        "titulo": "Ancho del zapato",
+        "nombre": "ancho",
+        "valores": ["Pies mediano", "Normal", "Pies anchos"],
+        "colores": [],
+        "tipo": "lista"
+    },
+    {
+        "idf": "11",
+        "titulo": "Cierre",
+        "nombre": "cierre",
+        "valores": ["Cierre adherente", "Cordones", "Cordones elásticos", "Hebilla", "Hebilla/Cordones", "Sin cierre/Abiertos"],
+        "colores": [],
+        "tipo": "lista"
+    }
+]

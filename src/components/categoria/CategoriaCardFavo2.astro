@@ -31,9 +31,9 @@ const dataProducts = await fetch("https://graphql.apirocket.io", {
 .then(response => response.json())
 .catch(err => { console.error(err); });
 
-const allProducts = dataProducts.data?.Favoriteproducts
+const allProducts = dataProducts.data?.Favoriteproducts;
 
-//console.log(allProducts);
+// console.log(allProducts);
 
 ---
 
@@ -41,24 +41,88 @@ const allProducts = dataProducts.data?.Favoriteproducts
     <span>14555 artículos mostrados </span>
     <div class="grid grid-cols-3 place-content-between gap-2 mt-7">
         {allProducts.map((product: any) => 
-                                <articulo class="flex flex-col my-3" data-product data-talla={ product.tallaZapato } data-color={ product.color }>
+                                <articule class="flex flex-col my-3" data-product data-talla={ product.tallaZapato } data-color={ product.color }>
                                     <a href={`/${customSlugify(product.brand)}/${customSlugify(product.model)}--${product.id}`} target="_blank">
                                         <img class="xl:max-w-2xs h-auto" src={product.productimage.url} alt={product.model} />
                                         <h3>{product.brand}</h3>
                                         <h5>{product.model}</h5>
                                         <h6 class="text-red-600">{product.price} €</h6>
                                     </a>
-                                </articulo>  
+                                </articule>  
                         )   
         }
     </div>
 </section>
 
+
+
 <script>
-  // Escucha el evento 'filtrado' en el documento o en el contenedor de filtros
-  document.addEventListener('filtrado', (e) => {
-    filtrarProductos(e.detail.filtros);
+  // Primero, añadir el LISTENER o ESCUCHADOR para el CUSTOM EVENT 'filtrado' en todos los botones de filtro para que se apliquen
+  document.querySelectorAll('[data-filter]').forEach(btn => {
+    btn.addEventListener('filtrado', (e) => {
+      console.log(e.detail.mensaje, e.detail.filtros);
+      filtrarProductos(e.detail.filtros); //llamamos a la funcion filtrarProductos() enviandole los filtros acumulados en Filtro.astro
+    });
+  });
+
+  //Anadimos otro escuchador para los botones de Borrado para los filtros
+  document.querySelectorAll('[data-clean]').forEach(btn => {
+    btn.addEventListener('limpieza', (e) => {
+      console.log(e.detail.mensaje, e.detail.filtros);
+      filtrarProductos(e.detail.filtros); //llamamos a la funcion filtrarProductos() enviandole los filtros acumulados en Filtro.astro
+    });
   });
 
   //funcion filtrado
+  // Función para filtrar productos
+  function filtrarProductos(filtros) {
+    // ocultar todos los productos al inicio
+    document.querySelectorAll('[data-product]').forEach(product => {
+      product.classList.add('hidden');
+    });
+
+    // obtener claves activas en filtros
+    const keys = Object.keys(filtros);
+
+    if (keys.length === 0) { //verificamos de que haya algun filtro
+      // mostrar todo si no hay filtros
+      document.querySelectorAll('[data-product]').forEach(product => {
+        product.classList.remove('hidden');
+      });
+      return;
+    }
+
+    // recorrer productos y filtrar
+    document.querySelectorAll('[data-product]').forEach(product => {
+      // para cada filtro clave, verificar coincidencia
+      const cumpleTodos = keys.every(key => {   //hacemos un mapeo de cada key de filtros como son "talla" o "color" o etc..
+        const filtroValor = filtros[key]; //añadimos los voleres seleccionados para el filtro en filtroValor indipendientemente que sea uno o un array
+        const atributoProducto = product.dataset[key]; //seleccionamos los valores que tiene el producto con el filtro key= "talla" o "color" o el que toque ahora
+
+        if (!atributoProducto) return false; //si el producto no tiene ese atributo sale
+
+        // Convertir los atributo de producto en array (separado por comas, sin espacios)
+        const valoresProducto = atributoProducto.split(',').map(v => v.trim());
+
+        // Si filtroValor es array, chequear si hay alguna coincidencia
+        if (Array.isArray(filtroValor)) {
+          return filtroValor.some(valorFiltro => valoresProducto.includes(valorFiltro));
+        }
+
+        // Si filtroValor es objeto asumimos un rango {min, max}
+        if (typeof filtroValor === 'object' && filtroValor.min !== undefined && filtroValor.max !== undefined) {
+          // Atributo producto es un string, convertir a número para comparar
+          const numValor = Number(atributoProducto);
+          return numValor >= filtroValor.min && numValor <= filtroValor.max;
+        }
+
+        // Caso simple comparación directa
+        return valoresProducto.includes(filtroValor);
+      });
+
+      if (cumpleTodos) { //si cumple los filtros anteriores en cumpleTodos le quitamos el hidden al producto
+        product.classList.remove('hidden');
+      }
+    });
+  }
 </script>

@@ -1,32 +1,73 @@
 ---
+import CategoriaRango2 from "./CategoriaRango2.astro";
+
 interface Props {
     idf: string;
+    titulo: string;
     nombre: string;
     valores?: string[];
-    tipo?: 'lista' | 'color' | 'precio'
+    colores?: any;
+    tipo?: 'lista' | 'color' | 'precio';
 }
 
-const {nombre, valores, tipo = 'lista', idf} = Astro.props
+const {idf, titulo, nombre, valores, colores, tipo = 'lista'} = Astro.props;
+const coloresArray = Array.isArray(colores) ? colores : Object.values(colores ?? {});
 
 ---
  
   <div>
     <button data-button-filter={idf} data-idf={idf} type="button" class="flex items-center justify-between p-3 gap-2 font-medium rtl:text-right text-gray-800 border border-gray-700 hover:bg-gray-100 transition">
-        <span>{nombre}</span>
+        <span>{titulo}</span>
         <svg class="w-6 h-6 transition-transform duration-300 shrink-0" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
         </svg>
     </button>
     <div data-category-filter={idf} class="hidden absolute z-20 w-80">
       <div class="max-h-96 overflow-y-auto bg-white border border-gray-800 text-gray-800">
-        {valores.map((valor, index) => 
-                          <div class={index > valores.length-2 ? 'p-3 ml-4' : 'p-3 ml-4 border-0 border-b border-b-black'}>
-                              <button data-valor={valor} data-filter={nombre} class="w-full h-full text-left m-0 pl-5 py-2 hover:bg-gray-400 hover:cursor-pointer">{valor}</button>
-                          </div>
-        )}
+        {tipo === 'color' && coloresArray.length > 0 
+                      ? (
+                          <>
+                            {coloresArray.map((col, index) => (
+                                        <div class={index > coloresArray.length-2 ? 'flex items-center p-3 ml-4' : 'flex items-center p-3 ml-4 border-0 border-b border-b-black'}>
+                                          <div class={`w-6 h-6 ${col.color} mr-4 rounded border`}></div>
+                                          <button data-valor={col.valor} data-filter={nombre} class="color-option w-full h-full text-left m-0 pl-5 py-2 hover:bg-gray-400 hover:cursor-pointer">{col.nom}</button>
+                                        </div>
+                                      ))
+                            }
+                          </>
+                        ) 
+                      : tipo === 'lista' && valores?.length > 0 
+                          ? 
+                            (
+                              <>
+                                {valores.map((valor, index) => (
+                                            <div class={index > valores.length-2 ? 'p-3 ml-4' : 'p-3 ml-4 border-0 border-b border-b-black'}>
+                                              <button data-valor={valor} data-filter={nombre} class="w-full h-full text-left m-0 pl-5 py-2 hover:bg-gray-400 hover:cursor-pointer">{valor}</button>
+                                            </div>
+                                          ))
+                                }
+                              </>
+                            )
+                          :   <CategoriaRango2 />
+                              <div class="m-4 mb-10 flex items-center justify-between">
+                                <p class="font-bold">Ofertas</p>
+                                <label class="inline-flex items-center cursor-pointer">
+                                  <input type="checkbox" value="" class="sr-only peer">
+                                  <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:w-5 after:h-5 after:transition-all peer-checked:bg-gray-600"></div>
+                                </label>
+                              </div>
+                              <div class="m-4 flex items-center justify-between">
+                                <p class="font-bold">Envío gratuito</p>
+                                <label class="inline-flex items-center cursor-pointer">
+                                  <input type="checkbox" value="" class="sr-only peer">
+                                  <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:w-5 after:h-5 after:transition-all peer-checked:bg-gray-600"></div>
+                                </label>
+                              </div>
+                              <p class="m-4 mb-10 text-sm text-gray-400">en pedidos a partir de 25,90 €</p>
+        }
       </div>
       <div class="flex justify-between border border-black">
-        <button class="w-1/2 flex items-center justify-center py-4 bg-white">Borrar</button>
+        <button data-clean={nombre} class="w-1/2 flex items-center justify-center py-4 bg-white">Borrar</button>
         <button data-button-save class="w-1/2 flex items-center justify-center py-4 bg-gray-400">Guardar</button>
       </div>
     </div>
@@ -100,21 +141,23 @@ const {nombre, valores, tipo = 'lista', idf} = Astro.props
   // Objeto que contendrá los filtros activos
   const filtros = {};
 
-  // Primero, añadir listener para el evento customizado filtrado en todos los botones
-  document.querySelectorAll('[data-filter]').forEach(btn => {
-    btn.addEventListener('filtrado', (e) => {
-      console.log(e.detail.mensaje, e.detail.filtros);
-      filtrarProductos(e.detail.filtros);
-    });
+  // Creamos el evento personalizado con los datos de filtros que haya en ese momento para que cuando el disparador diga el escuchador los tenga
+  //CUSTOM EVENT 
+  const eventoFiltro = new CustomEvent('filtrado', {
+    detail: {
+      mensaje: `¡Filtro seleccionado!: `,
+      filtros: filtros,
+    },
   });
+  
 
   // Luego, añadir listener click para cada botón
   document.querySelectorAll('[data-filter]').forEach((btn) => {
     btn.addEventListener('click', () => {
-      const atributo = btn.dataset.filter;
-      const valor = btn.dataset.valor;
+      const atributo = btn.dataset.filter;  //seleccionamos el contenido de data-filter del boton clickado
+      const valor = btn.dataset.valor;      //seleccionamos el valor de data-valor del boton clickado
 
-      const seleccionado = btn.classList.toggle('activo');
+      const seleccionado = btn.classList.toggle('activo');  //creamos una constante para saber si el boton ha sido seleccionado o no antes, toggle lo inserta si no esta y devuelbe true, en caso contrario lo borra y devuelbe false
       if (!seleccionado) {
         btn.classList.remove('bg-gray-400');
       } else {
@@ -124,86 +167,78 @@ const {nombre, valores, tipo = 'lista', idf} = Astro.props
       console.log(atributo, valor, seleccionado);
 
 
-      if (!filtros[atributo]) {
+      if (!filtros[atributo]) {     //si en filtros todabia no hemos insertado ningun valor de ese atributo creamos el array del atributo en filtros para introducirle los valores que se clicken
         filtros[atributo] = [];
       }
 
-      if (seleccionado) {
-        if (!filtros[atributo].includes(valor)) {
+      if (seleccionado) {   //si el boton se ha seleccionado
+        if (!filtros[atributo].includes(valor)) {   //y el valor no esta en el array del atributo lo insertamos
           filtros[atributo].push(valor);
         }
-      } else {
-        filtros[atributo] = filtros[atributo].filter(v => v !== valor);
-        if (filtros[atributo].length === 0) {
+      } else {    //si el boton no tiene el atributo seleccionado es pero se ha clickado
+        filtros[atributo] = filtros[atributo].filter(v => v !== valor);   //y dentro del array atributo esta el valor clickado lo borramos de este
+        if (filtros[atributo].length === 0) {   //si el array de atributo, se ha quedado vacio al borrar el valor anterior lo borramos dejando filtro sin ese atributo
           delete filtros[atributo];
         }
       }
 
       console.log(filtros);
-
-      const evento = new CustomEvent('filtrado', {
-        detail: {
-          mensaje: `¡Filtro seleccionado!: `,
-          filtros: filtros,
-        },
-      });
-
-      btn.dispatchEvent(evento); // disparar evento después que el listener esté registrado
+      
+      //dispara nuestro CUSTOM EVENT para filtrar los productos en CategoriaAcordeon.astro que se encuentra el ESCUCHADOR del EVENTO
+      btn.dispatchEvent(eventoFiltro);
     });
   });
 
 
- // Función para filtrar productos
-  function filtrarProductos(filtros) {
-    // ocultar todos los productos al inicio
-    document.querySelectorAll('[data-product]').forEach(product => {
-      product.classList.add('hidden');
-    });
+  //CUSTOM EVENT para los botones de borrar filtros
+  const eventoClean = new CustomEvent('limpieza', {
+    detail: {
+      mensaje: `limpieza de filtros seleccionada!: `,
+      filtros: filtros,
+    },
+  });
 
-    // obtener claves activas en filtros
-    const keys = Object.keys(filtros);
+  //Seleccionamos los botones de borrar filtros para quitar todos los filtros
+  document.querySelectorAll('[data-clean]').forEach((buttonClean:HTMLButtonElement) => {
+    buttonClean.addEventListener('click', () => {
+      const filter = buttonClean.dataset?.clean;
+      
+      if (filtros[filter]){
+          //quitamos las marcas visuales de los botones
+          document.querySelectorAll(`[data-filter = ${filter}]`).forEach((buttonFilter:HTMLButtonElement) => {
+            buttonFilter.classList.remove('bg-gray-400'); //quitamos la marca visual de los botones
+          })
 
-    if (keys.length === 0) { //verificamos de que haya algun filtro
-      // mostrar todo si no hay filtros
-      document.querySelectorAll('[data-product]').forEach(product => {
-        product.classList.remove('hidden');
-      });
-      return;
-    }
+          //seleccionamos todos los elementos con data-product para mostrarlos de nuevo
+          const producto = document.querySelectorAll(`[data-${filter}]`);
+          producto.forEach((product) => {
+            product.classList.remove('hidden');
+                
+          });
 
-    // recorrer productos y filtrar
-    document.querySelectorAll('[data-product]').forEach(product => {
-      // para cada filtro clave, verificar coincidencia
-      const cumpleTodos = keys.every(key => {   //hacemos un mapeo de cada key de filtros como son "talla" o "color" o etc..
-        const filtroValor = filtros[key]; //añadimos los voleres seleccionados para el filtro en filtroValor indipendientemente que sea uno o un array
-        const atributoProducto = product.dataset[key]; //seleccionamos los valores que tiene el producto con el filtro key= "talla" o "color" o el que toque ahora
-
-        if (!atributoProducto) return false; //si el producto no tiene ese atributo sale
-
-        // Convertir los atributo de producto en array (separado por comas, sin espacios)
-        const valoresProducto = atributoProducto.split(',').map(v => v.trim());
-
-        // Si filtroValor es array, chequear si hay alguna coincidencia
-        if (Array.isArray(filtroValor)) {
-          return filtroValor.some(valorFiltro => valoresProducto.includes(valorFiltro));
-        }
-
-        // Si filtroValor es objeto asumimos un rango {min, max}
-        if (typeof filtroValor === 'object' && filtroValor.min !== undefined && filtroValor.max !== undefined) {
-          // Atributo producto es un string, convertir a número para comparar
-          const numValor = Number(atributoProducto);
-          return numValor >= filtroValor.min && numValor <= filtroValor.max;
-        }
-
-        // Caso simple comparación directa
-        return valoresProducto.includes(filtroValor);
-      });
-
-      if (cumpleTodos) { //si cumple los filtros anteriores ene cumpleTodos le quitamos el hidden al producto
-        product.classList.remove('hidden');
+          //borramos el objeto del filtro que se ha seleccionado
+          delete filtros[filter];
+        
       }
-    });
-  }
+
+      //para cerrar los accordion
+      document.querySelectorAll('[data-category-filter]').forEach(el => {
+        el.classList.add('hidden');
+      });
+
+      // Resetea todas las flechas (las vuelve a la posición inicial)
+      document.querySelectorAll('[data-button-filter] svg').forEach(svg => {
+        svg.classList.remove('rotate-180');
+      });
+
+      //llamamos al disparador del eventoClean para hacer los filtros si hubiera alguno
+      if (filtros.length != 0 ){
+        buttonClean.dispatchEvent(eventoClean);
+      }
+
+    })
+  })
+ 
   
 
   //Seleccionamos los botones de guardar filtros que aunque no van ha hacer nada pq los filtros ya estan aplicados vamos a guardar el accodion
