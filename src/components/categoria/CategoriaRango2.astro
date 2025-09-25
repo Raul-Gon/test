@@ -12,7 +12,7 @@
                 <p class="p-1 text-sm">Precio desde</p>
              </div>
             <div class="w-32 p-3 flex justify-between items-center border border-black">
-                <input class="w-20" type="text" id="min-value" value="0">
+                <input data-rango class="w-20" type="text" id="min-value" value="0">
                 <p>€</p>
             </div>
         </div>  
@@ -25,7 +25,7 @@
                 <p class="p-1 text-sm">Precio hasta</p>
              </div>
             <div class="w-32 p-3 flex justify-between items-center border border-black">
-                <input class="w-20" type="text" id="max-value" value="1290">
+                <input data-rango class="w-20" type="text" id="max-value" value="1290">
                 <p>€</p>
             </div>
         </div>
@@ -34,14 +34,15 @@
     <!-- Barra de rango -->
     <div class="relative mt-8">
       <!-- Barra de rango de mínimo a máximo -->
-      <input type="range" id="min-slider" class="absolute inset-0 w-full h-2 bg-black rounded-md appearance-none cursor-pointer" min="0" max="1289" value="0" step="1"/>
+      <input data-rango type="range" id="min-slider" class="absolute inset-0 w-full h-1 bg-black rounded-md appearance-none cursor-pointer" min="0" max="1289" value="0" step="1"/>
       
-      <input type="range" id="max-slider" class="absolute inset-0 w-full h-2 bg-black rounded-md appearance-none cursor-pointer" min="1" max="1290" value="1290" step="1"/>
+      <input data-rango type="range" id="max-slider" class="absolute inset-0 w-full h-2 bg-black rounded-md appearance-none cursor-pointer" min="1" max="1290" value="1290" step="1"/>
     </div>
   </div>
 </div>
 
-<script is:inline>
+<script>
+
   // Obtener los elementos
   const minSlider = document.getElementById('min-slider');
   const maxSlider = document.getElementById('max-slider');
@@ -62,28 +63,67 @@
     }
     
     maxValue.value = max; // Actualizar el input de "max"
+
+    //asignamos los valores de max y de min a los valores del EVENTO para mandarlos a filtro con el diparador
+    const valueMax = max;
+    const valueMin = min;
+    const atributo = "precio";
+
+    //creamos el CUSTOM EVENT para los data-rango actualizados
+    const eventoRango = new CustomEvent('rango', {
+      detail: {
+        mensaje: `¡Filtro rango precio!: `,
+        valueMax: valueMax,
+        valueMin: valueMin,
+        atributo: atributo,
+      },
+    });
+    console.log('Antes del disparador eventRango');
+    //disparamos el evento en el documento
+    document.dispatchEvent(eventoRango);
+
   }
 
   // Escuchar cambios en los deslizadores
   minSlider.addEventListener('input', updateValues);
   maxSlider.addEventListener('input', updateValues);
 
-  // Escuchar cambios en los inputs de texto
+  // Escuchar cambios en los inputs de texto minimo
   minValue.addEventListener('input', () => {
     const min = parseInt(minValue.value);
     if (!isNaN(min) && min >= 0 && min < maxSlider.value) {
       minSlider.value = min;
       updateValues();
+    }else if (min >= maxSlider.value) {
+      minValue.value = maxSlider.value - 1; // Asegurarse de que el valor mínimo no sea mayor o igual al máximo
+      updateValues();
     }
   });
-
+  // Escuchar cambios en los inputs de texto maximo
   maxValue.addEventListener('input', () => {
     const max = parseInt(maxValue.value);
     if (!isNaN(max) && max > minSlider.value && max <= 1290) {
       maxSlider.value = max;
       updateValues();
+    }else if (max <= minSlider.value) {
+      minValue.value = max-1;
+      minSlider.value = max-1;
+      maxValue.value = max; // Asegurarse de que el valor máximo no sea menor o igual al mínimo
+      updateValues();
     }
   });
+
+  //listener para el CUSTOM EVENT de cuando le damos al boton de borrar de precio
+  document.querySelectorAll('[data-precio-clean]').forEach(btn => {
+    btn.addEventListener('limpiaPrecio', () => {
+        minValue.value = 0;
+        minSlider.value = 0;
+        maxValue.value = 1290;
+        maxSlider.value = 1290;
+        updateValues();
+    });
+  });
+
 
   // Inicializar los valores
   updateValues();

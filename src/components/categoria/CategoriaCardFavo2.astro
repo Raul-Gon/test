@@ -41,7 +41,7 @@ const allProducts = dataProducts.data?.Favoriteproducts;
     <span>14555 artículos mostrados </span>
     <div class="grid grid-cols-3 place-content-between gap-2 mt-7">
         {allProducts.map((product: any) => 
-                                <articule class="flex flex-col my-3" data-product data-talla={ product.tallaZapato } data-color={ product.color }>
+                                <articule class="flex flex-col my-3" data-product data-precio={product.price} data-talla={ product.tallaZapato } data-color={ product.color }>
                                     <a href={`/${customSlugify(product.brand)}/${customSlugify(product.model)}--${product.id}`} target="_blank">
                                         <img class="xl:max-w-2xs h-auto" src={product.productimage.url} alt={product.model} />
                                         <h3>{product.brand}</h3>
@@ -57,7 +57,12 @@ const allProducts = dataProducts.data?.Favoriteproducts;
 
 
 <script>
-  // Primero, añadir el LISTENER o ESCUCHADOR para el CUSTOM EVENT 'filtrado' en todos los botones de filtro para que se apliquen
+  //cuando se dispare el evento filtrado desde donde sea ejecutara la funcion de filtrarProductos()
+  document.addEventListener('filtrado', (e) => {
+    filtrarProductos(e.detail.filtros);
+  });
+
+  //añadir el LISTENER o ESCUCHADOR para el CUSTOM EVENT 'filtrado' en todos los botones de filtro para que se apliquen
   document.querySelectorAll('[data-filter]').forEach(btn => {
     btn.addEventListener('filtrado', (e) => {
       console.log(e.detail.mensaje, e.detail.filtros);

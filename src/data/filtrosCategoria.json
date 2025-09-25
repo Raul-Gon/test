@@ -11,7 +11,7 @@
         "idf": "2",
         "titulo": "Marca",
         "nombre": "marca",
-        "valores": ["ACBC", "Adidas", "Adidas Neo", "Aldo", "Abanderado", "Levis", "Lee", "Pepe", "Nike", "Puma", "Reebock", "Mizuno"],
+        "valores": ["ACBC", "Nike", "Bugatti", "Antony Morato", "Patrick", "Adidas", "Adidas Neo", "Aldo", "Abanderado", "Levis", "Lee", "Pepe", "Puma", "Reebock", "Mizuno"],
         "colores": [],
         "tipo": "lista"
     },

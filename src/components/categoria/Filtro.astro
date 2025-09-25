@@ -67,8 +67,13 @@ const coloresArray = Array.isArray(colores) ? colores : Object.values(colores ??
         }
       </div>
       <div class="flex justify-between border border-black">
-        <button data-clean={nombre} class="w-1/2 flex items-center justify-center py-4 bg-white">Borrar</button>
-        <button data-button-save class="w-1/2 flex items-center justify-center py-4 bg-gray-400">Guardar</button>
+        { tipo === 'precio'
+                ?
+                  <button data-precio-clean class="w-1/2 flex items-center justify-center py-4 bg-white cursor-pointer">Borrar</button>
+                :
+                  <button data-clean={nombre} class="w-1/2 flex items-center justify-center py-4 bg-white cursor-pointer">Borrar</button>
+        }
+        <button data-button-save class="w-1/2 flex items-center justify-center py-4 bg-gray-400 cursor-pointer">Guardar</button>
       </div>
     </div>
   </div>
@@ -137,6 +142,8 @@ const coloresArray = Array.isArray(colores) ? colores : Object.values(colores ??
 </script>
 
 <script>
+import type CategoriaRango2 from "./CategoriaRango2.astro";
+
 
   // Objeto que contendrá los filtros activos
   const filtros = {};
@@ -151,14 +158,14 @@ const coloresArray = Array.isArray(colores) ? colores : Object.values(colores ??
   });
   
 
-  // Luego, añadir listener click para cada botón
+  // Luego, añadir listener click para cada botón para añadir filtros y disparar el evento filtro
   document.querySelectorAll('[data-filter]').forEach((btn) => {
     btn.addEventListener('click', () => {
       const atributo = btn.dataset.filter;  //seleccionamos el contenido de data-filter del boton clickado
       const valor = btn.dataset.valor;      //seleccionamos el valor de data-valor del boton clickado
 
       const seleccionado = btn.classList.toggle('activo');  //creamos una constante para saber si el boton ha sido seleccionado o no antes, toggle lo inserta si no esta y devuelbe true, en caso contrario lo borra y devuelbe false
-      if (!seleccionado) {
+      if (!seleccionado) {  //para sombrear el boton o no cuando se hace click sobre el
         btn.classList.remove('bg-gray-400');
       } else {
         btn.classList.add('bg-gray-400');
@@ -184,21 +191,37 @@ const coloresArray = Array.isArray(colores) ? colores : Object.values(colores ??
 
       console.log(filtros);
       
-      //dispara nuestro CUSTOM EVENT para filtrar los productos en CategoriaAcordeon.astro que se encuentra el ESCUCHADOR del EVENTO
+      //dispara nuestro CUSTOM EVENT para filtrar los productos en CategoriaCardFavo2.astro que se encuentra el ESCUCHADOR del EVENTO
       btn.dispatchEvent(eventoFiltro);
     });
   });
 
 
-  //CUSTOM EVENT para los botones de borrar filtros
+  //creamos un escuchador para cuando cambiamos precio o rango de precio del evento de CategoriaRango2.astro
+  document.addEventListener('rango', (e) => {
+      console.log(e.detail.atributo, e.detail.valueMax, e.detail.valueMin);
+      anadirFiltroPrecio(e.detail.atributo, e.detail.valueMax, e.detail.valueMin);
+  });
+  //creamos una funcion para añadir el filtro de precio a filtros y mandarlo a filtrar.
+  function anadirFiltroPrecio(atributo, max, min){
+    
+    filtros[atributo] = { min, max };
+
+    //disparamos el EVENTO eventoFiltro para mandar el filtro a CategoriaCardFavo2.astro para ser filtrado
+    document.dispatchEvent(eventoFiltro);
+
+  }
+
+
+
+  //CUSTOM EVENT para los botones de borrar filtros de ese tipo
   const eventoClean = new CustomEvent('limpieza', {
     detail: {
       mensaje: `limpieza de filtros seleccionada!: `,
       filtros: filtros,
     },
   });
-
-  //Seleccionamos los botones de borrar filtros para quitar todos los filtros
+  //Seleccionamos los botones de borrar filtros para quitar todos los filtros de ese tipo
   document.querySelectorAll('[data-clean]').forEach((buttonClean:HTMLButtonElement) => {
     buttonClean.addEventListener('click', () => {
       const filter = buttonClean.dataset?.clean;
@@ -238,10 +261,22 @@ const coloresArray = Array.isArray(colores) ? colores : Object.values(colores ??
 
     })
   })
- 
-  
+   
+  //creamos un evento para el boton de borrar filtros de precio que es distinto a los demas
+  const eventoBotonPrecio = new CustomEvent('limpiaPrecio', {
+    detail:{
+      mensaje: `Se ha pulsado el boton del borrar de precio`,
+    },
+  });
+  //llamamos al evento para limpiar el filtro de precio en CategoriaRango2.astro
+  document.querySelectorAll('[data-precio-clean]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.dispatchEvent(eventoBotonPrecio);
+    });
+  });
 
-  //Seleccionamos los botones de guardar filtros que aunque no van ha hacer nada pq los filtros ya estan aplicados vamos a guardar el accodion
+
+  //Seleccionamos los botones de guardar filtros que aunque no van ha hacer nada pq los filtros ya estan aplicados vamos a guardar el accordion
   document.querySelectorAll('[data-button-save]').forEach((buttonSave:HTMLButtonElement) => {
     buttonSave.addEventListener('click', () => {
 
