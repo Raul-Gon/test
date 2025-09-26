@@ -41,7 +41,7 @@ const allProducts = dataProducts.data?.Favoriteproducts;
     <span>14555 artículos mostrados </span>
     <div class="grid grid-cols-3 place-content-between gap-2 mt-7">
         {allProducts.map((product: any) => 
-                                <articule class="flex flex-col my-3" data-product data-precio={product.price} data-talla={ product.tallaZapato } data-color={ product.color }>
+                                <articule class="flex flex-col my-3" data-product data-marca={product.brand} data-precio={product.price} data-talla={ product.tallaZapato } data-color={ product.color }>
                                     <a href={`/${customSlugify(product.brand)}/${customSlugify(product.model)}--${product.id}`} target="_blank">
                                         <img class="xl:max-w-2xs h-auto" src={product.productimage.url} alt={product.model} />
                                         <h3>{product.brand}</h3>

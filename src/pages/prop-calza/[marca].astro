@@ -1,0 +1,69 @@
+---
+//le añadimos el prerender para hacerlo dinamico
+export const prerender = false;
+//este archivo es ahora dinamico porque hace una pagina con el id del producto y solo le manda esa al cliente 
+
+// Importar variables de entorno y la metemos en una constante para despues usarla en la llamada a la API
+const SECRET_TOKEN = import.meta.env.SECRET_API_TOKEN;
+
+/*
+export async function getStaticPaths() {
+  const productos = `query {
+    Productos {
+      modeloProducto
+      imagen {
+        url
+      }
+      brand
+      precioProducto
+    }
+  }`;
+
+  const response = await fetch("https://graphql.apirocket.io", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${SECRET_TOKEN}`,
+    },
+    body: JSON.stringify({ query: productos }),
+  });
+
+  const data = await response.json();
+  const productosData = data.data?.Productos;
+
+  // Generar rutas con marca y modelo "slugificados"
+  return productosData.map((producto) => {
+    return {
+      params: {
+        modelo: `/${customSlugify(producto.brand)}/${customSlugify(producto.modeloProducto)}`,
+      },
+      props: { product: producto },
+    };
+  });
+}
+  
+*/
+
+---
+
+<div>HOLAAAAAAAA</div>
+
+<!--
+
+<section class="mt-5">
+    <div class="grid grid-cols-3 place-content-between gap-2 mt-7">
+        {allProducts1.map((product1: any) => 
+                                <div class="flex flex-col my-3">
+                                    <a href={`/prop-calza/${customSlugify(product1.brand)}/${customSlugify(product1.modeloProducto)}--${product1.id}`}>                                  
+                                        <img class="xl:max-w-2xs h-auto" src={product1.imagen.url} alt={product1.modeloProducto} />
+                                        <h3>{product1.brand}</h3>
+                                        <h5>{product1.modeloProducto}</h5>
+                                        <h6 class="text-red-600">{product1.precioProducto} €</h6>
+                                    </a>
+                                </div>  
+                        )   
+        } 
+    </div>
+</section>
+
+-->
