@@ -9,9 +9,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/netlify": "^6.5.10",
+    "@astrojs/netlify": "^6.5.11",
     "@tailwindcss/vite": "^4.1.12",
-    "astro": "^5.13.5",
+    "astro": "^5.14.1",
     "slugify": "^1.6.6",
     "tailwindcss": "^4.1.12"
   },
