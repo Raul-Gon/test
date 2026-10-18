@@ -75,12 +75,13 @@ Si deseas auditar el código o ejecutar este proyecto localmente para evaluar su
 
 ## 📬 ¿Te interesa mi perfil para tu empresa o proyecto?
 
-Estoy buscando activamente integrarme en equipos técnicos donde pueda aportar valor inmediato escribiendo código limpio, resolviendo problemas de interfaz y mejorando la experiencia de usuario. Puedes conocer más sobre mi trayectoria y conectar conmigo a través de mis canales profesionales:
+Estoy buscando activamente integrarme en equipos técnicos donde pueda aportar valor inmediato escribiendo código limpio, resolviendo problemas de interfaz y mejorando la experiencia de usuario. Puedes conocer más sobre mi trayectoria, descargar mi historial o conectar conmigo a través de mis canales profesionales:
 
-[![LinkedIn](https://shields.io)](https://www.linkedin.com/in/ra%C3%BAl-gonz%C3%A1lez-g%C3%B3mez-148b9a387/)
-[![InfoJobs](https://shields.io)](https://www.infojobs.net/candidate/cv/view/index.xhtml)
+[![LinkedIn](https://shields.io)](https://linkedin.com)
+[![Descargar CV](https://shields.io)](./curriculum.pdf)
 [![GitHub](https://shields.io)](https://github.com)
 
 ---
 *¡Hablemos sobre cómo puedo ayudar a impulsar los desarrollos de tu empresa!*
+
 
