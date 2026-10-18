@@ -78,7 +78,7 @@ Si deseas auditar el código o ejecutar este proyecto localmente para evaluar su
 Estoy buscando activamente integrarme en equipos técnicos donde pueda aportar valor inmediato escribiendo código limpio, resolviendo problemas de interfaz y mejorando la experiencia de usuario. Puedes conocer más sobre mi trayectoria, descargar mi historial o conectar conmigo a través de mis canales profesionales:
 
 [![LinkedIn](https://shields.io)](https://linkedin.com)
-[![Descargar CV](https://shields.io)](./cvpdf_link.pdf)
+[![Descargar CV](https://shields.io)](./cvpdf_link/curriculum.pdf)
 [![GitHub](https://shields.io)](https://github.com)
 
 ---
