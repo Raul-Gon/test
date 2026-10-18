@@ -75,9 +75,12 @@ Si deseas auditar el código o ejecutar este proyecto localmente para evaluar su
 
 ## 📬 ¿Te interesa mi perfil para tu empresa o proyecto?
 
-Estoy buscando activamente integrarme en equipos técnicos donde pueda aportar valor inmediato escribiendo código limpio, resolviendo problemas de interfaz y mejorando la experiencia de usuario.
+Estoy buscando activamente integrarme en equipos técnicos donde pueda aportar valor inmediato escribiendo código limpio, resolviendo problemas de interfaz y mejorando la experiencia de usuario. Puedes conocer más sobre mi trayectoria y conectar conmigo a través de mis canales profesionales:
 
-*   **Mi Perfil de GitHub:** [@Raul-Gon](https://github.com/Raul-Gon)
-*   **Proyecto Desplegado:** [zalandotest.netlify.app](https://zalandotest.netlify.app/)
+[![LinkedIn](https://shields.io)](https://www.linkedin.com/in/ra%C3%BAl-gonz%C3%A1lez-g%C3%B3mez-148b9a387/)
+[![InfoJobs](https://shields.io)](https://www.infojobs.net/candidate/cv/view/index.xhtml)
+[![GitHub](https://shields.io)](https://github.com)
 
-¡Hablemos sobre cómo puedo ayudar a impulsar los desarrollos de tu empresa!
+---
+*¡Hablemos sobre cómo puedo ayudar a impulsar los desarrollos de tu empresa!*
+
